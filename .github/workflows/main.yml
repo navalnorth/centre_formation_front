@@ -10,21 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Étape 1 : Cloner le code du dépôt
+      # Étape 1 : Cloner le dépôt
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Étape 2 : Installer les dépendances et construire le projet
       - name: Install dependencies and build
         run: |
           npm install
           npm run build
 
-      # Étape 3 : Déployer sur Netlify
+      # Étape 3 : Installer Netlify CLI
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+
+      # Étape 4 : Déployer sur Netlify
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.2.3
-        with:
-          publish-dir: ./dist
-          production-deploy: true
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }} # Token d'accès Netlify
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}       # ID de votre site Netlify
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          netlify deploy --prod --dir=./dist
