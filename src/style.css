@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+:root {
+    /* Couleurs */
+    --color-blue: #0E003A;
+    --color-pink: #FFD9DF;
+    --color-gray: #DADADA;
+  
+    /* Polices */
+    --font-title: 'Lato', sans-serif;
+    --font-subtitle: 'Paprica', cursive; /* Paprica peut nécessiter une importation personnalisée */
+    --font-text: 'Roboto', sans-serif;
+  }
+  
