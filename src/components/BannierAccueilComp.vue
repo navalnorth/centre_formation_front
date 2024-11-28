@@ -61,7 +61,7 @@ defineProps({
 @media (max-width: 768px) {
     .background-div {
         border-bottom-right-radius: 0px;
-        height: 100%;
+        
     }
 }
 </style>
