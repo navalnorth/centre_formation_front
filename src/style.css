@@ -3,15 +3,24 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400;700&display=swap');
 
+@font-face {
+  font-family: 'paprica';
+  src: url('./assets/font/Paprika/Paprika-Regular.ttf');
+}
+
 :root {
     /* Couleurs */
-    --color-blue: #0E003A;
+    --color-blue: #090347;
     --color-pink: #FFD9DF;
     --color-gray: #DADADA;
-  
+
+
+    /*Degrader accueil*/
+    --primary-color:#090347;
+    --secondary-color:#2001B9;
     /* Polices */
     --font-title: 'Lato', sans-serif;
-    --font-subtitle: 'Paprica', cursive; /* Paprica peut nécessiter une importation personnalisée */
+    --font-subtitle: 'paprica', cursive; /* Paprica peut nécessiter une importation personnalisée */
     --font-text: 'Roboto', sans-serif;
   }
   
