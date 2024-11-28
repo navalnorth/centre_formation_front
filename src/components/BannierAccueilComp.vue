@@ -44,7 +44,7 @@ defineProps({
 
 /* Dégradé dynamique dans la div avec un coin arrondi */
 .background-div {
-  position: absolute;
+  
   top: 0;
   left: 0;
   width: 100%;
