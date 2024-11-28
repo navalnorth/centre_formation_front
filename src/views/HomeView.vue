@@ -1,18 +1,24 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <BannierAccueilComp :image="image">
+    <template #title>FORMATIONS &  BILAN DE COMPETENCES </template>
+    <template #name>PAULINE BOURDARIAS</template>
+    <template #description>Parce que chaque parcours est unique, Je vous accompagne avec bienveillance et écoute pour révéler
+      votre 
+      potentiel
+      et donner du sens à vos projets. Ensemble, construisons un avenir qui vous ressemble. </template>
+  </BannierAccueilComp>
+  <div class="flex flex-col items-center justify-center text-white ">
+    
   </div>
+ 
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+<script setup>
+import BannierAccueilComp from '@/components/BannierAccueilComp.vue';
 
-export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
-  }
-}
+import image from '../assets/logo/logo_3.png'
 </script>
+
+<style scoped>
+
+</style>
