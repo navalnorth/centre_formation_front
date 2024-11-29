@@ -28,7 +28,6 @@
 <script setup>
 
 import { ref } from 'vue';
-import logoPath from '../assets/logo/logo_3.png';
 
 import { ChMenuHamburger } from '@kalimahapps/vue-icons';
 const isOpen = ref(true);
@@ -37,7 +36,10 @@ const toggleBurgerMenu = () => {
     isOpen.value = !isOpen.value;
    
 }
-const logo = logoPath;
+defineProps({
+    logo: String,
+  });
+
 </script>
 
 <style scoped>
