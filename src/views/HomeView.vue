@@ -10,20 +10,32 @@
 
   <div class="flex flex-col items-center justify-center">
     <h1 class="mt-20">Découvrez de Nouvelles Opportunités</h1>
-    <div class="flex gap-10 md:gap-40 m-10  flex-wrap justify-center items-center">
+    <div class="flex  my-10  flex-wrap justify-center items-center">
       <!-- Utilisation du composant cardAccueilComp -->
       <cardAccueilComp 
         v-for="(card, index) in cards" 
         :key="index" 
         :bgimage="card.image" 
         :title="card.title" 
-        :description="card.description" />
+        :description="card.description"
+        :infoBull1="card.infoBull1" 
+        :infoBull2="card.infoBull2"/>
     </div>
   </div>
+
+  <BannierComp :logo="image">
+    <template #title>“Révélez votre potentiel unique avec bienveillance et authenticité”</template>
+    <template #description>
+      Pauline B.
+    </template>
+  </BannierComp>
+ 
+
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import BannierComp from '@/components/BannierComp.vue';
 import BannierAccueilComp from '@/components/BannierAccueilComp.vue';
 import cardAccueilComp from '@/components/cardAccueilComp.vue';
 import image from '../assets/logo/logo_3.png';
@@ -34,11 +46,15 @@ const cards = ref([
     image: image,
     title: "Bilan de compétences",
     description: "Découvrez votre potentiel grâce au bilan de compétences.",
+    infoBull1: "Découvrez votre potentiel grâce au bilan de compétences",
+    infoBull2: "Un premier échange offert pour faire le point"
   },
   {
     image: image,
     title: "Nos formations",
     description: "Faites le point sur vos compétences et explorez de nouvelles perspectives professionnelles.",
+    infoBull1: "approche pédagogique, centrée sur l’humain et l’application concrète.",
+    infoBull2: "construire une formation adaptée."
   }
  
 ]);

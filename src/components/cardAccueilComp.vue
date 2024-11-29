@@ -1,4 +1,7 @@
 <template>
+  <div class="flex flex-col justify-center items-center my-10">
+
+  
     <div class="card-container relative w-72 h-96 " @mouseover="isFlipped = true" @mouseleave="isFlipped = false">
       <div class="card-inner transform transition-transform duration-500 ease-in-out" :class="{ 'is-flipped': isFlipped }">
        
@@ -16,8 +19,16 @@
           <p class="text-center text-2xl line-clamp-6">{{ description }}   
           </p><p><br>Cliquez pour plus info</p>
         </div>
+
       </div>
     </div>
+    <div class="flex items-center justify-center flex-col">
+      <img class="h-20 w-10 my-5" src="../assets/image/ArrowB.png" alt="">
+      <p class="bgBlue text-white m-5 rounded-3xl p-5">{{infoBull1}}</p>
+      <img class="h-20 w-10 my-5" src="../assets/image/ArrowB.png" alt="">
+      <p class="bgBlue text-amber-300 m-5 rounded-3xl p-5 mb-5">{{infoBull2}}</p>
+    </div>
+  </div>
   </template>
   
   <script setup>
@@ -29,10 +40,17 @@
     bgimage: String,
     title: String,
     description: String,
+    infoBull1: String,
+    infoBull2: String,
   });
   </script>
   
   <style scoped>
+  .bgBlue {
+    background-color: var(--color-blue);
+   
+  }
+
   .card-container {
     perspective: 1000px; /* Ajout de perspective pour l'effet de rotation */
   }
