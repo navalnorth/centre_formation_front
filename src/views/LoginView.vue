@@ -24,7 +24,7 @@ const password = ref('');
 const erreurs = ref(''); // Variable pour les erreurs
 
 const setTokenStore = (token) => {
-  const user = JSON.parse(atob(token.split('.')[1]));
+  const user = JSON.parse(atob(token.split('.')[1]))
   store.commit('setUser', user);
   store.commit('setToken', token);
   store.commit('createToken', token);
