@@ -1,5 +1,5 @@
 <template>
-    <nav class="absolute p-5 w-full h-24 flex items-center justify-between ">
+    <nav class="deg p-5 w-full h-24 flex items-center justify-between ">
         <div class="w-20 h-20 content-center" >
             <img class="w-16 h-16" :src="logo" alt="Logo" />
         </div>
@@ -41,6 +41,10 @@ const logo = logoPath;
 </script>
 
 <style scoped>
+.deg{
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+}
+
 .menu {
     display: flex;
     flex-direction: column;
