@@ -1,10 +1,10 @@
 <template>
-    <form @submit.prevent="login" class="pt-48">
+    <form class="pt-48" @submit.prevent="login">
         <div>
-            <input type="text" name="" id="" v-model="mail" required placeholder="mail">
+            <input type="text" v-model="mail" placeholder="mail">
         </div>
         <div>
-            <input type="password" name="" id="" v-model="password" required placeholder="mot de passe">
+            <input type="password" v-model="password" placeholder="mot de passe">
         </div>
         <button type="submit">connexion</button>
 
@@ -13,7 +13,6 @@
 
 <script setup>
 import { ref } from 'vue';
-
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 
@@ -22,6 +21,7 @@ const store = useStore();
 
 const mail = ref('');
 const password = ref('');
+const erreurs = ref(''); // Variable pour les erreurs
 
 const setTokenStore = (token) => {
   const user = JSON.parse(atob(token.split('.')[1]));
@@ -32,35 +32,34 @@ const setTokenStore = (token) => {
 };
 
 const login = async () => {
+    erreurs.value = ''; // Réinitialise les erreurs
     const data = {
         mail: mail.value,
         password: password.value,
-    }
+    };
 
     try {
         const response = await fetch('https://centreformationback-production.up.railway.app/users/login', {
             method: 'POST',
-            mode: 'cors',
             body: JSON.stringify(data),
             headers: {
                 'Accept': 'application/json, text/plain, /',
                 'Content-Type': 'application/json',
             },
-        })
+        });
         if (!response.ok) {
-            console.error('Erreur lors de la connexion:', response.statusText);
-            erreurs.value.push('Email ou mot de passe invalides !')
+            const err = await response.json();
+            erreurs.value = err.message || 'Erreur inconnue lors de la connexion.';
             return;
         }
 
-        const result = await response.json()
+        const result = await response.json();
         setTokenStore(result.token);
-        router.push('/')
+        router.push('/'); // Redirection vers la page principale
     } catch (error) {
-        console.error('Erreur durant la connexion : ', error)
+        erreurs.value = 'Erreur de connexion au serveur. Veuillez réessayer plus tard.';
+        console.error('Erreur durant la connexion : ', error);
     }
-}
+};
 
 </script>
-
-<style></style>

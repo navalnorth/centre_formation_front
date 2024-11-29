@@ -23,6 +23,10 @@
     </div>
   </div>
 
+    <button @click="lelogin">
+      login
+    </button>
+
   <BannierComp :logo="image">
     <template #title>“Révélez votre potentiel unique avec bienveillance et authenticité”</template>
     <template #description>
@@ -39,6 +43,7 @@ import BannierComp from '@/components/BannierComp.vue';
 import BannierAccueilComp from '@/components/BannierAccueilComp.vue';
 import cardAccueilComp from '@/components/cardAccueilComp.vue';
 import image from '../assets/logo/logo_3.png';
+import router from '@/router';
 
 // Exemple de données pour les cartes
 const cards = ref([
@@ -58,6 +63,11 @@ const cards = ref([
   }
  
 ]);
+
+
+const lelogin = () => {
+  router.push("/login-admin")
+}
 </script>
 
 <style scoped>
