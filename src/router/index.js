@@ -7,9 +7,14 @@ const routes = [
     component: () => import('../views/HomeView.vue')
   },
   {
-    path: '/login-admin',
-    name: 'login-admin',
+    path: '/loginAdmin',
+    name: 'loginAdmin',
     component: () => import('../views/LoginView.vue')
+  },
+  {
+    path: '/bilan-de-competences',
+    name: 'bilan-de-competences',
+    component: () => import('../views/BilanView.vue')
   },
 ]
 

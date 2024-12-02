@@ -1,7 +1,7 @@
 <template>
- <NavBarComp :logo="logo"/>
+  <NavBarComp :logo="logo"/>
   <router-view/>
-  <FooterComp :logo="logo"></FooterComp>
+  <FooterComp :logo="logo"/>
 </template>
 
 <script setup>

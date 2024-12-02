@@ -65,6 +65,8 @@ onMounted(() => {
   fetchBannier();
 });
 
+
+
 const fetchAccueil = async () => {
   try {
     const response = await fetch(`${process.env.VUE_APP_URL}/accueil/`, {
@@ -96,8 +98,9 @@ const fetchAccueil = async () => {
   }
 };
 
-/*cette partie est pour l ajoute d image */
 
+
+/*cette partie est pour l ajoute d image */
 const imageName = ref('');
 
 const onFileChange = (event) => {
@@ -113,6 +116,8 @@ const onFileChange = (event) => {
     reader.readAsDataURL(file); // Convertit le fichier en Base64
   }
 };
+
+
 
 const fetchUpdateAccueil = async () => {
   const fileInput = document.getElementById('image');
@@ -148,6 +153,8 @@ const fetchUpdateAccueil = async () => {
   }
 };
 
+
+
 const fetchCard = async () => {
   try {
     const response = await fetch(`${process.env.VUE_APP_URL}/card/`, {
@@ -173,6 +180,8 @@ const fetchCard = async () => {
     console.error('Erreur durant la connexion : ', error);
   }
 };
+
+
 
 const fetchBannier = async () => {
   try {
@@ -200,7 +209,6 @@ const fetchBannier = async () => {
     console.error('Erreur durant la connexion : ', error);
   }
 };
-
 </script>
 
 <style scoped>
