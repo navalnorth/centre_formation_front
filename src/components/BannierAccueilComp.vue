@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-const url = `${process.env.VUE_APP_IP_ADDRESS}/uploads/`;
+const url = `${process.env.VUE_APP_URL}/uploads/`;
 
 defineProps({
   image: {
