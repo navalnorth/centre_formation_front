@@ -46,7 +46,7 @@ import { onMounted } from 'vue';
 
 const urlImageBannier = ref('')
 
-const url = `${process.env.VUE_APP_IP_ADDRESS}/uploads/`;
+const url = `${process.env.VUE_APP_URL}/uploads/`;
 const imageUrl = ref('');
 
 

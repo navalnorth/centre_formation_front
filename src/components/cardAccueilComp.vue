@@ -35,7 +35,7 @@
   import { ref } from 'vue';
   
   const isFlipped = ref(false);
-  const url = `${process.env.VUE_APP_IP_ADDRESS}/uploads/`;
+  const url = `${process.env.VUE_APP_URL}/uploads/`;
   defineProps({
     bgimage: String,
     title: String,
