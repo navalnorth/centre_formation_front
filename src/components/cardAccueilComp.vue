@@ -4,10 +4,10 @@
   
     <div class="card-container relative w-72 h-96 " @mouseover="isFlipped = true" @mouseleave="isFlipped = false">
       <div class="card-inner transform transition-transform duration-500 ease-in-out" :class="{ 'is-flipped': isFlipped }">
-       
+       {{ bgimage }}
         <div class="card-front absolute w-full h-full bg-white rounded-lg shadow-lg overflow-hidden">
           
-          <img :src="bgimage" alt="Card image" class="w-full h-full object-cover" />
+          <img  :src="`${url}${bgimage}`" alt="Card image" class="w-full h-full object-cover" />
          
           <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <h3 class="text-lg font-bold text-white text-center px-4">{{ title }}</h3>
@@ -35,7 +35,7 @@
   import { ref } from 'vue';
   
   const isFlipped = ref(false);
-  
+  const url = `${process.env.VUE_APP_IP_ADDRESS}/uploads/`;
   defineProps({
     bgimage: String,
     title: String,
@@ -43,6 +43,8 @@
     infoBull1: String,
     infoBull2: String,
   });
+
+  
   </script>
   
   <style scoped>

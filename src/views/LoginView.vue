@@ -32,7 +32,7 @@ const setTokenStore = (token) => {
 };
 
 const login = async () => {
-    erreurs.value = ''; // Réinitialise les erreurs
+    erreurs.value = '';
     const data = {
         mail: mail.value,
         password: password.value,
@@ -55,7 +55,7 @@ const login = async () => {
 
         const result = await response.json();
         setTokenStore(result.token);
-        router.push('/'); // Redirection vers la page principale
+        router.push('/');
     } catch (error) {
         erreurs.value = 'Erreur de connexion au serveur. Veuillez réessayer plus tard.';
         console.error('Erreur durant la connexion : ', error);
