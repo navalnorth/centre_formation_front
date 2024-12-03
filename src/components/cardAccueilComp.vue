@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap justify-center items-center my-10">
+  <div class="flex flex-wrap gap-20 justify-center items-center my-10">
     <div
       v-for="(card, index) in cards"
       :key="index"
@@ -25,14 +25,14 @@
           <p><br>Cliquez pour plus d'informations</p>
         </div>
       </div>
+      <div class="flex items-center justify-center flex-col">
+        <img class="h-20 w-10 my-5" src="../assets/image/ArrowB.png" alt="Arrow Icon" />
+        <p class="bgBlue text-white m-5 rounded-3xl p-5">{{ card.infoBull1 }}</p>
+        <img class="h-20 w-10 my-5" src="../assets/image/ArrowB.png" alt="Arrow Icon" />
+        <p class="bgBlue text-amber-300 m-5 rounded-3xl p-5 mb-5">{{ card.infoBull2 }}</p>
+      </div>
     </div>
 
-    <div class="flex items-center justify-center flex-col">
-      <img class="h-20 w-10 my-5" src="../assets/image/ArrowB.png" alt="Arrow Icon" />
-      <p class="bgBlue text-white m-5 rounded-3xl p-5">{{ infoBull1 }}</p>
-      <img class="h-20 w-10 my-5" src="../assets/image/ArrowB.png" alt="Arrow Icon" />
-      <p class="bgBlue text-amber-300 m-5 rounded-3xl p-5 mb-5">{{ infoBull2 }}</p>
-    </div>
   </div>
 </template>
 
