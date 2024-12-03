@@ -77,6 +77,7 @@ onMounted(fetchCard);
   background-color: var(--color-blue);
 }
 
+
 .card-container {
   perspective: 1000px;
   /* Ajout de perspective pour l'effet de rotation */

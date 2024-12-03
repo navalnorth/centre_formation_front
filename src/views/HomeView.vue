@@ -12,10 +12,8 @@
     Upload Image
   </button> -->
 
-  <div class="flex flex-col items-center justify-center">
-    <h1 class="mt-20"> {{ title_section }} </h1>
+  <div class="flex flex-col items-center justify-center h-auto w-full">
     <div class="flex  my-10  flex-wrap justify-center items-center">
-      <!-- Utilisation du composant cardAccueilComp -->
       <cardAccueilComp/>
     </div>
   </div>
