@@ -16,7 +16,7 @@
     <h1 class="mt-20"> {{ title_section }} </h1>
     <div class="flex  my-10  flex-wrap justify-center items-center">
       <!-- Utilisation du composant cardAccueilComp -->
-      <cardAccueilComp />
+      <cardAccueilComp/>
     </div>
   </div>
 
@@ -45,6 +45,7 @@ const banDescription = ref('');
 const cards = ref([]);
 
 onMounted(() => {
+  // fetchCard();
   fetchBannier();
 });
 
@@ -105,6 +106,33 @@ const fetchUpdateAccueil = async () => {
   }
 };
 
+
+
+// const fetchCard = async () => {
+//   try {
+//     const response = await fetch(`${process.env.VUE_APP_URL}/card/`, {
+//       method: 'GET',
+//       headers: {
+//         'Accept': 'application/json, text/plain, */*',
+//         'Content-Type': 'application/json',
+//       },
+//     });
+
+//     if (!response.ok) {
+//       const err = await response.json();
+//       console.log(err.message || 'Erreur inconnue lors de la connexion.');
+//       return;
+//     }
+
+//     const result = await response.json();
+//     const data = result.data;
+//     cards.value.push(...data);
+//     console.log(cards);
+    
+//   } catch (error) {
+//     console.error('Erreur durant la connexion : ', error);
+//   }
+// };
 
 
 

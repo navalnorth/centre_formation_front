@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center items-center my-10">
+  <div class="flex flex-wrap justify-center items-center my-10">
     <div
       v-for="(card, index) in cards"
       :key="index"
@@ -61,7 +61,9 @@ const fetchCard = async () => {
     }
 
     const result = await response.json();
-    cards.value = result.data.map(card => ({ ...card, isFlipped: false })); // Ajout de `isFlipped` à chaque carte
+    const data = result.data;
+    cards.value.push(...data);
+    console.log(cards);
   } catch (error) {
     console.error('Erreur durant la connexion :', error);
   }
