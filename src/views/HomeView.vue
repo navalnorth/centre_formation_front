@@ -52,7 +52,6 @@ const banDescription = ref('');
 const cards = ref([]);
 
 onMounted(() => {
-  fetchAccueil();
   fetchCard();
   fetchBannier();
 });

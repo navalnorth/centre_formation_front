@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 const title = ref('FORMATIONS & BILAN DE COMPETENCES');
@@ -31,6 +31,7 @@ const description = ref('Parce que chaque parcours est unique, Je vous accompagn
 onMounted(() => {
   fetchAccueil();
 });
+
 
 const urlImageBannier = ref('')
 
