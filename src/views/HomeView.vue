@@ -1,10 +1,5 @@
 <template>
-  <BannierAccueilComp :image="urlImageBannier">
-    <template #title>{{ title }}</template>
-    <template #name>{{ name }}</template>
-    <template #description>
-      {{ description }}
-    </template>
+  <BannierAccueilComp>
   </BannierAccueilComp>
 
   <!-- Section d'upload d'image -->
@@ -51,10 +46,7 @@ const imageUrl = ref('');
 
 
 
-const title = ref('FORMATIONS & BILAN DE COMPETENCES');
-const title_section = ref('Découvrez de Nouvelles Opportunités');
-const name = ref('PAULINE BOURDARIAS');
-const description = ref('Parce que chaque parcours est unique, Je vous accompagne avec bienveillance et écoute pour révéler votre potentiel et donner du sens à vos projets. Ensemble, construisons un avenir qui vous ressemble.');
+
 const banTitle = ref('');
 const banDescription = ref('');
 const cards = ref([]);
@@ -66,37 +58,6 @@ onMounted(() => {
 });
 
 
-
-const fetchAccueil = async () => {
-  try {
-    const response = await fetch(`${process.env.VUE_APP_URL}/accueil/`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json, text/plain, /',
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!response.ok) {
-      const err = await response.json();
-      console.log(err.message || 'Erreur inconnue lors de la connexion.');
-      return;
-    }
-
-    const result = await response.json();
-    const data = result.data[0];
-    title.value = data.title_accueil;
-    title_section.value = data.title_section;
-    name.value = data.name;
-    description.value = data.description;
-    urlImageBannier.value = data.image_accueil
-
-    
-
-  } catch (error) {
-    console.error('Erreur durant la connexion : ', error);
-  }
-};
 
 
 
