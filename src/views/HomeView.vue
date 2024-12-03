@@ -16,8 +16,7 @@
     <h1 class="mt-20"> {{ title_section }} </h1>
     <div class="flex  my-10  flex-wrap justify-center items-center">
       <!-- Utilisation du composant cardAccueilComp -->
-      <cardAccueilComp v-for="(card, index) in cards" :key="index" :bgimage="card.bgimage" :title="card.title"
-        :description="card.description" :infoBull1="card.infoBull1" :infoBull2="card.infoBull2" />
+      <cardAccueilComp />
     </div>
   </div>
 
@@ -39,20 +38,13 @@ import cardAccueilComp from '@/components/cardAccueilComp.vue';
 import router from '@/router';
 import { onMounted } from 'vue';
 
-const urlImageBannier = ref('')
-
-const url = `${process.env.VUE_APP_URL}/uploads/`;
 const imageUrl = ref('');
-
-
-
 
 const banTitle = ref('');
 const banDescription = ref('');
 const cards = ref([]);
 
 onMounted(() => {
-  fetchCard();
   fetchBannier();
 });
 
@@ -113,33 +105,6 @@ const fetchUpdateAccueil = async () => {
   }
 };
 
-
-
-const fetchCard = async () => {
-  try {
-    const response = await fetch(`${process.env.VUE_APP_URL}/card/`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!response.ok) {
-      const err = await response.json();
-      console.log(err.message || 'Erreur inconnue lors de la connexion.');
-      return;
-    }
-
-    const result = await response.json();
-    const data = result.data;
-    cards.value.push(...data);
-    console.log(cards);
-    
-  } catch (error) {
-    console.error('Erreur durant la connexion : ', error);
-  }
-};
 
 
 
