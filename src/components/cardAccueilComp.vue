@@ -1,38 +1,39 @@
 <template>
-  <div class="flex flex-wrap gap-20 justify-center items-center my-10">
-    <div
-      v-for="(card, index) in cards"
-      :key="index"
-      class="card-container relative w-72 h-96"
-      @mouseover="card.isFlipped = true"
-      @mouseleave="card.isFlipped = false"
-    >
-      <div
-        class="card-inner transform transition-transform duration-500 ease-in-out"
-        :class="{ 'is-flipped': card.isFlipped }"
-      >
-        <!-- Face avant -->
-        <div class="card-front absolute w-full h-full bg-white rounded-lg shadow-lg overflow-hidden">
-          <img :src="`${url}${card.bgimage}`" alt="Card image" class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <h3 class="text-lg font-bold text-white text-center px-4">{{ card.title }}</h3>
+  <div class="flex flex-wrap gap-20 justify-center items-center content-center  my-10 auto-container">
+    <div v-for="(card, index) in cards" class="flex flex-col items-center justify-center" :key="index" @mouseover="card.isFlipped = true" @mouseleave="card.isFlipped = false">
+      <div class="card-container  flex justify-center relative w-72 h-96">
+        <div class="card-inner relative w-72  h-96 transform transition-transform duration-500 ease-in-out" :class="{ 'is-flipped': card.isFlipped }">
+          <!-- Face avant -->
+          <div class="card-front absolute w-full h-full  bg-white rounded-lg shadow-lg overflow-hidden">
+            <img :src="`${url}${card.bgimage}`" alt="Card image" class="w-full h-full object-cover" />
+            <div class="absolute inset-0  bg-black bg-opacity-50 flex items-center justify-center">
+              <h3 class="text-lg font-bold text-white text-center px-4">{{ card.title }}</h3>
+            </div>
+          </div>
+
+          <!-- Face arrière -->
+          <div class="card-back absolute flex-col w-full h-full bg-pink-100 text-black rounded-lg shadow-lg flex items-center justify-center p-4">
+            <p class="text-center text-2xl line-clamp-6">{{ card.description }}</p>
+            <p><br>Cliquez pour plus d'informations</p>
           </div>
         </div>
-
-        <!-- Face arrière -->
-        <div class="card-back absolute flex-col w-full h-full bg-pink-100 text-black rounded-lg shadow-lg flex items-center justify-center p-4">
-          <p class="text-center text-2xl line-clamp-6">{{ card.description }}</p>
-          <p><br>Cliquez pour plus d'informations</p>
-        </div>
       </div>
-      <div class="flex items-center justify-center flex-col">
-        <img class="h-20 w-10 my-5" src="../assets/image/ArrowB.png" alt="Arrow Icon" />
+      <div class="hidden md:flex items-center justify-center flex-col">
+        <img class="h-20 w-10 my-2" src="../assets/image/ArrowB.png" alt="Arrow Icon" />
         <p class="bgBlue text-white m-5 rounded-3xl p-5">{{ card.infoBull1 }}</p>
-        <img class="h-20 w-10 my-5" src="../assets/image/ArrowB.png" alt="Arrow Icon" />
+        <img class="h-20 w-10 my-2" src="../assets/image/ArrowB.png" alt="Arrow Icon" />
         <p class="bgBlue text-amber-300 m-5 rounded-3xl p-5 mb-5">{{ card.infoBull2 }}</p>
       </div>
     </div>
-
+  </div>
+  <div  v-for="(card, index) in cards" class="flex md:hidden  flex-col items-center justify-center" :key="index">
+    <div class=" items-center justify-center flex flex-col">
+      <p class="bg-pink-400 text-white m-5 rounded-3xl p-5">{{ card.title }}</p>
+      <img class="h-20 w-10 my-2" src="../assets/image/ArrowB.png" alt="Arrow Icon" />
+      <p class="bgBlue text-white m-5 rounded-3xl p-5">{{ card.infoBull1 }}</p>
+      <img class="h-20 w-10 my-2" src="../assets/image/ArrowB.png" alt="Arrow Icon" />
+      <p class="bgBlue text-amber-300 m-5 rounded-3xl p-5 mb-5">{{ card.infoBull2 }}</p>
+    </div>
   </div>
 </template>
 
@@ -41,8 +42,10 @@ import { onMounted, ref } from 'vue';
 
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 const cards = ref([]);
-const infoBull1 = ref('Information 1');
-const infoBull2 = ref('Information 2');
+
+onMounted(() => {
+  fetchCard();
+});
 
 const fetchCard = async () => {
   try {
@@ -68,19 +71,25 @@ const fetchCard = async () => {
     console.error('Erreur durant la connexion :', error);
   }
 };
-
-onMounted(fetchCard);
 </script>
 
 <style scoped>
+.auto-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centre les cartes horizontalement */
+  align-items: center; /* Centre les cartes verticalement */
+  gap: 20px;
+ 
+}
+
 .bgBlue {
   background-color: var(--color-blue);
 }
 
-
 .card-container {
-  perspective: 1000px;
-  /* Ajout de perspective pour l'effet de rotation */
+  perspective: 1000px; /* Ajout de perspective pour l'effet de rotation */
+
 }
 
 .card-inner {
@@ -88,25 +97,42 @@ onMounted(fetchCard);
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
+  
 }
 
 .card-inner.is-flipped {
-  transform: rotateY(180deg);
-  /* Retourne la carte */
+  transform: rotateY(180deg); /* Retourne la carte */
 }
 
 .card-front,
 .card-back {
-  backface-visibility: hidden;
-  /* Cache l'autre face lors de la rotation */
+  backface-visibility: hidden; /* Cache l'autre face lors de la rotation */
   position: absolute;
   width: 100%;
   height: 100%;
   border-radius: 1rem;
+  
 }
 
 .card-back {
-  transform: rotateY(180deg);
-  /* Retourne la face arrière */
+  transform: rotateY(180deg); /* Retourne la face arrière */
+}
+
+/* Pour s'assurer que l'image et le contenu sont centrés correctement */
+.card-front img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  
+}
+
+.card-container,
+.card-inner,
+.card-front,
+.card-back {
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

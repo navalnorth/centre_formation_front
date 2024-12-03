@@ -12,13 +12,13 @@
     Upload Image
   </button> -->
 
-  <div class="flex flex-col items-center justify-center h-auto w-full">
-    <div class="flex  my-10  flex-wrap justify-center items-center">
-      <cardAccueilComp/>
-    </div>
-  </div>
 
-  <BannierComp :logo="image">
+
+    <cardAccueilComp ></cardAccueilComp>
+
+
+
+  <BannierComp :logo="imageUrl">
     <template #title> {{ banTitle }} </template>
     <template #description>
       {{ banDescription }}

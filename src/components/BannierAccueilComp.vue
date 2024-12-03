@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center justify-center text-white">
     <!-- Div avec dégradé dynamique et coin arrondi -->
     <div class="background-div  ">
-      <div class="flex items-center justify-center flex-wrap-reverse gap-10 md:gap-44 w-full mt-32  relative z-10">
+      <div class="flex items-center justify-center flex-wrap-reverse gap-10 md:gap-44 w-full my-10  relative z-10">
         <div class="text-center md:text-left md:w-1/3 w-full">
           <h1 class="text-xl md:text-3xl  font-bold fontTitle md:p-0 px-5">{{ title }}</h1>
           <h3 class="text-base md:text-xl mt-2 font-light">{{ name }}</h3>
@@ -16,7 +16,7 @@
     </div>
 
   </div>
-  <h1 class="mt-20 fontTitle"> {{ title_section }} </h1>
+  <h1 class="mt-20 text-xl md:text-3xl fontTitle"> {{ title_section }} </h1>
 </template>
 
 <script setup>
@@ -53,6 +53,8 @@ const fetchAccueil = async () => {
 
     const result = await response.json();
     const data = result.data[0];
+    console.log(data);
+    
     title.value = data.title_accueil;
     title_section.value = data.title_section;
     name.value = data.name;
