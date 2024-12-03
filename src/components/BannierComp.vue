@@ -1,25 +1,20 @@
 <template>
-    <div class="flex flex-col items-center justify-center text-white">
-        <!-- Div avec dégradé dynamique et coin arrondi -->
-        <div class="background-div  ">
-            <div
-                class="flex items-center justify-center flex-wrap-reverse gap-10 md:gap-44 w-full mt-5 mx-0 md:mx-10 relative z-10">
-                <div class="text-center md:text-left md:w-1/2 w-full">
-                    <h1 class="text-xl md:text-3xl  font-bold fontTitle md:p-0 px-5">
-                        <slot name="title"></slot>
-                    </h1>
-                   
-                    <p class="mt-4 text-base sp fontSubTitle w-full my-5 break-words md:p-0 px-5">
-                        <slot name="description"></slot>
-                    </p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <img class="w-24 md:w-44 h-24 md:h-44 mb-5 " :src="logo" alt="logo" />
-                </div>
+    <div class="background-div w-full overflow-hidden md:h-96 h-72 text-white mt-10">
+        <div class="flex items-center justify-center md:gap-44 w-full mt-10 md:mt-20 mb-36 mx-0 md:mx-10">
+            <div class="md:w-3/4 w-full">
+                <h1 class="text-lg md:text-3xl text-center fontTitle md:p-0 px-5">
+                    <slot name="title"></slot>
+                </h1>
+
+                <p class="mt-4 text-xs md:text-base fontSubTitle my-5  md:p-0 px-5">
+                    <slot name="description"></slot>
+                </p>
+            </div>
+
+            <div class="w-1/4 ">
+                <img class="w-24 md:w-44 h-24 md:h-44 mb-5" src="../assets/logo/logo_3.png" />
             </div>
         </div>
-
-
     </div>
 </template>
 
@@ -32,7 +27,6 @@ defineProps({
 </script>
 
 <style scoped>
-/* Appliquer les polices via les variables */
 .fontTitle {
     font-family: var(--font-title);
 }
@@ -45,29 +39,18 @@ defineProps({
     font-family: var(--font-text);
 }
 
-/* Dégradé dynamique dans la div avec un coin arrondi */
 .background-div {
-
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
-
     background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-    /* Forme avec un coin arrondi en bas à droite */
-    border-bottom-right-radius: 10%;
-    /* Arrondi du coin inférieur droit */
-    border-bottom-left-radius: 10%;
-    /* Arrondi du coin inférieur gauche */
+    clip-path: ellipse(90% 80% at 50% 15%);
     z-index: -1;
-    /* Appliquer un dégradé avec un coin arrondi */
-    overflow: hidden;
 }
 
 @media (max-width: 768px) {
     .background-div {
-        border-bottom-right-radius: 0px;
-        border-bottom-left-radius: 0px;
+        clip-path: ellipse(70% 80% at 50% 15%);
+    }
+    .logo {
+        display: none;
     }
 }
 </style>
