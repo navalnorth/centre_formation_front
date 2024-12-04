@@ -10,7 +10,7 @@
 
     <BannierComp>
         <template #title>
-            Lepremier échange offert pur faire le point
+            Le premier échange offert pur faire le point
         </template>
         <template #description>
             Parce que cette démarche mérite toute votre confiance,<br>

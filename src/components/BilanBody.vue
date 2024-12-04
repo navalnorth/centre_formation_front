@@ -31,7 +31,7 @@
         <div class="flex justify-center mt-20">
             <div class="largeurBulle flex flex-col gap-4 sm:gap-12 w-full text-white relative">
                 <div class="flex justify-start bulle">
-                    <div class="inline-flex items-center bg-black md:text-lg text-sm gap-4 rounded-3xl px-6 py-3">
+                    <div class="inline-flex items-center bgbulle md:text-lg text-sm gap-4 rounded-3xl px-6 py-3">
                         <Bs1Circle class="text-3xl"/>
                         <p>
                             Identifier vos compétences, vos talents et vos forces.
@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="flex justify-end bulle">
-                    <div class="inline-flex items-center md:text-lg text-sm bg-black gap-4 rounded-3xl px-6 py-3">
+                    <div class="inline-flex items-center md:text-lg text-sm bgbulle gap-4 rounded-3xl px-6 py-3">
                         <Bs2Circle class="text-3xl" />
                         <p>
                             Explorer ce qui vous motive réellement,<br>
@@ -68,7 +68,7 @@
                 </div>
 
                 <div class="flex justify-start mb-8 bulle">
-                    <div class="inline-flex items-center md:text-lg text-sm bg-black gap-4 rounded-3xl px-6 py-3">
+                    <div class="inline-flex items-center md:text-lg text-sm bgbulle gap-4 rounded-3xl px-6 py-3">
                         <Bs3Circle class="text-3xl" />
                         <p>
                             Construire un projet qui a du sens pour vous,<br>
@@ -112,6 +112,10 @@ import { Bs1Circle, Bs2Circle, Bs3Circle } from '@kalimahapps/vue-icons';
 
 .largeurBulle {
     max-width: 1000px;
+}
+
+.bgbulle {
+    color: var(--color-blue);
 }
 
 @media (max-width: 950px) {
