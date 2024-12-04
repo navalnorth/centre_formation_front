@@ -3,14 +3,14 @@
   </BannierAccueilComp>
 
   <!-- Section d'upload d'image -->
-  <!-- <label class="file-upload">
+  <label class="file-upload">
     <input type="file" id="image" name="image" accept="image/*" @change="onFileChange" />
     <div v-if="imageUrl" :style="`background-image:url('${imageUrl}')`" class="file-upload"></div>
   </label>
 
   <button @click="fetchUpdateAccueil">
     Upload Image
-  </button> -->
+  </button>
 
 
 

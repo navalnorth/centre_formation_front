@@ -28,7 +28,7 @@
   </div>
   <div>
     <h1 class="flex md:hidden justify-center mt-20 text-xl md:text-3xl fontTitle mb-10"> Plus d'informations</h1>
-    <div  v-for="(card, index) in cards" class="  flex-col items-center justify-center" :key="index">
+    <div  v-for="(card, index) in cards" class=" flex md:hidden flex-col items-center justify-center" :key="index">
       <div class=" items-center justify-center flex flex-col">
         <p class="bg-pink-400 text-white m-2 mt-5 rounded-3xl p-5">{{ card.title }}</p>
         <img class="h-20 w-10 my-2 textpi" src="../assets/image/ArrowB.png" alt="Arrow Icon" />
