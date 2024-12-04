@@ -1,21 +1,22 @@
 <template>
-    <div class="background-div w-full overflow-hidden md:h-96 h-72 text-white mt-10">
-        <div class="flex items-center justify-center md:gap-44 w-full mt-10 md:mt-20 mb-36 mx-0 md:mx-10">
-            <div class="md:w-3/4 w-full">
-                <h1 class="text-lg md:text-3xl text-center fontTitle md:p-0 px-5">
-                    <slot name="title"></slot>
-                </h1>
+    <div class="background-div w-full overflow-hidden md:h-96 h-72 text-white mt-10 ">
+    <div class="flex flex-col-reverse md:flex-row items-center justify-between md:gap-4 w-full p-0 md:pr-36 mt-10 md:mt-20 mb-4 mx-0 md:mx-10">
+        <div class="md:w-3/4 w-full">
+            <h1 class="text-lg md:text-3xl text-center fontTitle md:p-0 px-5">
+                <slot name="title"></slot>
+            </h1>
 
-                <p class="mt-4 text-xs md:text-base fontSubTitle my-5  md:p-0 px-5">
-                    <slot name="description"></slot>
-                </p>
-            </div>
+            <p class="mt-4 text-xs md:text-base fontSubTitle my-5 md:p-0 px-5">
+                <slot name="description"></slot>
+            </p>
+        </div>
 
-            <div class="w-1/4 ">
-                <img class="w-24 md:w-44 h-24 md:h-44 mb-5" src="../assets/logo/logo_3.png" />
-            </div>
+        <div class="md:w-1/4 w-full flex justify-center md:justify-end">
+            <img class="w-24 md:w-44 h-24 md:h-44 mb-5 md:mb-0" src="../assets/logo/logo_3.png" />
         </div>
     </div>
+</div>
+
 </template>
 
 <script setup>
@@ -47,7 +48,8 @@ defineProps({
 
 @media (max-width: 768px) {
     .background-div {
-        clip-path: ellipse(70% 80% at 50% 15%);
+        clip-path: none;
+        height: auto;
     }
     .logo {
         display: none;

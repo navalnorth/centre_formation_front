@@ -16,6 +16,11 @@ const routes = [
     name: 'bilan-de-competences',
     component: () => import('../views/BilanView.vue')
   },
+  {
+    path: '/contact',
+    name: 'contact',
+    component: () => import('../views/ContactView.vue')
+  },
 ]
 
 const router = createRouter({
