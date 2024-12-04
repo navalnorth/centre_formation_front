@@ -33,7 +33,7 @@ onMounted(() => {
 });
 
 
-const urlImageBannier = ref('')
+const urlImageBannier = ref('image_accueil-1733156237736.jpg')
 
 const fetchAccueil = async () => {
   try {
@@ -53,7 +53,7 @@ const fetchAccueil = async () => {
 
     const result = await response.json();
     const data = result.data[0];
-    console.log(data);
+
     
     title.value = data.title_accueil;
     title_section.value = data.title_section;

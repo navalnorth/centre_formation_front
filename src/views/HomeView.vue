@@ -12,11 +12,7 @@
     Upload Image
   </button> -->
 
-
-
-    <cardAccueilComp ></cardAccueilComp>
-
-
+  <cardAccueilComp/>
 
   <BannierComp >
     <template #title> {{ banTitle }} </template>
@@ -38,8 +34,8 @@ import { onMounted } from 'vue';
 
 const imageUrl = ref('');
 
-const banTitle = ref('');
-const banDescription = ref('');
+const banTitle = ref('“Révélez votre potentiel unique avec bienveillance et authenticité”');
+const banDescription = ref('Pauline B.');
 
 
 onMounted(() => {
@@ -93,7 +89,7 @@ const fetchUpdateAccueil = async () => {
     }
 
     const result = await response.json();
-    console.log(result); // Vérifie la réponse
+
 
   } catch (error) {
     console.error('Erreur durant la connexion : ', error);
