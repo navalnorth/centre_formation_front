@@ -26,13 +26,16 @@
       </div>
     </div>
   </div>
-  <div  v-for="(card, index) in cards" class="flex md:hidden  flex-col items-center justify-center" :key="index">
-    <div class=" items-center justify-center flex flex-col">
-      <p class="bg-pink-400 text-white m-5 rounded-3xl p-5">{{ card.title }}</p>
-      <img class="h-20 w-10 my-2" src="../assets/image/ArrowB.png" alt="Arrow Icon" />
-      <p class="bgBlue text-white m-5 rounded-3xl p-5">{{ card.infoBull1 }}</p>
-      <img class="h-20 w-10 my-2" src="../assets/image/ArrowB.png" alt="Arrow Icon" />
-      <p class="bgBlue text-amber-300 m-5 rounded-3xl p-5 mb-5">{{ card.infoBull2 }}</p>
+  <div>
+    <h1 class="flex md:hidden justify-center mt-20 text-xl md:text-3xl fontTitle mb-10"> Plus d'informations</h1>
+    <div  v-for="(card, index) in cards" class="  flex-col items-center justify-center" :key="index">
+      <div class=" items-center justify-center flex flex-col">
+        <p class="bg-pink-400 text-white m-2 mt-5 rounded-3xl p-5">{{ card.title }}</p>
+        <img class="h-20 w-10 my-2 textpi" src="../assets/image/ArrowB.png" alt="Arrow Icon" />
+        <p class="bgBlue text-white m-2 rounded-3xl p-5">{{ card.infoBull1 }}</p>
+        <img class="h-20 w-10 my-2" src="../assets/image/ArrowB.png" alt="Arrow Icon" />
+        <p class="bgBlue text-amber-300 m-2 rounded-3xl p-5 mb-16">{{ card.infoBull2 }}</p>
+      </div>
     </div>
   </div>
 </template>
