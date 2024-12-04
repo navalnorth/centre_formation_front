@@ -115,7 +115,7 @@ import { Bs1Circle, Bs2Circle, Bs3Circle } from '@kalimahapps/vue-icons';
 }
 
 .bgbulle {
-    color: var(--color-blue);
+    background-color: var(--color-blue);
 }
 
 @media (max-width: 950px) {

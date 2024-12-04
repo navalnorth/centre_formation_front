@@ -1,7 +1,7 @@
 <template>
     <nav class="deg p-5 w-full h-24 flex items-center justify-between ">
-        <div class="w-20 h-20 content-center" >
-            <img class="w-16 h-16" :src="logo" alt="Logo" />
+        <div class="w-20 h-20 content-center" @click="accueil" >
+            <img class="w-16 h-16" :src="logo" alt="Logo"  />
         </div>
         <div class="hidden  w-1/2 min-w-96 justify-between lg:flex text-white fontTitle">
             <router-link class="cursor-pointer hover:text-slate-400" to="/">Qui suis-je ?</router-link>
@@ -31,7 +31,12 @@
 import { ref } from 'vue';
 
 import { ChMenuHamburger } from '@kalimahapps/vue-icons';
+import router from '@/router';
 const isOpen = ref(true);
+
+const accueil = () => {
+    router.push('/')
+}
 
 const toggleBurgerMenu = () => {
     isOpen.value = !isOpen.value;

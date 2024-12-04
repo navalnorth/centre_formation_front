@@ -1,6 +1,6 @@
 <template>
-    <div class="background-div w-full overflow-hidden md:h-96 h-72 text-white mt-10 ">
-    <div class="flex flex-col-reverse md:flex-row items-center justify-between md:gap-4 w-full p-0 md:pr-36 mt-10 md:mt-20 mb-4 mx-0 md:mx-10">
+    <div class="background-div w-full overflow-hidden md:h-auto pb-10 h-72 text-white mt-10 ">
+    <div class="flex flex-col-reverse md:flex-row items-center justify-between md:gap-4 w-full p-0 md:pr-36 mt-10  mb-4 mx-0 md:mx-10">
         <div class="md:w-3/4 w-full">
             <h1 class="text-lg md:text-3xl text-center fontTitle md:p-0 px-5">
                 <slot name="title"></slot>

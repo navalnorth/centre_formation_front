@@ -2,7 +2,7 @@
     <BannierPagesComp>
         <template #title>
             Découvrez votre potentiel grâce
-            au <strong>Bilan de compétences</strong>
+            au Bilan de compétences
         </template>
     </BannierPagesComp>
 
@@ -10,14 +10,14 @@
 
     <BannierComp>
         <template #title>
-            Le premier échange offert pur faire le point
+            Le premier échange offert pour faire le point
         </template>
         <template #description>
-            Parce que cette démarche mérite toute votre confiance,<br>
-            Je vous propose un premier échange gratuit et sans engagement.<br><br>
-
-            C'est l'occasion de discuter de vos attentes, de vos interrogations<br>
-            et de découvrir comment je peux vous accompagner au mieux dans votre projet.<br>
+            Parce que cette démarche mérite toute votre confiance,
+            Je vous propose un premier échange gratuit et sans engagement.
+            
+            C'est l'occasion de discuter de vos attentes, de vos interrogations
+            et de découvrir comment je peux vous accompagner au mieux dans votre projet.
         </template>
     </BannierComp>
 </template>

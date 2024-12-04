@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap gap-20 justify-center items-center content-center  my-10 auto-container">
+  <div class="flex tout flex-wrap gap-20 justify-center items-center content-center  my-10 auto-container">
     <div v-for="(card, index) in cards" class="flex flex-col items-center justify-center" :key="index" @mouseover="card.isFlipped = true" @mouseleave="card.isFlipped = false">
       <div class="card-container  flex justify-center relative w-72 h-96">
         <div class="card-inner relative w-72  h-96 transform transition-transform duration-500 ease-in-out" :class="{ 'is-flipped': card.isFlipped }">
@@ -81,6 +81,13 @@ const fetchCard = async () => {
   align-items: center; /* Centre les cartes verticalement */
   gap: 20px;
  
+}
+
+.tout {
+  background-image: url("../assets/image/LogoTampon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .bgBlue {
