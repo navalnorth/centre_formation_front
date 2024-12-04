@@ -44,7 +44,22 @@
 import { onMounted, ref } from 'vue';
 
 const url = `${process.env.VUE_APP_URL}/uploads/`;
-const cards = ref([]);
+const cards = ref([
+    {
+        bgimage: "image_accueil-1733156101850.webp",
+        description: "Découvrez votre potentiel grâce au bilan de compétences.",
+        infoBull1: "Découvrez votre potentiel grâce au bilan de compétences.",
+        infoBull2: "Un premier échange offert pour faire le point",
+        title: "Bilan de compétences",
+    },
+    {
+        bgimage: "image_accueil-1733156101850.webp",
+        description: "Faites le point sur vos compétences et explorez de nouvelles opportunités.",
+        infoBull1: "Approche pédagogique, centrée sur l'humain et l'apprentissage.",
+        infoBull2: "Construire une formation adaptée.",
+        title: "Nos formations",
+    },
+]);
 
 onMounted(() => {
   fetchCard();
@@ -68,8 +83,8 @@ const fetchCard = async () => {
 
     const result = await response.json();
     const data = result.data;
-    cards.value.push(...data);
-    console.log(cards);
+    cards.value = data;
+
   } catch (error) {
     console.error('Erreur durant la connexion :', error);
   }

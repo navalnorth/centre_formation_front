@@ -27,7 +27,7 @@ onMounted(() => {
 });
 
 
-const logo = ref("");
+const logo = ref("logo.png");
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 const fetchLogo = async () => {
   try {

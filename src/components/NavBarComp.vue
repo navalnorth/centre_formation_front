@@ -1,12 +1,13 @@
 <template>
     <nav class="deg p-5 w-full h-24 flex items-center justify-between ">
+       
         <div class="w-20 h-20 content-center cursor-pointer" @click="accueil" >
             <img class="w-16 h-16" :src="`${url}${logo}`" alt="Logo"  />
         </div>
         <div class="hidden  w-1/2 min-w-96 justify-between lg:flex text-white fontTitle">
             <router-link class="cursor-pointer hover:text-slate-400" to="/">Qui suis-je ?</router-link>
             <router-link class="cursor-pointer hover:text-slate-400" to="/bilan-de-competences">Bilan de compétences</router-link>
-            <router-link class="cursor-pointer hover:text-slate-400" to="/">Formation</router-link>
+            <router-link class="cursor-pointer hover:text-slate-400" to="/formation">Formation</router-link>
             <router-link class="cursor-pointer hover:text-slate-400" to="/contact">Contactez-moi</router-link>
         </div>
 
@@ -19,7 +20,7 @@
         <div :class="isOpen ? 'menu closed' : 'menu open' " class="z-40 p-10" >
             <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/">Qui suis-je ?</router-link>
             <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/bilan-de-competences">Bilan de compétences</router-link>
-            <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/">Formation</router-link>
+            <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/formation">Formation</router-link>
             <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/contact">Contactez-moi</router-link>
             <p class="bg-pink-300 text-white p-2 w-80  rounded-xl hover:bg-red-100 fontTitle"  @click="toggleBurgerMenu" to="/">Prendre rendez-vous</p>
         </div>
@@ -28,7 +29,7 @@
 
 <script setup>
 
-import { ChMenuHamburger } from '@kalimahapps/vue-icons';
+import { ChMenuHamburger  } from '@kalimahapps/vue-icons';
 import router from '@/router';
 const isOpen = ref(true);
 
@@ -48,7 +49,7 @@ onMounted(() => {
 });
 
 
-const logo = ref("");
+const logo = ref("logo.png");
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 const fetchLogo = async () => {
   try {
