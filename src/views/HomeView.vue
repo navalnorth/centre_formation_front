@@ -18,7 +18,7 @@
 
 
 
-  <BannierComp :logo="imageUrl">
+  <BannierComp >
     <template #title> {{ banTitle }} </template>
     <template #description>
       {{ banDescription }}
@@ -40,16 +40,12 @@ const imageUrl = ref('');
 
 const banTitle = ref('');
 const banDescription = ref('');
-const cards = ref([]);
+
 
 onMounted(() => {
-  // fetchCard();
+
   fetchBannier();
 });
-
-
-
-
 
 /*cette partie est pour l ajoute d image */
 const imageName = ref('');
@@ -103,35 +99,6 @@ const fetchUpdateAccueil = async () => {
     console.error('Erreur durant la connexion : ', error);
   }
 };
-
-
-
-// const fetchCard = async () => {
-//   try {
-//     const response = await fetch(`${process.env.VUE_APP_URL}/card/`, {
-//       method: 'GET',
-//       headers: {
-//         'Accept': 'application/json, text/plain, */*',
-//         'Content-Type': 'application/json',
-//       },
-//     });
-
-//     if (!response.ok) {
-//       const err = await response.json();
-//       console.log(err.message || 'Erreur inconnue lors de la connexion.');
-//       return;
-//     }
-
-//     const result = await response.json();
-//     const data = result.data;
-//     cards.value.push(...data);
-//     console.log(cards);
-    
-//   } catch (error) {
-//     console.error('Erreur durant la connexion : ', error);
-//   }
-// };
-
 
 
 const fetchBannier = async () => {

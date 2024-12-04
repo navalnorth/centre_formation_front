@@ -6,13 +6,13 @@
                 <slot name="title"></slot>
             </h1>
 
-            <p class="mt-4 text-xs md:text-base fontSubTitle my-5 md:p-0 px-5">
+            <p class="mt-4 text-xs md:text-base leading-relaxed fontSubTitle my-5 md:p-0 px-5">
                 <slot name="description"></slot>
             </p>
         </div>
 
         <div class="md:w-1/4 w-full flex justify-center md:justify-end">
-            <img class="w-24 md:w-44 h-24 md:h-44 mb-5 md:mb-0" src="../assets/logo/logo_3.png" />
+            <img class="w-24 md:w-44 h-24 md:h-44 mb-5 md:mb-0" :src="`${url}${logo}`" />
         </div>
     </div>
 </div>
@@ -20,11 +20,41 @@
 </template>
 
 <script setup>
-defineProps({
-    logo: {
-        type: String,
-    },
+import { onMounted, ref } from 'vue';
+
+onMounted(() => {
+    fetchLogo();
 });
+
+
+const logo = ref("");
+const url = `${process.env.VUE_APP_URL}/uploads/`;
+const fetchLogo = async () => {
+  try {
+    const response = await fetch(`${process.env.VUE_APP_URL}/users/`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const errorMessage = (await response.json()).message || 'Erreur inconnue lors de la connexion.';
+      console.error(errorMessage);
+      return;
+    }
+
+    const result = await response.json();
+    const data = result.data[0];
+    
+    logo.value = data.logo
+    
+  } catch (error) {
+    console.error('Erreur durant la connexion :', error);
+  }
+};
+
 </script>
 
 <style scoped>

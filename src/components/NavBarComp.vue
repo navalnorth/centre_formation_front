@@ -1,7 +1,7 @@
 <template>
     <nav class="deg p-5 w-full h-24 flex items-center justify-between ">
-        <div class="w-20 h-20 content-center" @click="accueil" >
-            <img class="w-16 h-16" :src="logo" alt="Logo"  />
+        <div class="w-20 h-20 content-center cursor-pointer" @click="accueil" >
+            <img class="w-16 h-16" :src="`${url}${logo}`" alt="Logo"  />
         </div>
         <div class="hidden  w-1/2 min-w-96 justify-between lg:flex text-white fontTitle">
             <router-link class="cursor-pointer hover:text-slate-400" to="/">Qui suis-je ?</router-link>
@@ -28,8 +28,6 @@
 
 <script setup>
 
-import { ref } from 'vue';
-
 import { ChMenuHamburger } from '@kalimahapps/vue-icons';
 import router from '@/router';
 const isOpen = ref(true);
@@ -42,10 +40,41 @@ const toggleBurgerMenu = () => {
     isOpen.value = !isOpen.value;
    
 }
-defineProps({
-    logo: String,
-  });
 
+import { onMounted, ref } from 'vue';
+
+onMounted(() => {
+    fetchLogo();
+});
+
+
+const logo = ref("");
+const url = `${process.env.VUE_APP_URL}/uploads/`;
+const fetchLogo = async () => {
+  try {
+    const response = await fetch(`${process.env.VUE_APP_URL}/users/`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const errorMessage = (await response.json()).message || 'Erreur inconnue lors de la connexion.';
+      console.error(errorMessage);
+      return;
+    }
+
+    const result = await response.json();
+    const data = result.data[0];
+    
+    logo.value = data.logo
+    
+  } catch (error) {
+    console.error('Erreur durant la connexion :', error);
+  }
+};
 </script>
 
 <style scoped>

@@ -1,13 +1,12 @@
 <template>
-  <NavBarComp :logo="logo"/>
+  <NavBarComp />
   <router-view/>
-  <FooterComp :logo="logo"/>
+  <FooterComp/>
 </template>
 
 <script setup>
 import NavBarComp from './components/NavBarComp.vue';
 import FooterComp from './components/FooterComp.vue';
-import logo from './assets/logo/logo_3.png'
 </script>
 
 <style>
