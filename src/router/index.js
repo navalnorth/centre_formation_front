@@ -40,6 +40,36 @@ const routes = [
     // meta: { requiresAuth: true },
   },
   {
+    path: '/admin-tableau',
+    name: 'admin-tableau',
+    component: () => import('../views/admin/AdminTableauView.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/admin-toute',
+    name: 'admin-toute',
+    component: () => import('../views/admin/TouteDemande.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/admin-renseignement',
+    name: 'admin-renseignement',
+    component: () => import('../views/admin/RenseignementDemande.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/admin-bilan',
+    name: 'admin-bilan',
+    component: () => import('../views/admin/BilanDemande.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/admin-Formation',
+    name: 'admin-Formation',
+    component: () => import('../views/admin/FormationDemande.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
     path: '/contact',
     name: 'contact',
     component: () => import('../views/ContactView.vue')
