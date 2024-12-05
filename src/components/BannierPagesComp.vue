@@ -10,13 +10,7 @@
     </div>
 </template>
 
-<script setup>
-defineProps({
-    image: {
-        type: String,
-    }
-});
-</script>
+
 
 <style scoped>
 .fontText {
