@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useStore } from 'vuex';
 
 const routes = [
   {
@@ -27,6 +28,18 @@ const routes = [
     component: () => import('../views/FormationDetail.vue')
   },
   {
+    path: '/admin-menu',
+    name: 'admin-menu',
+    component: () => import('../views/admin/AdminMenuView.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/admin-accueil',
+    name: 'admin-accueil',
+    component: () => import('../views/admin/AdminAccueilView.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
     path: '/contact',
     name: 'contact',
     component: () => import('../views/ContactView.vue')
@@ -51,5 +64,27 @@ const router = createRouter({
     }
   },
 })
+
+
+
+router.beforeEach((to, from, next) => {
+  const store = useStore();
+  const isLoggedIn = store.getters.isLoggedIn;
+  const isAdmin = store.getters.isAdmin;
+
+  if (['/', '/register', '/'].includes(to.path)) {
+    next(); 
+  } else if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!isLoggedIn) {
+      next('/');
+    } else if (to.matched.some(record => record.meta.requiresAdmin) && !isAdmin) {
+      next('/'); 
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
 
 export default router

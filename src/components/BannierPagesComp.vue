@@ -1,5 +1,5 @@
 <template>
-    <div class="background-div w-full md:h-64 h-44 overflow-hidden text-white">
+    <div class="background-div mb-10 w-full md:h-64 h-44 overflow-hidden text-white">
         <div class="flex items-center justify-center w-full mt-10 md:mt-20 mb-36 mx-0 ">
             <div class="md:w-1/3 w-full">
                 <h1 class="text-xl md:text-3xl text-center fontText md:p-0 px-5">
