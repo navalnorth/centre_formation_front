@@ -1,16 +1,5 @@
 <template>
-  <BannierAccueilComp>
-  </BannierAccueilComp>
-
-  <!-- Section d'upload d'image -->
-  <!-- <label class="file-upload">
-    <input type="file" id="image" name="image" accept="image/*" @change="onFileChange" />
-    <div v-if="imageUrl" :style="`background-image:url('${imageUrl}')`" class="file-upload"></div>
-  </label>
-
-  <button @click="fetchUpdateAccueil">
-    Upload Image
-  </button> -->
+  <BannierAccueilComp/>
 
   <cardAccueilComp/>
 
@@ -32,8 +21,6 @@ import cardAccueilComp from '@/components/cardAccueilComp.vue';
 import router from '@/router';
 import { onMounted } from 'vue';
 
-const imageUrl = ref('');
-
 const banTitle = ref('“Révélez votre potentiel unique avec bienveillance et authenticité”');
 const banDescription = ref('Pauline B.');
 
@@ -43,58 +30,6 @@ onMounted(() => {
   fetchBannier();
 });
 
-/*cette partie est pour l ajoute d image */
-const imageName = ref('');
-
-const onFileChange = (event) => {
-  const file = event.target.files[0];
-  if (file) {
-    imageName.value = file.name;  // Stocke le nom de l'image
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-      imageUrl.value = e.target.result; // Contient les données de l'image en base64
-    };
-
-    reader.readAsDataURL(file); // Convertit le fichier en Base64
-  }
-};
-
-
-
-const fetchUpdateAccueil = async () => {
-  const fileInput = document.getElementById('image');
-  const file = fileInput.files[0]; // Récupère le fichier sélectionné
-
-  // Check if the file exists
-  if (!file) {
-    console.error("No file selected.");
-    return;
-  }
-
-  // Crée un objet FormData pour envoyer l'image
-  const formData = new FormData();
-  formData.append("image_accueil", file);
-
-  try {
-    const response = await fetch(`${process.env.VUE_APP_URL}/accueil/modifierAccueilImage`, {
-      method: 'PUT',
-      body: formData, // Utilise FormData pour l'upload
-    });
-
-    if (!response.ok) {
-      const err = await response.json();
-      console.log(err.message || 'Erreur inconnue lors de la connexion.');
-      return;
-    }
-
-    const result = await response.json();
-
-
-  } catch (error) {
-    console.error('Erreur durant la connexion : ', error);
-  }
-};
 
 
 const fetchBannier = async () => {
@@ -126,28 +61,6 @@ const fetchBannier = async () => {
 </script>
 
 <style scoped>
-.file-upload {
-  width: 350px;
-  height: 400px;
-  border: 1px solid rgba(249, 112, 104, 1);
-  display: flex;
-  background-position: center;
-  background-size: cover;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border-radius: 35px;
-  margin: auto;
-}
-
-.file-upload input[type="file"] {
-  display: none;
-}
-
-.uploadPicture {
-  width: 60px;
-  height: 60px;
-}
 
 .fontTitle,
 h1 {
