@@ -22,13 +22,12 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 
-onMounted(() => {
-    fetchLogo();
-});
-
 
 const logo = ref("logo.png");
 const url = `${process.env.VUE_APP_URL}/uploads/`;
+
+
+
 const fetchLogo = async () => {
   try {
     const response = await fetch(`${process.env.VUE_APP_URL}/users/`, {
@@ -55,6 +54,9 @@ const fetchLogo = async () => {
   }
 };
 
+onMounted(() => {
+    fetchLogo();
+});
 </script>
 
 <style scoped>

@@ -5,7 +5,7 @@
             <img class="w-16 h-16" :src="`${url}${logo}`" alt="Logo"  />
         </div>
         <div class="hidden  w-1/2 min-w-96 justify-between lg:flex text-white fontTitle">
-            <router-link class="cursor-pointer hover:text-slate-400" to="/">Qui suis-je ?</router-link>
+            <router-link class="cursor-pointer hover:text-slate-400" to="/about">Qui suis-je ?</router-link>
             <router-link class="cursor-pointer hover:text-slate-400" to="/bilan-de-competences">Bilan de compétences</router-link>
             <router-link class="cursor-pointer hover:text-slate-400" to="/formation">Formation</router-link>
             <router-link class="cursor-pointer hover:text-slate-400" to="/contact">Contactez-moi</router-link>
@@ -18,7 +18,7 @@
             <ChMenuHamburger class="w-14 h-14 text-white"/>
         </div>
         <div :class="isOpen ? 'menu closed' : 'menu open' " class="z-40 p-10" >
-            <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/">Qui suis-je ?</router-link>
+            <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/about">Qui suis-je ?</router-link>
             <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/bilan-de-competences">Bilan de compétences</router-link>
             <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/formation">Formation</router-link>
             <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/contact">Contactez-moi</router-link>
