@@ -1,16 +1,16 @@
 <template>
     <BannierPagesComp>
         <template #title>
-            Découvrez nos formations
+            Modification Formation
         </template>
     </BannierPagesComp>
-    <CardFormationComp />
+    <AdminFetchFormationComp/>
 </template>
 
 <script setup>
-import CardFormationComp from '@/components/CardFormationComp.vue';
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
-
+import AdminFetchFormationComp from '@/components/admin/AdminFetchFormationComp.vue';
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

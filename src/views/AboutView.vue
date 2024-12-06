@@ -73,7 +73,6 @@ const fechAbout = async () => {
         description3.value = data.description3;
         image.value = data.image;
 
-        console.log(data);
         
     } catch (error) {
         console.error('Erreur durant la connexion :', error);

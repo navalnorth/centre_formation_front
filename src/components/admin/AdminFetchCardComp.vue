@@ -102,7 +102,6 @@ const fetchCardUpdate = async (cardId, index) => {
         }
 
         const result = await response.json();
-        console.log('Carte mise à jour avec succès', result);
 
         // Met à jour la carte dans le tableau cards
         cards.value[index] = { ...cards.value[index], ...updatedData };
@@ -149,11 +148,10 @@ const fetchUpdateImage = async (cardId, index) => {
         }
 
         const result = await response.json();
-        console.log('Image mise à jour avec succès pour la carte', cardId);
 
         // Met à jour l'image de la carte
         cards.value[index].bgimage = result.updatedImageName; // Si le serveur retourne le nom de l'image mise à jour
-        cards.value[index].tempImageUrl = ''; // Réinitialise l'aperçu temporaire après la sauvegarde
+        // cards.value[index].tempImageUrl = ''; // Réinitialise l'aperçu temporaire après la sauvegarde
     } catch (error) {
         console.error('Erreur durant la mise à jour de l\'image :', error);
     }

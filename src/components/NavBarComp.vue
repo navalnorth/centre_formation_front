@@ -8,11 +8,12 @@
             <router-link class="cursor-pointer hover:text-slate-400" to="/about">Qui suis-je ?</router-link>
             <router-link class="cursor-pointer hover:text-slate-400" to="/bilan-de-competences">Bilan de compétences</router-link>
             <router-link class="cursor-pointer hover:text-slate-400" to="/formation">Formation</router-link>
-            <router-link class="cursor-pointer hover:text-slate-400" to="/contact">Contactez-moi</router-link>
-        </div>
+            <router-link v-if="user.username" class="cursor-pointer hover:text-slate-400" to="/admin-menu">Admin</router-link>
 
+        </div>
+        
         <div class="hidden lg:flex">
-            <p class="bg-white p-2  rounded-xl hover:bg-red-100 fontTitle ">Prendre rendez-vous</p>
+            <router-link class="bg-white p-2  rounded-xl hover:bg-pink-200 fontTitle " to="/contact">Contactez-moi</router-link>
         </div>
         <div @click="toggleBurgerMenu" class="flex lg:hidden" >
             <ChMenuHamburger class="w-14 h-14 text-white"/>
@@ -21,8 +22,8 @@
             <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/about">Qui suis-je ?</router-link>
             <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/bilan-de-competences">Bilan de compétences</router-link>
             <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/formation">Formation</router-link>
-            <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/contact">Contactez-moi</router-link>
-            <p class="bg-pink-300 text-white p-2 w-80  rounded-xl hover:bg-red-100 fontTitle"  @click="toggleBurgerMenu" to="/">Prendre rendez-vous</p>
+            <router-link class="cursor-pointerbg-pink-300 bg-pink-400 text-white p-2 w-80  rounded-xl hover:bg-pink-200 fontTitle" @click="toggleBurgerMenu" to="/contact">Contactez-moi</router-link>
+            <router-link v-if="user.username" class="cursor-pointer hover:text-slate-400" to="/admin-menu">Admin</router-link>
         </div>
     </nav>
 </template>
@@ -31,18 +32,20 @@
 
 import { ChMenuHamburger  } from '@kalimahapps/vue-icons';
 import router from '@/router';
+import { computed, onMounted, ref } from 'vue';
+import store from '@/store';
+const user = computed(() => store.state.user || {});
+
 const isOpen = ref(true);
 
 const accueil = () => {
     router.push('/')
 }
-
 const toggleBurgerMenu = () => {
     isOpen.value = !isOpen.value;
    
 }
 
-import { onMounted, ref } from 'vue';
 
 onMounted(() => {
     fetchLogo();
