@@ -9,7 +9,7 @@ export default createStore({
   mutations: {
     setUser(state, user) {
       state.user = user;
-      localStorage.setItem('username', user.username);
+      localStorage.setItem('mail', user.mail);
       localStorage.setItem('userId', user.id);
     },
     setToken(state, token) {
@@ -20,7 +20,7 @@ export default createStore({
       state.user = null;
       state.token = null;
       localStorage.removeItem('token');
-      localStorage.removeItem('username');
+      localStorage.removeItem('mail');
       localStorage.removeItem('userId');
     },
   },
@@ -29,7 +29,7 @@ export default createStore({
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
       commit('setToken', token);
       commit('setUser', {
-        username: decodedToken.username,
+        mail: decodedToken.mail,
         id: decodedToken.id
       });
     },
@@ -45,7 +45,7 @@ export default createStore({
           commit('clearAuth');
         } else {
           commit('setUser', {
-            username: decodedToken.username,
+            mail: decodedToken.mail,
             id: decodedToken.id
           });
         }

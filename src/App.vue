@@ -7,6 +7,12 @@
 <script setup>
 import NavBarComp from './components/NavBarComp.vue';
 import FooterComp from './components/FooterComp.vue';
+import { onMounted } from 'vue';
+import store from './store';
+
+onMounted (() => {
+  store.dispatch('checkAuth');
+});
 </script>
 
 <style>
