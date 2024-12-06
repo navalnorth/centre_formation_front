@@ -1,7 +1,7 @@
 <template>
     <div class="p-5 text-xl border-b-2 border-indigo-950 m-10">Modifier les formations</div>
-    <div class="flex md:justify-around flex-wrap flex-col md:flex-row justify-center items-center">
-        <div v-for="(forma, index) in formations" :key="index" class="flex flex-col gap-5 w-2/3 md:w-1/3">
+    <div class="flex md:justify-around flex-wrap flex-col md:m-20  md:flex-row justify-center items-center">
+        <div v-for="(forma, index) in formations" :key="index" class="flex flex-col md:m-5 mb-16  gap-5 w-2/3 md:w-2/5 ">
             <h1>formation n° {{ index + 1 }}</h1>
             
             <!-- Form Inputs for Text -->
