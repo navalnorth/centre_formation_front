@@ -23,7 +23,7 @@
             <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/bilan-de-competences">Bilan de compétences</router-link>
             <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/formation">Formation</router-link>
             <router-link class="cursor-pointerbg-pink-300 bg-pink-400 text-white p-2 w-80  rounded-xl hover:bg-pink-200 fontTitle" @click="toggleBurgerMenu" to="/contact">Contactez-moi</router-link>
-            <router-link v-if="user.mail" class="cursor-pointer hover:text-slate-400" to="/admin-menu">Admin</router-link>
+            <router-link v-if="user.mail" class="cursor-pointer hover:text-slate-400" to="/admin-menu" @click="toggleBurgerMenu">Admin</router-link>
         </div>
     </nav>
 </template>
