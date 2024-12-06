@@ -40,6 +40,12 @@ const routes = [
     // meta: { requiresAuth: true },
   },
   {
+    path: '/admin-formation',
+    name: 'admin-formation',
+    component: () => import('../views/admin/AdminFormationView.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
     path: '/admin-tableau',
     name: 'admin-tableau',
     component: () => import('../views/admin/AdminTableauView.vue'),
