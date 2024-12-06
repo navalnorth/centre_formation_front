@@ -39,7 +39,7 @@ const login = async () => {
     };
 
     try {
-        const response = await fetch('https://centreformationback-production.up.railway.app/users/login', {
+        const response = await fetch(`${process.env.VUE_APP_URL}/users/login`, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
