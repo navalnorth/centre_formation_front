@@ -10,7 +10,9 @@
         </div>
         <div class="w-80 h-64 flex justify-center flex-col ">
             <img :src="`${url}${image}`" class="w-full h-full object-cover" alt="Card image">
-            <div class="bgBlue p-3 rounded-xl m-5 text-white">{{ button }}</div>
+            <div class="bgBlue p-3 rounded-xl m-5 text-white" @click="redirectToContact">
+                {{ button }}
+            </div>
 
         </div>
     </div>
@@ -20,8 +22,11 @@
 import CardFormationComp from '@/components/CardFormationComp.vue';
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
 import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
+
 const route = useRoute();
+const router = useRouter()
+
 onMounted(() => {
     fetchCard();
 });
@@ -31,6 +36,16 @@ const title = ref('Découvrez notre formation')
 const description = ref('')
 const image = ref('')
 const button = ref('S’ incscrire a la formation')
+
+
+const redirectToContact = () => {
+    router.push({
+        path: '/contact',
+        query: {
+            formation: title.value
+        },
+    });
+};
 
 const fetchCard = async () => {
     try {
@@ -43,7 +58,7 @@ const fetchCard = async () => {
         });
 
         if (!response.ok) {
-            const errorMessage = (await response.json()).message || 'Erreur inconnue lors de la connexion.';
+            const errorMessage = (await response.json()).message;
             console.error(errorMessage);
             return;
         }

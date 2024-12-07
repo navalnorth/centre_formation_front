@@ -5,13 +5,17 @@
         </template>
     </BannierPagesComp>
 
+    <ContactComp></ContactComp>
+
 </template>
 
 
 <script setup>
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
+import ContactComp from '@/components/ContactComp.vue';
 
 </script>
 
 <style scoped>
+
 </style>
