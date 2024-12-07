@@ -15,7 +15,9 @@
                 <div>
                     <img :src="`${url}${image}`" class="w-64 lg:w-96 mt-4 lg:mt-0 max-w-none">
                 </div>
-                <button class="bg-blue-300 text-black hover:bg-blue-700 hover:text-white py-2 lg:w-96 w-64 rounded-lg">
+                <button class="bg-blue-300 text-black hover:bg-blue-700 hover:text-white py-2 lg:w-96 w-64 rounded-lg"
+                @click="rdv"
+                >
                     Prendre Rendez-vous
                 </button>
             </div>
@@ -89,6 +91,9 @@
 <script setup>
 import { Bs1Circle, Bs2Circle, Bs3Circle } from '@kalimahapps/vue-icons';
 import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 
@@ -99,6 +104,18 @@ const info_bilan_2 = ref("Explorer ce qui vous motive réellement, grâce à des
 const info_bilan_3 = ref("Construire un projet qui a du sens pour vous, qu'il s'agisse d'une évolution de carrière, d'une reconversion ou d'une meilleure compréhension de vos envies.")
 const phrase = ref('Je suis convaincue que chaque individu possède un potentiel immense à révéler. Et je suis là pour vous guider, pas à pas, dans cette réflexion.')
 const image = ref('BilanImage.png')
+
+
+
+const rdv = () => {
+    router.push({
+        path: '/contact',
+        query: {
+            reason: 'bilan'
+        },
+    });
+};
+
 
 
 const fetchBilan = async () => {

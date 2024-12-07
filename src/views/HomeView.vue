@@ -21,6 +21,7 @@ import cardAccueilComp from '@/components/cardAccueilComp.vue';
 import router from '@/router';
 import { onMounted } from 'vue';
 
+
 const banTitle = ref('“Révélez votre potentiel unique avec bienveillance et authenticité”');
 const banDescription = ref('Pauline B.');
 
