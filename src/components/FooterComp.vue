@@ -70,6 +70,6 @@ const fetchLogo = async () => {
 }
 
 .bgBlue {
-  background-color: var(--color-blue);
+  background-color: var(--primary-color);
 }
 </style>

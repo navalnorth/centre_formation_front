@@ -228,8 +228,10 @@ onMounted(() => {
 }
 
 .button {
-    background-color: var(--color-pink);
+    background-color: var(--color-buton);
 }
+
+
 .button:hover {
     background-color: rgb(233, 106, 127);
 }

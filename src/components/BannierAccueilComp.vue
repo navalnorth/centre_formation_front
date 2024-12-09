@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-center text-white">
+  <div class="flex flex-col items-center justify-center colortext">
     <div class="background-div  ">
       <div class="flex items-center justify-center flex-wrap-reverse gap-10 md:gap-44 w-full my-10">
         <div class="text-center md:text-left md:w-1/3 w-full">
@@ -8,8 +8,10 @@
             <p class="mt-4 text-base sp fontSubTitle w-full break-words md:p-0 px-5">{{ description }}</p>
         </div>
 
-        <div class="flex flex-col items-center">
-            <img :src="`${url}${urlImageBannier}`" class="file-upload" />
+        <div class="flex flex-col overflow-hidden items-center">
+            <div class="w-64">
+              <img :src="`${url}${urlImageBannier}`" class="w-full h-full object-cover rounded-3xl" />
+            </div>
             <button class="p-2 mt-5 bg-white text-black w-56 rounded-xl text-center cursor-pointer" @click="about">
               Qui suis-je ?
             </button>
@@ -85,26 +87,6 @@ const fetchAccueil = async () => {
 </script>
 
 <style scoped>
-.file-upload {
-  width: 250px;
-  height: 280px;
-  display: flex;
-  background-position: center;
-  background-size: cover;
-  align-items: center;
-  justify-content: center;
-  border-radius: 35px;
-  margin: auto;
-}
-
-.file-upload input[type="file"] {
-  display: none;
-}
-
-.uploadPicture {
-  width: 60px;
-  height: 60px;
-}
 
 
 /* Appliquer les polices via les variables */
@@ -118,6 +100,9 @@ const fetchAccueil = async () => {
 
 .fontText {
   font-family: var(--font-text);
+}
+.colortext {
+  color: var(--color-text);
 }
 
 /* Dégradé dynamique dans la div avec un coin arrondi */

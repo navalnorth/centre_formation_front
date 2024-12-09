@@ -15,7 +15,7 @@
                 <div>
                     <img :src="`${url}${image}`" class="w-64 lg:w-96 mt-4 lg:mt-0 max-w-none">
                 </div>
-                <button class="bg-blue-300 text-black hover:bg-blue-700 hover:text-white py-2 lg:w-96 w-64 rounded-lg"
+                <button class="ColorButon text-black hover:bg-slate-100 hover:text-black py-2 lg:w-96 w-64 rounded-lg"
                 @click="rdv"
                 >
                     Prendre Rendez-vous
@@ -154,6 +154,11 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+.ColorButon {
+    background-color: var(--color-buton);
+    
+}
+
 .tout {
     background-image: url("../assets/image/LogoTampon.png");
     background-size: contain;
@@ -170,7 +175,7 @@ onMounted(async () => {
 }
 
 .bgbulle {
-    background-color: var(--color-blue);
+    background-color: var(--primary-color);
     width: 480px;
 }
 

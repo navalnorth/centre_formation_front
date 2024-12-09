@@ -16,7 +16,7 @@
 
                     <!-- Face arrière -->
                     <div @click="detail(card.id_formation)"
-                        class="card-back cursor-pointer absolute flex-col w-full h-full bg-pink-100 text-black rounded-lg shadow-lg flex items-center justify-center p-4">
+                        class="card-back ColorPink cursor-pointer absolute flex-col w-full h-full  colortextcard rounded-lg shadow-lg flex items-center justify-center p-4">
                         <p class="text-center text-2xl overflow-auto ">{{ card.description_formation_card }}</p>
                         <p><br>Cliquez pour plus d'informations</p>
                     </div>
@@ -118,6 +118,15 @@ const fetchCardFormation = async () => {
     /* Ajout de perspective pour l'effet de rotation */
 
 }
+
+.ColorPink {
+    background-color: var(--color-pink);
+    
+}
+.colortextcard {
+    color: var(--color-textcard);
+  }
+  
 
 .card-inner {
     position: relative;

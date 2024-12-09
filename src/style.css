@@ -10,11 +10,11 @@
 
 :root {
     /* Couleurs */
-    --color-blue: #090347;
-    --color-pink: #FFD9DF;
-    --color-gray: #DADADA;
-
-
+    --color-text: #ffffff;
+    --color-textcard: #b4fa31;
+    
+    --color-buton: #06f31a;
+    --color-pink: #fd0026;
     /*Degrader accueil*/
     --primary-color:#090347;
     --secondary-color:#150080;
