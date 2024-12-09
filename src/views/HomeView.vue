@@ -17,7 +17,7 @@
 import { ref } from 'vue';
 import BannierComp from '@/components/BannierComp.vue';
 import BannierAccueilComp from '@/components/BannierAccueilComp.vue';
-import cardAccueilComp from '@/components/cardAccueilComp.vue';
+import cardAccueilComp from '@/components/AccueilCardComp.vue';
 import router from '@/router';
 import { onMounted } from 'vue';
 

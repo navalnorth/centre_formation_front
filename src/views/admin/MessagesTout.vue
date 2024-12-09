@@ -1,37 +1,37 @@
 <template>
-    <BannierPagesComp>
-        <template #title>
-            Personnes intéressées par un Bilan de compétences
-        </template>
-    </BannierPagesComp>
+<BannierPagesComp>
+    <template #title>
+        Tous les contacts
+    </template>
+</BannierPagesComp>
     <div class="flex justify-center min-h-screen">
         <div class="table-auto w-4/5 mt-10 overflow-x-auto">
             <table class="w-full bg-red-200 rounded-3xl">
                 <thead>
                     <tr>
-                        <th class="border-r-2 border-black border-b-2">Nom</th>
-                        <th class="border-r-2 border-black border-b-2">Prénom</th>
-                        <th class="border-r-2 border-black border-b-2">Téléphone</th>
-                        <th class="border-r-2 border-black border-b-2">Mail</th>
-                        <th class="border-r-2 border-black border-b-2">Raison</th>
-                        <th class="border-black border-b-2">Message</th>
+                        <th class="">Nom</th>
+                        <th class="">Prénom</th>
+                        <th class="">Téléphone</th>
+                        <th class="">Mail</th>
+                        <th class="">Raison</th>
+                        <th class="">Message</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(list, index) in listMessage" :key="index">
-                        <td class="border-r-2 border-black">
+                        <td class="p-2">
                             {{ list.firstname.slice(0, 15) + (list.firstname.length > 15 ? '...' : '') }}
                             </td>
-                        <td class="border-r-2 border-black">
+                        <td class="p-2">
                             {{ list.lastname.slice(0, 15) + (list.lastname.length > 15 ? '...' : '') }}
                             </td>
-                        <td class="border-r-2 border-black">
+                        <td class="p-2">
                             {{ list.phone }}
                         </td>
-                        <td class="border-r-2 border-black">
+                        <td class="p-2">
                             {{ list.mail }}
                         </td>
-                        <td class="border-r-2 border-black">
+                        <td class="p-2">
                             {{ list.reason }}
                         </td>
                         <td @mouseover="showTooltip(list.message)" @mousemove="updatePosition"
@@ -94,8 +94,8 @@ const fetchTout = async () => {
 
         const result = await response.json();
         const data = result.data;
-        
-        listMessage.value = data.filter(item => item.reason === "Bilan de competences");
+
+        listMessage.value = data
     } catch (error) {
         console.error('Erreur durant la connexion :', error);
     }

@@ -1,16 +1,16 @@
 <template>
     <BannierPagesComp>
         <template #title>
-            Modification Formation
+            Admin personnes intéréssés
         </template>
     </BannierPagesComp>
-    <AdminFetchFormationComp/>
+    <MenuPersonnes />
 </template>
+
+
 
 <script setup>
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
-import AdminFetchFormationComp from '@/components/admin/AdminFetchFormationComp.vue';
-</script>
+import MenuPersonnes from '@/components/admin/MessagesMenuAdmin.vue';
 
-<style scoped>
-</style>
+</script>

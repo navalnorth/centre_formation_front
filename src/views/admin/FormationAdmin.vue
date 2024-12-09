@@ -1,14 +1,15 @@
 <template>
     <BannierPagesComp>
         <template #title>
-            Créer une nouvel formation
+            Modification Formation
         </template>
     </BannierPagesComp>
-    <AdminCreateFormationComp/>
+    <FormationCompAdmin />
 </template>
 
 <script setup>
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
-import AdminCreateFormationComp from '@/components/admin/AdminCreateFormationComp.vue';
+import FormationCompAdmin from '@/components/admin/FormationCompAdmin.vue';
 </script>
 
+<style scoped></style>

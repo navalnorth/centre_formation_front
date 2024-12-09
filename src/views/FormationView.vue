@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import CardFormationComp from '@/components/CardFormationComp.vue';
+import CardFormationComp from '@/components/FormationCardComp.vue';
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
 
 </script>

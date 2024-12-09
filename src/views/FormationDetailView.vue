@@ -19,7 +19,7 @@
 
 </template>
 <script setup>
-import CardFormationComp from '@/components/CardFormationComp.vue';
+import CardFormationComp from '@/components/FormationCardComp.vue';
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
 import { onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
@@ -79,7 +79,7 @@ const fetchCard = async () => {
 <style scoped>
 .ColorButon {
     background-color: var(--color-buton);
-    
+
 }
 
 .fontText {

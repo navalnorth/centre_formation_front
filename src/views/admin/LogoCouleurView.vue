@@ -4,15 +4,14 @@
             Modifier le Logo et les couleurs du site
         </template>
     </BannierPagesComp>
-    <AdminFetchLogoComp/>
-    <AdminFetchCouleursComp/>
+    <LogoCompAdmin />
+    <CouleursCompAdmin />
 </template>
 
 <script setup>
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
-import AdminFetchLogoComp from '@/components/admin/AdminFetchLogoComp.vue';
-import AdminFetchCouleursComp from '@/components/admin/AdminFetchCouleursComp.vue';
+import LogoCompAdmin from '@/components/admin/LogoCompAdmin.vue';
+import CouleursCompAdmin from '@/components/admin/CouleursCompAdmin.vue';
 </script>
 
-<style>
-</style>
+<style></style>

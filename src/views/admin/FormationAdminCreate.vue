@@ -1,16 +1,13 @@
 <template>
     <BannierPagesComp>
         <template #title>
-           Menu admin
+            Créer une nouvel formation
         </template>
     </BannierPagesComp>
-    <AdminMenuComp></AdminMenuComp>
+    <FormationCreateCompAdmin />
 </template>
 
 <script setup>
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
-import AdminMenuComp from '@/components/admin/AdminMenuComp.vue';
+import FormationCreateCompAdmin from '@/components/admin/FormationCreateCompAdmin.vue';
 </script>
-
-<style>
-</style>

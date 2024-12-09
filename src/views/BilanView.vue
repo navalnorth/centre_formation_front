@@ -20,7 +20,7 @@
 
 <script setup>
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
-import BilanBody from '@/components/BilanBody.vue';
+import BilanBody from '@/components/BilanContenu.vue';
 import BannierComp from '@/components/BannierComp.vue';
 import { onMounted, ref } from 'vue';
 

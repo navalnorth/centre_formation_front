@@ -1,5 +1,5 @@
 <template>
-    <div class="p-5 text-xl border-b-2 border-indigo-950 m-10">Modifier la bannier Accueil</div> 
+    <div class="p-5 text-xl border-b-2 border-indigo-950 m-10">Modifier la bannier Bilan du bas</div> 
     
     <div class="flex mx-5 gap-10 flex-wrap justify-center items-center">
         <label for="" class="flex flex-col text-left">Titre

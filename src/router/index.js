@@ -8,9 +8,9 @@ const routes = [
     component: () => import('../views/HomeView.vue')
   },
   {
-    path: '/loginAdmin',
-    name: 'loginAdmin',
-    component: () => import('../views/LoginView.vue')
+    path: '/about',
+    name: 'about',
+    component: () => import('../views/AboutView.vue')
   },
   {
     path: '/bilan-de-competences',
@@ -25,67 +25,7 @@ const routes = [
   {
     path: '/formation/:id',
     name: 'formationdetail',
-    component: () => import('../views/FormationDetail.vue')
-  },
-  {
-    path: '/admin-menu',
-    name: 'admin-menu',
-    component: () => import('../views/admin/AdminMenuView.vue'),
-    // meta: { requiresAuth: true },
-  },
-  {
-    path: '/admin-accueil',
-    name: 'admin-accueil',
-    component: () => import('../views/admin/AdminAccueilView.vue'),
-    // meta: { requiresAuth: true },
-  },
-  {
-    path: '/admin-formation',
-    name: 'admin-formation',
-    component: () => import('../views/admin/AdminFormationView.vue'),
-    // meta: { requiresAuth: true },
-  },
-  {
-    path: '/admin-tableau',
-    name: 'admin-tableau',
-    component: () => import('../views/admin/AdminTableauView.vue'),
-    // meta: { requiresAuth: true },
-  },
-  {
-    path: '/admin-toute',
-    name: 'admin-toute',
-    component: () => import('../views/admin/TouteDemande.vue'),
-    // meta: { requiresAuth: true },
-  },
-  {
-    path: '/admin-renseignement',
-    name: 'admin-renseignement',
-    component: () => import('../views/admin/RenseignementDemande.vue'),
-    // meta: { requiresAuth: true },
-  },
-  {
-    path: '/admin-bilan',
-    name: 'admin-bilan',
-    component: () => import('../views/admin/BilanDemande.vue'),
-    // meta: { requiresAuth: true },
-  },
-  {
-    path: '/admin-Formation',
-    name: 'admin-Formation',
-    component: () => import('../views/admin/FormationDemande.vue'),
-    // meta: { requiresAuth: true },
-  },
-  {
-    path: '/admin-Creation-Formation',
-    name: 'admin-Creation-Formation',
-    component: () => import('../views/admin/AdminCreateFormationView.vue'),
-    // meta: { requiresAuth: true },
-  },
-  {
-    path: '/admin-Logo-Couleurs',
-    name: 'admin-Logo-Couleurs',
-    component: () => import('../views/admin/AdminLogoCouleurView.vue'),
-    // meta: { requiresAuth: true },
+    component: () => import('../views/FormationDetailView.vue')
   },
   {
     path: '/contact',
@@ -93,10 +33,77 @@ const routes = [
     component: () => import('../views/ContactView.vue'),
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutView.vue')
+    path: '/loginAdmin',
+    name: 'loginAdmin',
+    component: () => import('../views/LoginView.vue')
   },
+  {
+    path: '/admin-menu',
+    name: 'admin-menu',
+    component: () => import('../views/admin/AdminMenu.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/accueil-admin',
+    name: 'accueil-admin',
+    component: () => import('../views/admin/AccueilAdmin.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/bilan-admin',
+    name: 'bilan-admin',
+    component: () => import('../views/admin/BilanAdmin.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/formation-admin',
+    name: 'formation-admin',
+    component: () => import('../views/admin/FormationAdmin.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/formation-admin-creation',
+    name: 'formation-admin-creation',
+    component: () => import('../views/admin/FormationAdminCreate.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/admin-tableau-messages',
+    name: 'admin-tableau',
+    component: () => import('../views/admin/MessagesAdminTableau.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/messages-tout',
+    name: 'messages-tout',
+    component: () => import('../views/admin/MessagesTout.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/messages-renseignement',
+    name: 'messages-renseignement',
+    component: () => import('../views/admin/MessagesRenseignements.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/messages-bilan',
+    name: 'messages-bilan',
+    component: () => import('../views/admin/MessagesBilan.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/messages-formation',
+    name: 'messages-Formation',
+    component: () => import('../views/admin/MessagesFormation.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/logo-couleurs',
+    name: 'logo-couleurs',
+    component: () => import('../views/admin/LogoCouleurView.vue'),
+    // meta: { requiresAuth: true },
+  },
+
 ]
 
 const router = createRouter({
@@ -121,12 +128,12 @@ router.beforeEach((to, from, next) => {
   const isAdmin = store.getters.isAdmin;
 
   if (['/', '/register', '/'].includes(to.path)) {
-    next(); 
+    next();
   } else if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!isLoggedIn) {
       next('/');
     } else if (to.matched.some(record => record.meta.requiresAdmin) && !isAdmin) {
-      next('/'); 
+      next('/');
     } else {
       next();
     }

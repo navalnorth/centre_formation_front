@@ -9,29 +9,29 @@
             <table class="w-full bg-red-200 rounded-3xl">
                 <thead>
                     <tr>
-                        <th class="border-r-2 border-black border-b-2">Nom</th>
-                        <th class="border-r-2 border-black border-b-2">Prénom</th>
-                        <th class="border-r-2 border-black border-b-2">Téléphone</th>
-                        <th class="border-r-2 border-black border-b-2">Mail</th>
-                        <th class="border-r-2 border-black border-b-2">Raison</th>
-                        <th class="border-black border-b-2">Message</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Téléphone</th>
+                        <th>Mail</th>
+                        <th>Raison</th>
+                        <th>Message</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(list, index) in listMessage" :key="index">
-                        <td class="border-r-2 border-black">
+                        <td>
                             {{ list.firstname.slice(0, 15) + (list.firstname.length > 15 ? '...' : '') }}
                             </td>
-                        <td class="border-r-2 border-black">
+                        <td>
                             {{ list.lastname.slice(0, 15) + (list.lastname.length > 15 ? '...' : '') }}
                             </td>
-                        <td class="border-r-2 border-black">
+                        <td>
                             {{ list.phone }}
                         </td>
-                        <td class="border-r-2 border-black">
+                        <td>
                             {{ list.mail }}
                         </td>
-                        <td class="border-r-2 border-black">
+                        <td>
                             {{ list.reason }}
                         </td>
                         <td @mouseover="showTooltip(list.message)" @mousemove="updatePosition"

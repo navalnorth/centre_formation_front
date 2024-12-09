@@ -1,16 +1,16 @@
 <template>
     <BannierPagesComp>
         <template #title>
-            Admin personnes intéréssés
+           Menu admin
         </template>
     </BannierPagesComp>
-    <MenuPersonnes />
+    <AdminMenuComp />
 </template>
-
-
 
 <script setup>
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
-import MenuPersonnes from '@/components/admin/AdminMenuPersonnes.vue';
-
+import AdminMenuComp from '@/components/admin/AdminMenuComp.vue';
 </script>
+
+<style>
+</style>
