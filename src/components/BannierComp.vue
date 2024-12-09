@@ -1,5 +1,5 @@
 <template>
-    <div class="background-div w-full  overflow-hidden md:h-auto pb-10 h-72 text-white mt-10 ">
+    <div class="background-div w-full  overflow-hidden md:h-auto pb-10 h-72 colortext mt-10 ">
         <div
             class="flex flex-col-reverse md:flex-row items-center justify-between md:gap-4 w-full p-0 md:pr-36 mt-10  mb-4 mx-0 md:mx-10">
             <div class="md:w-3/4 w-full">
@@ -72,7 +72,10 @@ onMounted(() => {
 .fontText {
     font-family: var(--font-text);
 }
-
+.colortext {
+    color: var(--color-text);
+  }
+  
 .background-div {
     background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
     clip-path: ellipse(90% 80% at 50% 15%);

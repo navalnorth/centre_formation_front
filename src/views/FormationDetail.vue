@@ -10,7 +10,7 @@
         </div>
         <div class="w-80 h-64 flex justify-center flex-col ">
             <img :src="`${url}${image}`" class="w-full h-full object-cover" alt="Card image">
-            <div class="bgBlue p-3 rounded-xl m-5 text-white" @click="redirectToContact">
+            <div class="ColorButon p-3 rounded-xl m-5 text-white" @click="redirectToContact">
                 {{ button }}
             </div>
 
@@ -77,8 +77,9 @@ const fetchCard = async () => {
 </script>
 
 <style scoped>
-.bgBlue {
-    background-color: var(--color-blue);
+.ColorButon {
+    background-color: var(--color-buton);
+    
 }
 
 .fontText {

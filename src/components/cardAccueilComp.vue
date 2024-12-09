@@ -12,7 +12,7 @@
           </div>
 
           <!-- Face arrière -->
-          <div class="card-back absolute flex-col w-full h-full bg-pink-100 text-black rounded-lg shadow-lg flex items-center justify-center p-4">
+          <div @click="navigateTo(card.route)" class="card-back absolute flex-col w-full h-full ColorPink colortextcard rounded-lg shadow-lg flex items-center justify-center p-4">
             <p class="text-center text-2xl line-clamp-6">{{ card.description }}</p>
             <p><br>Cliquez pour plus d'informations</p>
           </div>
@@ -20,9 +20,9 @@
       </div>
       <div class="hidden md:flex items-center justify-center flex-col">
         <img class="h-20 w-10 my-2" src="../assets/image/ArrowB.png" alt="Arrow Icon" />
-        <p class="bgBlue text-white m-5 rounded-3xl p-5">{{ card.infoBull1 }}</p>
+        <p class="bgBlue colortext m-5 rounded-3xl p-5">{{ card.infoBull1 }}</p>
         <img class="h-20 w-10 my-2" src="../assets/image/ArrowB.png" alt="Arrow Icon" />
-        <p class="bgBlue text-amber-300 m-5 rounded-3xl p-5 mb-5">{{ card.infoBull2 }}</p>
+        <p class="bgBlue colortext m-5 rounded-3xl p-5 mb-5">{{ card.infoBull2 }}</p>
       </div>
     </div>
   </div>
@@ -30,11 +30,11 @@
     <h1 class="flex md:hidden justify-center mt-20 text-xl md:text-3xl fontTitle mb-10"> Plus d'informations</h1>
     <div  v-for="(card, index) in cards" class=" flex md:hidden flex-col items-center justify-center" :key="index">
       <div class=" items-center justify-center flex flex-col">
-        <p class="bg-pink-400 text-white m-2 mt-5 rounded-3xl p-5">{{ card.title }}</p>
+        <p class="bgBlue colortext m-2 mt-5 rounded-3xl p-5">{{ card.title }}</p>
         <img class="h-20 w-10 my-2 textpi" src="../assets/image/ArrowB.png" alt="Arrow Icon" />
-        <p class="bgBlue text-white m-2 rounded-3xl p-5">{{ card.infoBull1 }}</p>
+        <p class="bgBlue colortext m-2 rounded-3xl p-5">{{ card.infoBull1 }}</p>
         <img class="h-20 w-10 my-2" src="../assets/image/ArrowB.png" alt="Arrow Icon" />
-        <p class="bgBlue text-amber-300 m-2 rounded-3xl p-5 mb-16">{{ card.infoBull2 }}</p>
+        <p class="bgBlue colortext m-2 rounded-3xl p-5 mb-16">{{ card.infoBull2 }}</p>
       </div>
     </div>
   </div>
@@ -42,24 +42,42 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 const cards = ref([
-    {
-        bgimage: "load.png",
-        description: "Découvrez votre potentiel grâce au bilan de compétences.",
-        infoBull1: "Découvrez votre potentiel grâce au bilan de compétences.",
-        infoBull2: "Un premier échange offert pour faire le point",
-        title: "Bilan de compétences",
-    },
-    {
-        bgimage: "load.png",
-        description: "Faites le point sur vos compétences et explorez de nouvelles opportunités.",
-        infoBull1: "Approche pédagogique, centrée sur l'humain et l'apprentissage.",
-        infoBull2: "Construire une formation adaptée.",
-        title: "Nos formations",
-    },
+  {
+    bgimage: "load.png",
+    description: "Découvrez votre potentiel grâce au bilan de compétences.",
+    infoBull1: "Découvrez votre potentiel grâce au bilan de compétences.",
+    infoBull2: "Un premier échange offert pour faire le point",
+    title: "Bilan de compétences",
+    route: "/bilan", // Route pour cette carte
+  },
+  {
+    bgimage: "load.png",
+    description: "Faites le point sur vos compétences et explorez de nouvelles opportunités.",
+    infoBull1: "Approche pédagogique, centrée sur l'humain et l'apprentissage.",
+    infoBull2: "Construire une formation adaptée.",
+    title: "Nos formations",
+    route: "/formation", // Route pour cette carte
+  },
 ]);
+
+const navigateTo = (route) => {
+  if (!route) {
+    console.error("La route est manquante pour cette carte.");
+    return;
+  }
+
+  router.push(route).catch((err) => {
+    if (err.name !== "NavigationDuplicated") {
+      console.error("Erreur de navigation :", err);
+    }
+  });
+};
+
 
 onMounted(() => {
   fetchCard();
@@ -68,27 +86,46 @@ onMounted(() => {
 const fetchCard = async () => {
   try {
     const response = await fetch(`${process.env.VUE_APP_URL}/card/`, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
       },
     });
 
     if (!response.ok) {
-      const errorMessage = (await response.json()).message || 'Erreur inconnue lors de la connexion.';
+      const errorMessage = (await response.json()).message || "Erreur inconnue lors de la connexion.";
       console.error(errorMessage);
       return;
     }
 
     const result = await response.json();
     const data = result.data;
-    cards.value = data;
 
+    // Ajoutez les routes manquantes
+    cards.value = data.map((card) => {
+      return {
+        ...card,
+        route: determineRoute(card), // Détermine la route pour chaque carte
+      };
+    });
   } catch (error) {
-    console.error('Erreur durant la connexion :', error);
+    console.error("Erreur durant la connexion :", error);
   }
 };
+
+// Fonction pour déterminer les routes
+const determineRoute = (card) => {
+  switch (card.title) {
+    case "Bilan de compétences":
+      return "/bilan-de-competences";
+    case "Nos formations":
+      return "/formation";
+    default:
+      return "/"; // Route par défaut si aucune correspondance
+  }
+};
+
 </script>
 
 <style scoped>
@@ -98,8 +135,19 @@ const fetchCard = async () => {
   justify-content: center; /* Centre les cartes horizontalement */
   align-items: center; /* Centre les cartes verticalement */
   gap: 20px;
- 
 }
+.ColorPink {
+  background-color: var(--color-pink);
+  
+}
+
+.colortext {
+  color: var(--color-text);
+}
+.colortextcard {
+  color: var(--color-textcard);
+}
+
 
 .tout {
   background-image: url("../assets/image/LogoTampon.png");
@@ -109,12 +157,14 @@ const fetchCard = async () => {
 }
 
 .bgBlue {
-  background-color: var(--color-blue);
+  background-color: var(--primary-color);
+}
+.colortext {
+  color: var(--color-text);
 }
 
 .card-container {
   perspective: 1000px; /* Ajout de perspective pour l'effet de rotation */
-
 }
 
 .card-inner {
@@ -122,7 +172,6 @@ const fetchCard = async () => {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  
 }
 
 .card-inner.is-flipped {
@@ -136,26 +185,22 @@ const fetchCard = async () => {
   width: 100%;
   height: 100%;
   border-radius: 1rem;
-  
 }
 
 .card-back {
   transform: rotateY(180deg); /* Retourne la face arrière */
 }
 
-/* Pour s'assurer que l'image et le contenu sont centrés correctement */
 .card-front img {
   object-fit: cover;
   width: 100%;
   height: 100%;
-  
 }
 
 .card-container,
 .card-inner,
 .card-front,
 .card-back {
-  
   display: flex;
   align-items: center;
   justify-content: center;

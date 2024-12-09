@@ -76,6 +76,18 @@ const routes = [
     // meta: { requiresAuth: true },
   },
   {
+    path: '/admin-Creation-Formation',
+    name: 'admin-Creation-Formation',
+    component: () => import('../views/admin/AdminCreateFormationView.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/admin-Logo-Couleurs',
+    name: 'admin-Logo-Couleurs',
+    component: () => import('../views/admin/AdminLogoCouleurView.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
     path: '/contact',
     name: 'contact',
     component: () => import('../views/ContactView.vue'),
