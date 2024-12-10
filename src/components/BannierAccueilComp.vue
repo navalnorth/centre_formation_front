@@ -36,7 +36,7 @@ const description = ref('Parce que chaque parcours est unique, Je vous accompagn
 const router = useRouter()
 
 const about = () => {
-  console.log('Navigating to /about');
+
   router.push("/about").catch(err => console.error(err));
 };
 
@@ -66,8 +66,6 @@ const fetchAccueil = async () => {
 
     const result = await response.json();
     const data = result.data[0];
-    console.log(data);
-
 
     title.value = data.title_accueil;
     title_section.value = data.title_section;

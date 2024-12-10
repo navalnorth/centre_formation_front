@@ -91,8 +91,6 @@ const fetchColor = async () => {
 
         const result = await response.json();
         const data = result.data[0];
-     
-        console.log(data);
         
         colordeg1.value = data.colordeg1;
         colordeg2.value = data.colordeg2;

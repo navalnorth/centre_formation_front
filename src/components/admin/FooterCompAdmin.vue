@@ -83,7 +83,6 @@ const fetchCreateFormation = async () => {
     if (imageFile.value) {
         formData.append('image_footer', imageFile.value);
     }
-    console.log(formData);
 
     try {
         const response = await fetch(`${process.env.VUE_APP_URL}/footer/createFooter`, {
@@ -103,7 +102,6 @@ const fetchCreateFormation = async () => {
         const result = await response.json();
         message.value = 'Formation créée avec succès !';
         messageType.value = 'text-green-600 border-green-600';
-        console.log('Résultat:', result);
     } catch (error) {
         console.error('Erreur durant la création de la formation :', error);
         message.value = 'Erreur lors de la création.';

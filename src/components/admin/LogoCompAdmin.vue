@@ -103,7 +103,6 @@ const fetchUpdateImage = async () => {
         }
 
         const result = await response.json();
-        console.log("Image mise à jour avec succès :", result);
         location.reload();
     } catch (error) {
         console.error('Erreur durant la connexion :', error);
