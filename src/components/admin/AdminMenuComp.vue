@@ -1,5 +1,5 @@
 <template>
-    <div class="flex w-full flex-col justify-center items-center">
+    <div class="flex w-full flex-col justify-center items-center Colortext">
 
         <div class="flex flex-col w-full md:flex-row gap-10 flex-wrap items-center justify-center">
             <router-link to="/admin-tableau-messages"
@@ -37,6 +37,8 @@
 <style>
 .ColorButon {
     background-color: var(--color-buton);
-
+}
+.Colortext {
+    color: var(--color-text);
 }
 </style>

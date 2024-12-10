@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-center">
+    <div class="flex justify-center Colortext">
         <div class="flex gap-16 mx-2 flex-wrap justify-center text-center items-center dispo">
             <router-link to="/messages-tout" class="bulle p-10 text-xl ColorButon w-1/3 rounded-lg hover:ColorButon cursor-pointer">
                 Toutes les demandes
@@ -30,7 +30,8 @@
 }
 .ColorButon {
     background-color: var(--color-buton);
-    
 }
-
+.Colortext {
+    color: var(--color-text);
+}
 </style>

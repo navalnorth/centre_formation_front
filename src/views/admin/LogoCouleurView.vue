@@ -1,7 +1,7 @@
 <template>
     <BannierPagesComp>
         <template #title>
-            Modifier le Logo et les couleurs du site
+            Modifier le Logo et les couleurs
         </template>
     </BannierPagesComp>
     <LogoCompAdmin />

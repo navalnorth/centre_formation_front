@@ -1,7 +1,7 @@
 <template>
     <form class="pt-48" @submit.prevent="login">
         <div>
-            <input type="text" v-model="mail" placeholder="mail">
+            <input type="text" v-model="username" placeholder="pseudo">
         </div>
         <div>
             <input type="password" v-model="password" placeholder="mot de passe">
@@ -19,7 +19,7 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 const store = useStore();
 
-const mail = ref('');
+const username = ref('');
 const password = ref('');
 const erreurs = ref(''); // Variable pour les erreurs
 
@@ -34,12 +34,12 @@ const setTokenStore = (token) => {
 const login = async () => {
     erreurs.value = '';
     const data = {
-        mail: mail.value,
+        username: username.value,
         password: password.value,
     };
 
     try {
-        const response = await fetch(`${process.env.VUE_APP_URL}/users/login`, {
+        const response = await fetch(`${process.env.VUE_APP_URL}/admin/login`, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
