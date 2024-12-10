@@ -36,11 +36,17 @@
                         class="file-upload"></div>
                 </label>
                 
-                <!-- Button to save image -->
-                <button class="p-3 bg-pink-400 hover:bg-pink-600 rounded-lg m-2 text-white"
+                <div class="flex flex-col">
+                    <button class="p-3 bg-pink-400 hover:bg-pink-600 rounded-lg m-2 text-white"
                     @click="fetchUpdateImage(forma.id_formation, index)">
                     Enregistrer cette image
                 </button>
+
+                <button class="p-3 bg-red-400 hover:bg-red-600 rounded-lg m-2 text-white"
+                    @click="deleteformation(forma.id_formation, index)">
+                    Supprimer cette formation
+                </button>
+                </div>
 
                 <!-- Success message for image update -->
                 <p v-if="forma.imageUpdateMessage" class="text-green-500 border-green-500">{{ forma.imageUpdateMessage }}</p>
@@ -55,10 +61,6 @@ import { onMounted, ref } from 'vue';
 
 const formations = ref([]);
 const url = `${process.env.VUE_APP_URL}/uploads/`;
-
-onMounted(() => {
-    fetchCard();
-});
 
 // Fetch card data
 const fetchCard = async () => {
@@ -177,6 +179,36 @@ const fetchUpdateImage = async (id_formation, index) => {
         console.error('Erreur durant la mise à jour de l\'image :', error);
     }
 };
+
+
+
+const deleteformation = async (id_formation, index) => {
+    try {
+        const response = await fetch(`${process.env.VUE_APP_URL}/formation/deleteFormation/${id_formation}`, {
+            method: 'DELETE',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            const err = await response.json();
+            console.error(err.message);
+            return;
+        }
+        await response.json();
+
+        formations.value.splice(index, 1);
+    } catch (error) {
+        console.error('Erreur lors de la suppression de la formation :', error);
+    }
+};
+
+
+onMounted(() => {
+    fetchCard();
+});
 </script>
 
 <style scoped>

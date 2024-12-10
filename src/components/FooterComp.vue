@@ -27,7 +27,7 @@
     </div>
 
     <div class="my-4">
-      <router-link to="/mentions-legales">Mentions Légales</router-link>
+      <router-link to="/mentions-legales" class="hover:text-slate-400">Mentions Légales</router-link>
     </div>
 
     <p class="my-4">© Copyright 2024</p>
@@ -36,22 +36,22 @@
 
 <script setup>
 import { AkLinkedinV2Fill, MdKeyboardArrowUp } from '@kalimahapps/vue-icons';
-
 import { onMounted, ref } from 'vue';
+
 const footerList = ref([]);
-onMounted(() => {
-  fetchLogo();
-  fetchFooters();
-});
+const logo = ref("logo.png");
+const url = `${process.env.VUE_APP_URL}/uploads/`;
+
+
 
 const scrollToTop = () => {
   window.scrollTo({
     top: 0,
-    behavior: 'smooth', // Pour un défilement fluide
+    behavior: 'smooth',
   });
 };
-const logo = ref("logo.png");
-const url = `${process.env.VUE_APP_URL}/uploads/`;
+
+
 
 const fetchLogo = async () => {
   try {
@@ -64,22 +64,21 @@ const fetchLogo = async () => {
     });
 
     if (!response.ok) {
-      const errorMessage = (await response.json()).message || 'Erreur inconnue lors de la connexion.';
+      const errorMessage = (await response.json()).message;
       console.error(errorMessage);
       return;
     }
-
     const result = await response.json();
     const data = result.data[0];
 
     logo.value = data.logo
-
   } catch (error) {
     console.error('Erreur durant la connexion :', error);
   }
 };
 
-// Fetch pour récupérer les footers
+
+
 const fetchFooters = async () => {
   try {
     const response = await fetch(`${process.env.VUE_APP_URL}/footer/`);
@@ -88,13 +87,17 @@ const fetchFooters = async () => {
       return;
     }
     const result = await response.json();
+
     footerList.value = result.data;
   } catch (error) {
     console.error('Erreur durant la récupération des footers :', error);
   }
 };
 
-
+onMounted(() => {
+  fetchLogo();
+  fetchFooters();
+});
 </script>
 
 <style>

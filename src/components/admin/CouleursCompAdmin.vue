@@ -15,6 +15,10 @@
                 <input type="color" id="pink-color" name="pink-color" v-model="pinkCard" />
             </div>
             <div>
+                <label for="allButon">couleur des bouton :</label>
+                <input type="color" id="allButon" name="allButon" v-model="allButon" />
+            </div>
+            <div>
                 <label for="secondary-color">couleur de text accueil :</label>
                 <input type="color" id="text" name="text" v-model="text" />
             </div>
