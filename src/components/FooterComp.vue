@@ -82,7 +82,7 @@ const fetchLogo = async () => {
 // Fetch pour récupérer les footers
 const fetchFooters = async () => {
   try {
-    const response = await fetch(`${process.env.VUE_APP_URL}/footer`);
+    const response = await fetch(`${process.env.VUE_APP_URL}/footer/`);
     if (!response.ok) {
       console.error('Erreur lors de la récupération des footers.');
       return;
