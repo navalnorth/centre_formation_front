@@ -3,18 +3,18 @@
     <div class="background-div  ">
       <div class="flex items-center justify-center flex-wrap-reverse gap-10 md:gap-44 w-full my-10">
         <div class="text-center md:text-left md:w-1/3 w-full">
-            <h1 class="text-xl md:text-3xl  font-bold fontTitle md:p-0 px-5">{{ title }}</h1>
-            <h3 class="text-base md:text-xl mt-2 font-light">{{ name }}</h3>
-            <p class="mt-4 text-base sp fontSubTitle w-full break-words md:p-0 px-5">{{ description }}</p>
+          <h1 class="text-xl md:text-3xl  font-bold fontTitle md:p-0 px-5">{{ title }}</h1>
+          <h3 class="text-base md:text-xl mt-2 font-light">{{ name }}</h3>
+          <p class="mt-4 text-base sp fontSubTitle w-full break-words md:p-0 px-5">{{ description }}</p>
         </div>
 
         <div class="flex flex-col overflow-hidden items-center">
-            <div class="w-64">
-              <img :src="`${url}${urlImageBannier}`" class="w-full h-full object-cover rounded-3xl" />
-            </div>
-            <button class="p-2 mt-5 bg-white text-black w-56 rounded-xl text-center cursor-pointer" @click="about">
-              Qui suis-je ?
-            </button>
+          <div class="w-64">
+            <img :src="`${url}${urlImageBannier}`" class="w-full h-full object-cover rounded-3xl" />
+          </div>
+          <button class="p-2 mt-5 bg-white text-black w-56 rounded-xl text-center cursor-pointer" @click="about">
+            Qui suis-je ?
+          </button>
         </div>
       </div>
     </div>
@@ -66,6 +66,7 @@ const fetchAccueil = async () => {
 
     const result = await response.json();
     const data = result.data[0];
+    console.log(data);
 
 
     title.value = data.title_accueil;
@@ -87,8 +88,6 @@ const fetchAccueil = async () => {
 </script>
 
 <style scoped>
-
-
 /* Appliquer les polices via les variables */
 .fontTitle {
   font-family: var(--font-title);
@@ -101,6 +100,7 @@ const fetchAccueil = async () => {
 .fontText {
   font-family: var(--font-text);
 }
+
 .colortext {
   color: var(--color-text);
 }
