@@ -188,7 +188,7 @@ const fetchUpdateImage = async () => {
 };
 
 onMounted(() => {
-    fetchAbout();
+    fetchAbout()
 });
 </script>
 
