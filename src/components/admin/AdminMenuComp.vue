@@ -22,7 +22,7 @@
             <router-link to="/about-admin"
                 class="p-5 md:p-10 text-xl ColorButon w-1/3 rounded-lg  hover:bg-pink-200 cursor-pointer">Qui
                 suis-je</router-link>
-            <router-link to="/"
+            <router-link to="/footer-admin"
                 class="p-5 md:p-10 text-xl ColorButon w-1/3 rounded-lg  hover:bg-pink-200 cursor-pointer">Footer</router-link>
             <router-link to="/logo-couleurs"
                 class="p-5 md:p-10 text-xl ColorButon w-1/3 rounded-lg  hover:bg-pink-200 cursor-pointer">Logo et

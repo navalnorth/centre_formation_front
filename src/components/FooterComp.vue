@@ -2,7 +2,8 @@
   <div class="flex flex-col items-center w-full h-auto my-10">
     <div class="w-4/6 h-1 pink my-5"></div>
 
-    <div @click="scrollToTop" class="absolute right-0 mr-16 h-12 w-12 content-center flex justify-center items-center cursor-pointer bgBlue hover:bg-slate-400 rounded-full mt-8 ">
+    <div @click="scrollToTop"
+      class="absolute right-0 mr-16 h-12 w-12 content-center flex justify-center items-center cursor-pointer bgBlue hover:bg-slate-400 rounded-full mt-8 ">
       <MdKeyboardArrowUp class="w-20 h-20 text-white" />
     </div>
 
@@ -16,8 +17,13 @@
       <router-link class="cursor-pointer hover:text-slate-400" to="/">Contactez-moi</router-link>
     </div>
 
-    <div class="my-10">
-      <AkLinkedinV2Fill class="h-10 w-10" />
+    <div class="flex flex-col md:flex-row gap-10 my-5">
+      <div v-for="footer in footerList" :key="footer.id_footer" class="flex flex-col  w-full h-30 justify-end items-center ">
+        <div class="w-16 ">
+          <img :src="`${url}${footer.image_footer}`" class="w-full h-full object-cover rounded-3xl"></img>
+        </div>
+        <h3 class=" text-center">{{ footer.title_footer }}</h3>
+      </div>
     </div>
 
     <div class="my-4">
@@ -32,9 +38,10 @@
 import { AkLinkedinV2Fill, MdKeyboardArrowUp } from '@kalimahapps/vue-icons';
 
 import { onMounted, ref } from 'vue';
-
+const footerList = ref([]);
 onMounted(() => {
   fetchLogo();
+  fetchFooters();
 });
 
 const scrollToTop = () => {
@@ -45,6 +52,7 @@ const scrollToTop = () => {
 };
 const logo = ref("logo.png");
 const url = `${process.env.VUE_APP_URL}/uploads/`;
+
 const fetchLogo = async () => {
   try {
     const response = await fetch(`${process.env.VUE_APP_URL}/users/`, {
@@ -70,6 +78,22 @@ const fetchLogo = async () => {
     console.error('Erreur durant la connexion :', error);
   }
 };
+
+// Fetch pour récupérer les footers
+const fetchFooters = async () => {
+  try {
+    const response = await fetch(`${process.env.VUE_APP_URL}/footer`);
+    if (!response.ok) {
+      console.error('Erreur lors de la récupération des footers.');
+      return;
+    }
+    const result = await response.json();
+    footerList.value = result.data;
+  } catch (error) {
+    console.error('Erreur durant la récupération des footers :', error);
+  }
+};
+
 
 </script>
 

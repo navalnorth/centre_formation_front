@@ -73,6 +73,12 @@ const routes = [
     // meta: { requiresAuth: true },
   },
   {
+    path: '/footer-admin',
+    name: 'footer-admin',
+    component: () => import('../views/admin/FooterAdmin.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
     path: '/formation-admin-creation',
     name: 'formation-admin-creation',
     component: () => import('../views/admin/FormationAdminCreate.vue'),
