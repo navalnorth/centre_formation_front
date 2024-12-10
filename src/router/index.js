@@ -33,6 +33,11 @@ const routes = [
     component: () => import('../views/ContactView.vue'),
   },
   {
+    path: '/mentions-legales',
+    name: 'mentions-legales',
+    component: () => import('../views/MentionsLegalesView.vue'),
+  },
+  {
     path: '/loginAdmin',
     name: 'loginAdmin',
     component: () => import('../views/LoginView.vue')
@@ -47,6 +52,12 @@ const routes = [
     path: '/accueil-admin',
     name: 'accueil-admin',
     component: () => import('../views/admin/AccueilAdmin.vue'),
+    // meta: { requiresAuth: true },
+  },
+  {
+    path: '/about-admin',
+    name: 'about-admin',
+    component: () => import('../views/admin/AboutAdmin.vue'),
     // meta: { requiresAuth: true },
   },
   {

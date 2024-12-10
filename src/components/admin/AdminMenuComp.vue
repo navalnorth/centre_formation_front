@@ -19,8 +19,8 @@
                 class="p-5 md:p-10 text-xl ColorButon w-1/3 rounded-lg  hover:bg-pink-200 cursor-pointer">Bilan</router-link>
             <router-link to="/formation-admin"
                 class="p-5 md:p-10 text-xl ColorButon w-1/3 rounded-lg  hover:bg-pink-200 cursor-pointer">Formation</router-link>
-            <router-link to="/"
-                class="p-5 md:p-10 text-xl ColorButon w-1/3 rounded-lg  hover:bg-pink-200 cursor-pointer">Qui <br>
+            <router-link to="/about-admin"
+                class="p-5 md:p-10 text-xl ColorButon w-1/3 rounded-lg  hover:bg-pink-200 cursor-pointer">Qui
                 suis-je</router-link>
             <router-link to="/"
                 class="p-5 md:p-10 text-xl ColorButon w-1/3 rounded-lg  hover:bg-pink-200 cursor-pointer">Footer</router-link>
