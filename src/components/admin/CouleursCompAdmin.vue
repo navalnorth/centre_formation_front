@@ -32,8 +32,8 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
-onMounted(() => {
+import { onBeforeMount, ref } from 'vue';
+onBeforeMount(() => {
     fetchColor();
 });
 const colordeg1 = ref('#021550');  

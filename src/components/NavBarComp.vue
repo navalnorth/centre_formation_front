@@ -32,7 +32,7 @@
 
 import { ChMenuHamburger  } from '@kalimahapps/vue-icons';
 import router from '@/router';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onBeforeMount, ref } from 'vue';
 import store from '@/store';
 const user = computed(() => store.state.user || {});
 
@@ -47,7 +47,7 @@ const toggleBurgerMenu = () => {
 }
 
 
-onMounted(() => {
+onBeforeMount(() => {
     fetchLogo();
 });
 

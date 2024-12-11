@@ -37,12 +37,12 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
 const cards = ref([]);
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 
-onMounted(() => {
+onBeforeMount(() => {
     fetchCard();
 });
 

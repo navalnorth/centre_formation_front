@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const url = `${process.env.VUE_APP_URL}/uploads/`;
@@ -41,8 +41,8 @@ const about = () => {
 };
 
 
-onMounted(() => {
-  fetchAccueil();
+onBeforeMount(async() => {
+ await fetchAccueil();
 });
 
 

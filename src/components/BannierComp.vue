@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
 
 const logo = ref("logo.png");
@@ -55,7 +55,7 @@ const fetchLogo = async () => {
     }
 };
 
-onMounted(() => {
+onBeforeMount(() => {
     fetchLogo();
 });
 </script>

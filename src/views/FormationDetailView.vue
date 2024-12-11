@@ -21,13 +21,13 @@
 <script setup>
 import CardFormationComp from '@/components/FormationCardComp.vue';
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
 const router = useRouter()
 
-onMounted(() => {
+onBeforeMount(() => {
     fetchCard();
 });
 

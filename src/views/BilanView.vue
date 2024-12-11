@@ -22,7 +22,7 @@
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
 import BilanBody from '@/components/BilanContenu.vue';
 import BannierComp from '@/components/BannierComp.vue';
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
 
 const bannierHautTitle = ref('Découvrez votre potentiel grâce au Bilan de compétences')
@@ -87,7 +87,7 @@ const fetchBilan = async () => {
     }
 };
 
-onMounted(async () => {
+onBeforeMount(async () => {
     await fetchBannier();
     await fetchBilan();
 });

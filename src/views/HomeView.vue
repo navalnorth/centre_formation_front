@@ -19,14 +19,14 @@ import BannierComp from '@/components/BannierComp.vue';
 import BannierAccueilComp from '@/components/BannierAccueilComp.vue';
 import cardAccueilComp from '@/components/AccueilCardComp.vue';
 import router from '@/router';
-import { onMounted } from 'vue';
+import { onBeforeMount } from 'vue';
 
 
 const banTitle = ref('“Révélez votre potentiel unique avec bienveillance et authenticité”');
 const banDescription = ref('Pauline B.');
 
 
-onMounted(() => {
+onBeforeMount(() => {
 
   fetchBannier();
 });

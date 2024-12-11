@@ -36,7 +36,7 @@
 
 <script setup>
 import { AkLinkedinV2Fill, MdKeyboardArrowUp } from '@kalimahapps/vue-icons';
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
 const footerList = ref([]);
 const logo = ref("logo.png");
@@ -94,7 +94,7 @@ const fetchFooters = async () => {
   }
 };
 
-onMounted(() => {
+onBeforeMount(() => {
   fetchLogo();
   fetchFooters();
 });

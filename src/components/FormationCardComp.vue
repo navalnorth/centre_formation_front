@@ -29,7 +29,7 @@
 
 <script setup>
 import router from '@/router';
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
 const detail = (e) => {
     router.push(`/formation/${e}`)
@@ -82,7 +82,7 @@ const cards = ref([
 
 ]);
 
-onMounted(() => {
+onBeforeMount(() => {
     fetchCardFormation();
 });
 

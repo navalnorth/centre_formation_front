@@ -34,7 +34,7 @@
 
 <script setup>
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 
@@ -79,7 +79,7 @@ const fechAbout = async () => {
     }
 };
 
-onMounted(async () => {
+onBeforeMount(async () => {
     await fechAbout();
 });
 </script>

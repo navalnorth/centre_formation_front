@@ -7,13 +7,16 @@
 <script setup>
 import NavBarComp from './components/NavBarComp.vue';
 import FooterComp from './components/FooterComp.vue';
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import store from './store';
 
-onMounted(() => {
-  store.dispatch('checkAuth');
-  fetchAccueil();
+
+
+onBeforeMount(async () => {
+  await fetchAccueil();
+  await store.dispatch('checkAuth');
 });
+
 
 const colordeg1 = ref('');
 const colordeg2 = ref('');

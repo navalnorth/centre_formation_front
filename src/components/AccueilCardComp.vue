@@ -41,7 +41,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -79,8 +79,8 @@ const navigateTo = (route) => {
 };
 
 
-onMounted(() => {
-  fetchCard();
+onBeforeMount(async() => {
+  await fetchCard();
 });
 
 const fetchCard = async () => {

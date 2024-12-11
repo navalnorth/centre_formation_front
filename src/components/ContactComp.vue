@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col gap-16 justify-center items-center my-24">
+    <div class="flex flex-col  gap-16 justify-center items-center my-24">
         <div class="taille font flex flex-col gap-8">
             <div class="flex md:flex-row flex-col justify-center items-center gap-4 md:gap-20">
                 <label for="name" class="flex flex-col justify-start items-start">
@@ -74,7 +74,7 @@
             </div>
 
             <div class="flex justify-end items-end">
-                <button @click.prevent="verify" class="button px-8 py-4 rounded-xl shadow-lg">
+                <button @click.prevent="verify" class="button Colortext px-8 py-4 rounded-xl shadow-lg">
                     Envoyer message
                 </button>
             </div>
@@ -97,7 +97,7 @@
 
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route= useRoute()
@@ -201,7 +201,7 @@ const fechSelect = async () => {
 };
 
 
-onMounted(() => {
+onBeforeMount(() => {
     fechSelect();
     if (route.query && route.query.formation) {
         reason.value = 'formation';
@@ -217,6 +217,10 @@ onMounted(() => {
 <style scoped>
 .font {
     font-family: var(--font-text);
+}
+
+.Colortext {
+    color: var(--color-text);
 }
 
 .taille {

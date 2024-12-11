@@ -23,9 +23,9 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
-onMounted(() => {
+onBeforeMount(() => {
     fetchAccueil();
 });
 const url = `${process.env.VUE_APP_URL}/uploads/`;

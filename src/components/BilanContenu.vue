@@ -90,7 +90,7 @@
 
 <script setup>
 import { Bs1Circle, Bs2Circle, Bs3Circle } from '@kalimahapps/vue-icons';
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
@@ -148,7 +148,7 @@ const fetchBilan = async () => {
     }
 };
 
-onMounted(async () => {
+onBeforeMount(async () => {
     await fetchBilan();
 });
 </script>

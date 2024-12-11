@@ -48,12 +48,12 @@
 
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
 const footers = ref([]);
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 
-onMounted(() => {
+onBeforeMount(() => {
     fetchFooter();
 });
 

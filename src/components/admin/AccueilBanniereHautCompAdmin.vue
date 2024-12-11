@@ -45,7 +45,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 const title = ref('');
@@ -55,7 +55,7 @@ const description = ref('');
 const message = ref(''); // Message pour afficher le résultat
 const messageType = ref(''); // Classe pour styliser le message (succès/erreur)
 
-onMounted(() => {
+onBeforeMount(() => {
     fetchAccueil();
 });
 

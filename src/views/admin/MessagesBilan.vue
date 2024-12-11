@@ -57,7 +57,7 @@
 
 <script setup>
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onBeforeMount, ref } from 'vue';
 
 const listMessage = ref()
 
@@ -102,7 +102,7 @@ const fetchTout = async () => {
 };
 
 
-onMounted(async () => {
+onBeforeMount(async () => {
     await fetchTout()
 })
 </script>

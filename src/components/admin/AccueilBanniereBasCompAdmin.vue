@@ -22,14 +22,14 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
 const banTitle = ref('');
 const banDescription = ref('');
 const message = ref(''); // Message pour afficher le résultat
 const messageType = ref(''); // Classe pour styliser le message (succès/erreur)
 
-onMounted(() => {
+onBeforeMount(() => {
     fetchBannier();
 });
 

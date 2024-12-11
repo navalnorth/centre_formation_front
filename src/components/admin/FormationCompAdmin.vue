@@ -57,7 +57,7 @@
 
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
 const formations = ref([]);
 const url = `${process.env.VUE_APP_URL}/uploads/`;
@@ -206,7 +206,7 @@ const deleteformation = async (id_formation, index) => {
 };
 
 
-onMounted(() => {
+onBeforeMount(() => {
     fetchCard();
 });
 </script>
