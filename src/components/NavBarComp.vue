@@ -2,7 +2,7 @@
     <nav class="deg p-5 w-full h-24 flex items-center justify-between ">
 
         <div class="w-20 h-20 content-center cursor-pointer" @click="accueil">
-            <img class="w-16 h-16" :src="`${url}${logo}`" alt="Logo" />
+            <img v-if="logo" class="w-16 h-16" :src="`${url}${logo}`" alt="Logo" />
         </div>
         <div class="hidden  w-1/2 min-w-96 justify-between lg:flex text-white fontTitle">
             <router-link class="cursor-pointer hover:text-slate-400" to="/about">Qui suis-je ?</router-link>
