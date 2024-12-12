@@ -1,6 +1,6 @@
 <template>
   <BannierAccueilComp/>
-  <!-- <div v-if="banTitle"> -->
+  <div v-if="banTitle">
     <cardAccueilComp/>
     <BannierComp>
       <template #title> {{ banTitle }} </template>
@@ -8,7 +8,7 @@
         {{ banDescription }}
       </template>
     </BannierComp>
-  <!-- </div> -->
+  </div>
 
 </template>
 <script setup>
