@@ -1,13 +1,14 @@
 <template>
   <BannierAccueilComp/>
-    <cardAccueilComp/>
+  <cardAccueilComp />
+  <div v-if="banTitle">
     <BannierComp>
       <template #title> {{ banTitle }} </template>
       <template #description>
         {{ banDescription }}
       </template>
     </BannierComp>
-  
+  </div>
 
 </template>
 <script setup>
