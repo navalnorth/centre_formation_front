@@ -1,7 +1,7 @@
 <template>
   <BannierAccueilComp/>
-  <cardAccueilComp />
   <div v-if="banTitle">
+    <cardAccueilComp/>
     <BannierComp>
       <template #title> {{ banTitle }} </template>
       <template #description>
