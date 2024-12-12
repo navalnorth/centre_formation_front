@@ -36,8 +36,7 @@ const fetchBannier = async () => {
     });
 
     if (!response.ok) {
-      const err = await response.json();
-      console.log(err.message || 'Erreur inconnue lors de la connexion.');
+      await response.json();
       return;
     }
 

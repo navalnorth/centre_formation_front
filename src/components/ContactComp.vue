@@ -1,39 +1,39 @@
 <template>
-    <div class="flex flex-col  gap-16 justify-center items-center my-24">
+    <form @submit.prevent="verify" class="flex flex-col  gap-16 justify-center items-center my-24">
         <div class="taille font flex flex-col gap-8">
             <div class="flex md:flex-row flex-col justify-center items-center gap-4 md:gap-20">
                 <label for="name" class="flex flex-col justify-start items-start">
                     <p class="text-xl text-gray-500">Prénom</p>
-                    <input v-model="name" type="text" id="name" class="border-b-2 w-80 px-4 py-2 outline-none">
+                    <input required v-model="name" type="text" id="name" class="border-b-2 w-80 px-4 py-2 outline-none">
                 </label>
                 <label for="lastname" class="flex flex-col justify-start items-start">
                     <p class="text-xl text-gray-500">Nom</p>
-                    <input v-model="lastname" type="text" id="lastname" class="border-b-2 w-80 px-4 py-2 outline-none">
+                    <input required v-model="lastname" type="text" id="lastname" class="border-b-2 w-80 px-4 py-2 outline-none">
                 </label>
             </div>
 
             <div class="font flex md:flex-row flex-col justify-center items-center gap-4 md:gap-20">
                 <label for="email" class="flex flex-col justify-start items-start">
                     <p class="text-xl text-gray-500">Email</p>
-                    <input v-model="mail" type="text" id="email" class="border-b-2 w-80 px-4 py-2 outline-none">
+                    <input required v-model="mail" type="email" id="email" class="border-b-2 w-80 px-4 py-2 outline-none">
                 </label>
                 <label for="phone" class="flex flex-col justify-start items-start">
                     <p class="text-xl text-gray-500">Téléphone</p>
-                    <input v-model="phone" type="text" id="phone" class="border-b-2 w-80 px-4 py-2 outline-none">
+                    <input required v-model="phone" type="tel" pattern="[0-9]{10}" id="phone" class="border-b-2 w-80 px-4 py-2 outline-none">
                 </label>
             </div>
 
             <div class="flex md:justify-center justify-start md:gap-20 md:flex-row gap-4 flex-col">
                 <label for="renseignement" class="flex gap-4">
-                    <input v-model="reason" type="radio" name="reason" id="renseignement" value="renseignement">
+                    <input required v-model="reason" type="radio" name="reason" id="renseignement" value="renseignement">
                     <p>Renseignement</p>
                 </label>
-                <label for="bilan" class="flex gap-4">
-                    <input v-model="reason" type="radio" name="reason" id="bilan" value="bilan">
+                <label for="Bilan de competences" class="flex gap-4">
+                    <input required v-model="reason" type="radio" name="reason" id="Bilan de competences" value="Bilan de competences">
                     <p>Bilan de compétences</p>
                 </label>
                 <label for="formation" class="flex gap-4">
-                    <input v-model="reason" type="radio" name="reason" id="formation" value="formation">
+                    <input required v-model="reason" type="radio" name="reason" id="formation" value="formation">
                     <p>Formation</p>
                 </label>
             </div>
@@ -48,11 +48,11 @@
                     </textarea>
                 </div>
 
-                <div v-if="reason === 'bilan'" class="flex flex-col justify-start items-start gap-2 w-full">
-                    <label for="bilan" class="text-xl text-gray-500">
+                <div v-if="reason === 'Bilan de competences'" class="flex flex-col justify-start items-start gap-2 w-full">
+                    <label for="Bilan de competences" class="text-xl text-gray-500">
                         Message
                     </label>
-                    <textarea id="bilan" rows="6"
+                    <textarea id="Bilan de competences" rows="6"
                         placeholder="Expliquez-nous pourquoi vous voulez faire un bilan de compétences..."
                         v-model="bilan" class="border border-gray-500 p-4 resize-none w-full">
                     </textarea>
@@ -74,7 +74,7 @@
             </div>
 
             <div class="flex justify-end items-end">
-                <button @click.prevent="verify" class="button Colortext px-8 py-4 rounded-xl shadow-lg">
+                <button type="submit"class="button Colortext px-8 py-4 rounded-xl shadow-lg">
                     Envoyer message
                 </button>
             </div>
@@ -91,7 +91,7 @@
                 </p>
             </div>
         </div>
-    </div>
+    </form>
 </template>
 
 
@@ -120,7 +120,7 @@ const verify = () => {
     erreurs.value = []
 
     if (!name.value.length || !lastname.value.length || !mail.value.length || !phone.value.length || !reason.value.length) {
-        erreurs.value.push('Tous es champs sont obligatoires !')
+        erreurs.value.push('Tous les champs sont obligatoires !')
     }
 
     if (erreurs.value.length === 0) {

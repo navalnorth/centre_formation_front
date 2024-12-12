@@ -64,8 +64,7 @@ const fetchLogo = async () => {
     });
 
     if (!response.ok) {
-      const errorMessage = (await response.json()).message;
-      console.error(errorMessage);
+      (await response.json()).message;
       return;
     }
     const result = await response.json();
@@ -83,7 +82,6 @@ const fetchFooters = async () => {
   try {
     const response = await fetch(`${process.env.VUE_APP_URL}/footer/`);
     if (!response.ok) {
-      console.error('Erreur lors de la récupération des footers.');
       return;
     }
     const result = await response.json();

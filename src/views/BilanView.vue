@@ -1,13 +1,13 @@
 <template>
+
+    <BannierPagesComp>
+        <template #title>
+            {{ bannierHautTitle }}
+        </template>
+    </BannierPagesComp>
     <div v-if="bannierHautTitle">
-        <BannierPagesComp>
-            <template #title>
-                {{ bannierHautTitle }}
-            </template>
-        </BannierPagesComp>
-    
         <BilanBody />
-    
+
         <BannierComp>
             <template #title>
                 {{ banTitle }}
@@ -24,14 +24,25 @@
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
 import BilanBody from '@/components/BilanContenu.vue';
 import BannierComp from '@/components/BannierComp.vue';
-import { onBeforeMount, ref } from 'vue';
+import { computed, onBeforeMount, ref } from 'vue';
+import { useHead } from '@vueuse/head';
 
 
 const bannierHautTitle = ref('')
 const banTitle = ref('');
-const banDescription = ref(
-    ""
-);
+const banDescription = ref("");
+
+
+
+const computedHead = computed(() => ({
+  title: bannierHautTitle.value,
+  meta: [
+    { name: 'description', content: banDescription.value },
+    { name: 'keywords', content: 'Bilan de competences, Formation, Ikigai, développement personnel' },
+  ],
+}));
+
+useHead(computedHead);
 
 
 const fetchBannier = async () => {

@@ -2,7 +2,7 @@
     <div v-if="image" class="tout">
         <div class="flex justify-center items-center flex-col lg:flex-row">
             <div class="fontText w-2/3 flex flex-col items-center">
-                <img src="../assets/image/Arrow.png">
+                <img src="../assets/image/Arrow.png" alt="bilan de competences">
 
                 <div class="w-full flex justify-center items-center">
                     <p class="text-left mt-8 lg:mt-16 text-xl description">
@@ -13,7 +13,7 @@
 
             <div class="w-1/3 flex flex-col items-center mt-4 lg:mt-40 gap-4">
                 <div>
-                    <img :src="`${url}${image}`" class="w-64 lg:w-96 mt-4 lg:mt-0 max-w-none">
+                    <img :src="`${url}${image}`" class="w-64 lg:w-96 mt-4 lg:mt-0 max-w-none" alt="bilan de competences">
                 </div>
                 <button class="ColorButon text-black hover:bg-slate-100 hover:text-black py-2 lg:w-96 w-64 rounded-lg"
                 @click="rdv"
@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="lg:hidden flex justify-center items-center">
-                    <img src="../assets/image/ArrowB.png" class="w-4 ">
+                    <img src="../assets/image/ArrowB.png" class="w-4" alt="bilan de competences">
                 </div>
 
                 <div class="flex lg:justify-end justify-center">
@@ -59,11 +59,11 @@
                 </div>
 
                 <div class="lg:absolute lg:left-96 lg:top-80 lg:flex hidden">
-                    <img src="../assets/image/BilanArrowGauche.png" class="w-20 ">
+                    <img src="../assets/image/BilanArrowGauche.png" class="w-20" alt="bilan de competences">
                 </div>
 
                 <div class="lg:hidden flex justify-center items-center">
-                    <img src="../assets/image/ArrowB.png" class="w-4 ">
+                    <img src="../assets/image/ArrowB.png" class="w-4" alt="bilan de competences">
                 </div>
 
                 <div class="flex lg:justify-start justify-center mb-8">

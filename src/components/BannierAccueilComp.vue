@@ -4,15 +4,15 @@
       <div class="flex items-center justify-center flex-wrap-reverse gap-10 md:gap-44 w-full my-10">
         <div class="text-center md:text-left md:w-1/3 w-full">
           <h1 class="text-xl md:text-3xl  font-bold fontTitle md:p-0 px-5">{{ title }}</h1>
-          <h3 class="text-base md:text-xl mt-2 font-light">{{ name }}</h3>
+          <p class="text-base md:text-xl mt-2 font-light">{{ name }}</p>
           <p class="mt-4 text-base sp fontSubTitle w-full break-words md:p-0 px-5">{{ description }}</p>
         </div>
 
         <div class="flex flex-col overflow-hidden items-center">
           <div class="w-64">
-            <img :src="`${url}${urlImageBannier}`" class="w-full h-full object-cover rounded-3xl" />
+            <img :src="`${url}${urlImageBannier}`" class="w-full h-full object-cover rounded-3xl" alt="formations"/>
           </div>
-          <button class="p-2 mt-5 bg-white text-black w-56 rounded-xl text-center cursor-pointer" @click="about">
+          <button class="p-2 mt-5 bg-white text-black w-56 rounded-xl text-center cursor-pointer" data-testid="about-button" @click="about">
             Qui suis-je ?
           </button>
         </div>
@@ -20,12 +20,15 @@
     </div>
 
   </div>
-  <h1 class="mt-20 text-xl md:text-3xl fontTitle"> {{ title_section }} </h1>
+  <p class="mt-20 text-xl md:text-3xl fontTitle"> {{ title_section }} </p>
 </template>
 
 <script setup>
-import { onBeforeMount, ref } from 'vue';
+import { computed, onBeforeMount, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useHead } from '@vueuse/head';
+
+const router = useRouter()
 
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 const title = ref('');
@@ -33,17 +36,24 @@ const title_section = ref('');
 const name = ref('');
 const description = ref('');
 
-const router = useRouter()
+
+
+const computedHead = computed(() => ({
+  title: title.value,
+  meta: [
+    { name: 'description', content: description.value },
+    { name: 'keywords', content: 'Bilan de competences, Formation, Ikigai, développement personnel' },
+  ],
+}));
+
+useHead(computedHead);
+
+
 
 const about = () => {
-
   router.push("/about").catch(err => console.error(err));
 };
 
-
-onBeforeMount(async() => {
- await fetchAccueil();
-});
 
 
 const urlImageBannier = ref('image_accueil-1733156237736.jpg')
@@ -59,8 +69,7 @@ const fetchAccueil = async () => {
     });
 
     if (!response.ok) {
-      const err = await response.json();
-      console.log(err.message || 'Erreur inconnue lors de la connexion.');
+      await response.json();
       return;
     }
 
@@ -72,17 +81,14 @@ const fetchAccueil = async () => {
     name.value = data.name;
     description.value = data.description;
     urlImageBannier.value = data.image_accueil
-
-
-
   } catch (error) {
     console.error('Erreur durant la connexion : ', error);
   }
 };
 
-
-
-
+onBeforeMount(async() => {
+ await fetchAccueil();
+});
 </script>
 
 <style scoped>

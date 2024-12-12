@@ -28,6 +28,7 @@ const textCard = ref('');
 const isDataLoaded = ref(false); // Variable pour surveiller si les données sont chargées
 const hasError = ref(false); // Variable pour indiquer une erreur
 const messageerreur = ref('')
+
 // Fonction pour récupérer les couleurs depuis l'API
 const fetchAccueil = async () => {
   try {

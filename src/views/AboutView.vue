@@ -25,7 +25,7 @@
                 <img :src="`${url}${image}`" alt="Formation" class="rounded-3xl">
             </div>
             <div>
-                <img src="../assets/image/Avion.png" alt="Bilan-de-competences">
+                <img src="../assets/image/Avion.png" alt="Bilan de competences">
             </div>
         </div>
     </div>
@@ -34,7 +34,8 @@
 
 <script setup>
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
-import { onBeforeMount, ref } from 'vue';
+import { useHead } from '@vueuse/head';
+import { computed, onBeforeMount, ref } from 'vue';
 
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 
@@ -44,6 +45,18 @@ const description1 = ref(``)
 const description2 = ref(``)
 const description3 = ref(``)
 const image = ref('')
+
+
+
+const computedHead = computed(() => ({
+  title: bannierHautTitle.value,
+  meta: [
+    { name: 'description', content: description1.value },
+    { name: 'keywords', content: 'Bilan de competences, Formation, Ikigai, développement personnel' },
+  ],
+}));
+
+useHead(computedHead);
 
 
 

@@ -5,11 +5,11 @@
         </template>
     </BannierPagesComp>
     <div class="flex justify-center items-center gap-16 lg:gap-96 flex-wrap-reverse">
-        <div class="m-10 fontText text-xl h-auto w-96">
+        <p class="m-10 fontText text-xl h-auto w-96">
             {{ description }}
-        </div>
+        </p>
         <div class="w-80 h-64 flex justify-center flex-col ">
-            <img :src="`${url}${image}`" class="w-full h-full object-cover" alt="Card image">
+            <img :src="`${url}${image}`" class="w-full h-full object-cover" alt="bilan de competences">
             <div class="ColorButon p-3 rounded-xl m-5 hover:cursor-pointer text-white" @click="redirectToContact">
                 {{ button }}
             </div>
@@ -20,21 +20,31 @@
 </template>
 <script setup>
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
-import { onBeforeMount, ref } from 'vue';
+import { useHead } from '@vueuse/head';
+import { computed, onBeforeMount, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
 const router = useRouter()
-
-onBeforeMount(() => {
-    fetchCard();
-});
 
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 const title = ref('')
 const description = ref('')
 const image = ref('')
 const button = ref('')
+
+
+
+const computedHead = computed(() => ({
+  title: title.value,
+  meta: [
+    { name: 'description', content: description.value },
+    { name: 'keywords', content: 'Bilan de competences, Formation, Ikigai, développement personnel' },
+  ],
+}));
+
+useHead(computedHead);
+
 
 
 const redirectToContact = () => {
@@ -73,6 +83,10 @@ const fetchCard = async () => {
         console.error('Erreur durant la connexion :', error);
     }
 };
+
+onBeforeMount(() => {
+    fetchCard();
+});
 </script>
 
 <style scoped>

@@ -3,9 +3,9 @@
         <div
             class="flex flex-col-reverse md:flex-row items-center justify-between md:gap-4 w-full p-0 md:pr-36 mt-10  mb-4 mx-0 md:mx-10">
             <div class="md:w-3/4 w-full">
-                <h1 class="text-lg md:text-3xl text-center fontTitle md:p-0 px-5">
+                <p class="text-lg md:text-3xl text-center fontTitle md:p-0 px-5">
                     <slot name="title"></slot>
-                </h1>
+                </p>
 
                 <p class="mt-4 text-xs md:text-base leading-relaxed fontSubTitle my-5 md:p-0 px-5">
                     <slot name="description"></slot>
@@ -13,7 +13,7 @@
             </div>
 
             <div class="md:w-1/4 w-full flex justify-center md:justify-end">
-                <img class="w-24 md:w-44 h-24 md:h-44 mb-5 md:mb-0" :src="`${url}${logo}`" />
+                <img class="w-24 md:w-44 h-24 md:h-44 mb-5 md:mb-0" :src="`${url}${logo}`" alt="bilan de competences"/>
             </div>
         </div>
     </div>
@@ -40,8 +40,7 @@ const fetchLogo = async () => {
         });
 
         if (!response.ok) {
-            const errorMessage = (await response.json()).message || 'Erreur inconnue lors de la connexion.';
-            console.error(errorMessage);
+            (await response.json()).message;
             return;
         }
 

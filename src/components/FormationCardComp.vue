@@ -1,5 +1,5 @@
 <template>
-    <div v-if="cards" class="flex tout flex-wrap  gap-20 justify-center items-center content-center  my-10 auto-container">
+    <div v-if="cards" class="flex cursor-pointer tout flex-wrap  gap-20 justify-center items-center content-center  my-10 auto-container">
         <div v-for="(card, index) in cards" class="flex flex-col flex-wrap  items-center justify-center" :key="index"
             @mouseover="card.isFlipped = true" @mouseleave="card.isFlipped = false">
             <div class="card-container  flex justify-center relative mx-16 w-72 h-96">
@@ -7,10 +7,10 @@
                     :class="{ 'is-flipped': card.isFlipped }">
                     <!-- Face avant -->
                     <div class="card-front absolute w-full h-full  bg-white rounded-lg shadow-lg overflow-hidden">
-                        <img :src="`${url}${card.image_formation}`" alt="Card image"
+                        <img :src="`${url}${card.image_formation}`" alt="bilan de competences"
                             class="w-full h-full object-cover" />
                         <div class="absolute inset-0  bg-black bg-opacity-50 flex items-center justify-center">
-                            <h3 class="text-lg font-bold text-white text-center px-4">{{ card.title_formation }}</h3>
+                            <p class="text-lg font-bold text-white text-center px-4">{{ card.title_formation }}</p>
                         </div>
                     </div>
 

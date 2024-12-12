@@ -1,26 +1,27 @@
 <template>
+
+    <BannierPagesComp>
+        <template #title>
+            {{ title_formation }}
+        </template>
+    </BannierPagesComp>
     <div v-if="title_formation">
-        <BannierPagesComp>
-            <template #title>
-                {{ title_formation }}
-            </template>
-        </BannierPagesComp>
-        <CardFormationComp/>
+        <CardFormationComp />
     </div>
 </template>
 
 <script setup>
 import CardFormationComp from '@/components/FormationCardComp.vue';
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { onBeforeMount } from 'vue';
+import { useHead } from '@vueuse/head';
 
-onBeforeMount (() => {
-    fetchFormation();
-});
+
 
 
 const title_formation = ref('')
+
 const fetchFormation = async () => {
     try {
         const response = await fetch(`${process.env.VUE_APP_URL}/users/`, {
@@ -46,6 +47,21 @@ const fetchFormation = async () => {
     }
 };
 
+const computedHead = computed(() => ({
+  title: title_formation.value,
+  meta: [
+    { name: 'description', content: title_formation.value },
+    { name: 'keywords', content: 'Bilan de competences, Formation, Ikigai, développement personnel' },
+  ],
+}));
+
+useHead(computedHead);
+
+
+
+onBeforeMount(() => {
+    fetchFormation();
+});
 </script>
 
 <style scoped></style>
