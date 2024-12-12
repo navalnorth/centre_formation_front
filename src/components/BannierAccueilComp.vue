@@ -28,10 +28,10 @@ import { onBeforeMount, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const url = `${process.env.VUE_APP_URL}/uploads/`;
-const title = ref('FORMATIONS & BILAN DE COMPETENCES');
-const title_section = ref('Découvrez de Nouvelles Opportunités');
-const name = ref('PAULINE BOURDARIAS');
-const description = ref('Parce que chaque parcours est unique, Je vous accompagne avec bienveillance et écoute pour révéler votre potentiel et donner du sens à vos projets. Ensemble, construisons un avenir qui vous ressemble.');
+const title = ref('');
+const title_section = ref('');
+const name = ref('');
+const description = ref('');
 
 const router = useRouter()
 

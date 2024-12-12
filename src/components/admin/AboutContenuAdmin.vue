@@ -64,7 +64,7 @@ const message = ref(''); // Message pour afficher le résultat
 const messageType = ref(''); // Classe pour styliser le message (succès/erreur)
 
 const imageUrl = ref('');
-const urlImageBannier = ref('image_accueil-1733156237736.jpg')
+const urlImageBannier = ref('')
 
 const fetchAbout = async () => {
     try {

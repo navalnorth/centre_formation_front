@@ -1,5 +1,5 @@
 <template>
-    <div class="flex tout flex-wrap  gap-20 justify-center items-center content-center  my-10 auto-container">
+    <div v-if="cards" class="flex tout flex-wrap  gap-20 justify-center items-center content-center  my-10 auto-container">
         <div v-for="(card, index) in cards" class="flex flex-col flex-wrap  items-center justify-center" :key="index"
             @mouseover="card.isFlipped = true" @mouseleave="card.isFlipped = false">
             <div class="card-container  flex justify-center relative mx-16 w-72 h-96">
@@ -36,51 +36,7 @@ const detail = (e) => {
 }
 
 const url = `${process.env.VUE_APP_URL}/uploads/`;
-const cards = ref([
-    {
-        image_formation: "load.png",
-        title_formation: "Définition de Projet professionnel",
-        description_formation_card: "Clarifiez vos aspirations, identifiez vos compétences et construisez un projet professionnelaligné avec vos ambitions et vos valeurs.",
-
-    },
-    {
-        image_formation: "load.png",
-        title_formation: "Création des outils de Techniques de Recherche d’Emploi",
-        description_formation_card: "Apprenez à élaborer des CV percutants, des lettres de motivation efficaces et à optimiser" +
-            "votre présence sur les réseaux professionnels.",
-
-    },
-    {
-        image_formation: "load.png",
-        title_formation: "Confiance en soi",
-        description_formation_card: "Développez une image positive de vous-même, apprenez à surmonter vos doutes et affirmez-vous" +
-            "avec assurance dans toutes vos démarches.",
-
-    },
-    {
-        image_formation: "load.png",
-        title_formation: "Gestion des émotions en milieu professionnel",
-        description_formation_card: "Développez des outils pour comprendre, gérer et transformer vos émotions afin de mieux naviguer" +
-            "dans les défis du travail.",
-
-    },
-    {
-        image_formation: "load.png",
-        title_formation: "Formation LinkedIn",
-        description_formation_card: "Découvrez comment optimiser votre profil LinkedIn, développer votre réseau et utiliser la plateforme" +
-            "pour booster votre visibilité et vos opportunités professionnelles.",
-
-    },
-    {
-        image_formation: "load.png",
-        title_formation: "Un besoin particulier ? Contactez-moi !",
-        description_formation_card: "Chaque situation est unique. Discutons ensemble de vos besoins spécifiques pour créer un" +
-            "accompagnement personnalisé qui répondra à vos attentes.",
-
-    },
-
-
-]);
+const cards = ref([]);
 
 onBeforeMount(() => {
     fetchCardFormation();

@@ -9,9 +9,8 @@
             <router-link class="cursor-pointer hover:text-slate-400" to="/bilan-de-competences">Bilan de
                 compétences</router-link>
             <router-link class="cursor-pointer hover:text-slate-400" to="/formation">Formation</router-link>
-            <router-link v-if="user.mail" class="cursor-pointer hover:text-slate-400"
-                to="/menu-admin">Admin</router-link>
-
+            <router-link v-if="user.username" class="cursor-pointer hover:text-slate-400"
+                to="/admin-menu">Admin</router-link>
         </div>
 
         <div class="hidden lg:flex">
@@ -31,7 +30,7 @@
             <router-link
                 class="cursor-pointerbg-pink-300 ColorButon text-white p-2 w-80  rounded-xl hover:text-black hover:bg-neutral-100 fontTitle"
                 @click="toggleBurgerMenu" to="/contact">Contactez-moi</router-link>
-            <router-link v-if="user.mail" class="cursor-pointer hover:text-slate-400" to="/menu-admin"
+            <router-link v-if="user.username" class="cursor-pointer hover:text-slate-400" to="/admin-menu"
                 @click="toggleBurgerMenu">Admin</router-link>
         </div>
     </nav>

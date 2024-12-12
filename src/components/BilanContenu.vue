@@ -1,5 +1,5 @@
 <template>
-    <div class="tout">
+    <div v-if="image" class="tout">
         <div class="flex justify-center items-center flex-col lg:flex-row">
             <div class="fontText w-2/3 flex flex-col items-center">
                 <img src="../assets/image/Arrow.png">
@@ -97,13 +97,13 @@ const router = useRouter()
 
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 
-const descriptionBilan = ref("Le bilan de compétences, c'est bien plus qu'un outil professionnel. C'est un moment précieux pour vous recentrer, prendre du recul, et explorer vos aspirations profondes. Chaque parcours est unique, Je m'engage à vous accompagner avec bienveillance et respect dans cette démarche qui place l'humain au cœur de tout.")
-const titre_section = ref('Ensemble, nous allons :')
-const info_bilan_1 = ref('Identifier vos compétences, vos talents et vos forces.')
-const info_bilan_2 = ref("Explorer ce qui vous motive réellement, grâce à des outils comme l'Ikigai, qui permet de relier vos passions, vos valeurs et vos objectifs professionnels.")
-const info_bilan_3 = ref("Construire un projet qui a du sens pour vous, qu'il s'agisse d'une évolution de carrière, d'une reconversion ou d'une meilleure compréhension de vos envies.")
-const phrase = ref('Je suis convaincue que chaque individu possède un potentiel immense à révéler. Et je suis là pour vous guider, pas à pas, dans cette réflexion.')
-const image = ref('BilanImage.png')
+const descriptionBilan = ref("")
+const titre_section = ref('')
+const info_bilan_1 = ref('')
+const info_bilan_2 = ref("")
+const info_bilan_3 = ref("")
+const phrase = ref('')
+const image = ref('')
 
 
 

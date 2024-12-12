@@ -60,7 +60,7 @@ onBeforeMount(() => {
 });
 
 const imageUrl = ref('');
-const urlImageBannier = ref('image_accueil-1733156237736.jpg')
+const urlImageBannier = ref('')
 
 const fetchAccueil = async () => {
     try {

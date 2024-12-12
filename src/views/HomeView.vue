@@ -22,8 +22,8 @@ import router from '@/router';
 import { onBeforeMount } from 'vue';
 
 
-const banTitle = ref('“Révélez votre potentiel unique avec bienveillance et authenticité”');
-const banDescription = ref('Pauline B.');
+const banTitle = ref('');
+const banDescription = ref('');
 
 
 onBeforeMount(() => {

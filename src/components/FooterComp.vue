@@ -7,7 +7,7 @@
       <MdKeyboardArrowUp class="w-20 h-20 text-white" />
     </div>
 
-    <img class="w-24 md:w-44 h-24 md:h-44 mb-5 " :src="`${url}${logo}`" alt="logo" />
+    <img v-if="logo" class="w-24 md:w-36 h-24 md:h-36 mb-5 " :src="`${url}${logo}`" alt="logo" />
 
     <div class="flex flex-col md:flex-row w-1/2 gap-5 min-w-96 justify-between">
       <router-link class="cursor-pointer hover:text-slate-400" to="/">Qui suis-je ?</router-link>
@@ -39,7 +39,7 @@ import { AkLinkedinV2Fill, MdKeyboardArrowUp } from '@kalimahapps/vue-icons';
 import { onBeforeMount, ref } from 'vue';
 
 const footerList = ref([]);
-const logo = ref("logo.png");
+const logo = ref("");
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 
 

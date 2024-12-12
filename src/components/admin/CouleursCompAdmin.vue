@@ -36,13 +36,13 @@ import { onBeforeMount, ref } from 'vue';
 onBeforeMount(() => {
     fetchColor();
 });
-const colordeg1 = ref('#021550');  
-const colordeg2 = ref('#021550');
-const pinkCard = ref('#021550'); 
-const allButon = ref('#021550'); 
+const colordeg1 = ref('');  
+const colordeg2 = ref('');
+const pinkCard = ref(''); 
+const allButon = ref(''); 
 
-const text = ref('#021550');
-const textCard = ref('#021550');
+const text = ref('');
+const textCard = ref('');
 
 const fetchUpdateColor = async () => {
     const data2 = {

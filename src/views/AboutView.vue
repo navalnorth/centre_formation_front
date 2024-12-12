@@ -38,12 +38,12 @@ import { onBeforeMount, ref } from 'vue';
 
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 
-const bannierHautTitle = ref('Qui suis-je ?')
-const titre_description = ref(`Passionnée par l'humain et les parcours de vie, mon chemin a été tout sauf linéaire !`)
-const description1 = ref(`Forte d'une formation en ressources humaines et d'expériences variées, allant du commerce à la gestion d'un restaurant, en passant par des missions en recrutement et en RH, j'ai toujours cherché à créer du lien et à révéler le potentiel de chacun. Originaire de la région parisienne, c'est l'amour (et des yeux bleus !) qui m'a menée dans le Nord, où j'ai découvert ma vocation : l'accompagnement.`)
-const description2 = ref(`Depuis, j'ai eu la chance de guider des salariés, des demandeurs d'emploi, des bénéficiaires du RSA, et bien d'autres profils dans des contextes variés : plans sociaux, réinsertion professionnelle, et bien plus encore.`)
-const description3 = ref(`Aujourd'hui, je mets cette richesse d'expériences au service de votre réussite, que vous soyez une entreprise ou un particulier. Ensemble, avançons vers vos objectifs avec confiance et authenticité.  Si vous souhaitez personnaliser encore davantage, n'hésitez pas à indiquer vos préférences !`)
-const image = ref('image_accueil-1733156237736.jpg')
+const bannierHautTitle = ref('')
+const titre_description = ref(``)
+const description1 = ref(``)
+const description2 = ref(``)
+const description3 = ref(``)
+const image = ref('')
 
 
 

@@ -1,4 +1,13 @@
 <template>
+    <div class="w-full flex items-center justify-center flex-col">
+        <label for="" class="flex flex-col text-left w-2/3">Titre de la page des formations
+            <input class="border-b-2" type="text" v-model="title_page_formation">
+        </label>
+        <button class="p-3 bg-pink-400 hover:bg-pink-600 rounded-lg m-2 text-white"
+        @click="fetchUpdateTitle()">
+        Enregistrer ce titre 
+    </button>
+    </div>
     <div class="p-5 text-xl border-b-2 border-indigo-950 m-10">Modifier les formations</div>
     <div class="flex md:justify-around flex-wrap flex-col md:m-20  md:flex-row justify-center items-center">
         <div v-for="(forma, index) in formations" :key="index" class="flex flex-col md:m-5 mb-16  gap-5 w-2/3 md:w-2/5 ">
@@ -143,6 +152,62 @@ const onFileChange = (event, index) => {
     }
 };
 
+const title_page_formation = ref('')
+const fetchFormation = async () => {
+    try {
+        const response = await fetch(`${process.env.VUE_APP_URL}/users/`, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            const err = await response.json();
+            console.log('Erreur de réponse :', err.message);
+            return;
+        }
+
+        const result = await response.json();
+
+        const data = result.data[0];
+        title_page_formation.value = data.title_page_formation;
+    } catch (error) {
+        console.error('Erreur durant la connexion :', error);
+    }
+};
+
+const fetchUpdateTitle = async () => {
+    const updatedData = {
+        title_page_formation: title_page_formation.value,
+        
+    };
+
+    try {
+        const response = await fetch(`${process.env.VUE_APP_URL}/users/modifierTitleFormation`, {
+            method: 'PUT',
+            body: JSON.stringify(updatedData),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            const err = await response.json();
+            console.error(err.message || 'Erreur inconnue lors de la connexion.');
+            return;
+        }
+
+        const result = await response.json();
+
+        
+    } catch (error) {
+        console.error('Erreur durant la mise à jour de la carte :', error);
+    }
+};
+
 // Update image for a specific card
 const fetchUpdateImage = async (id_formation, index) => {
     const fileInput = document.querySelector(`#file-input-${index}`);
@@ -208,6 +273,7 @@ const deleteformation = async (id_formation, index) => {
 
 onBeforeMount(() => {
     fetchCard();
+    fetchFormation();
 });
 </script>
 

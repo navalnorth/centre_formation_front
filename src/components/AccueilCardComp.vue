@@ -46,24 +46,7 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const url = `${process.env.VUE_APP_URL}/uploads/`;
-const cards = ref([
-  {
-    bgimage: "load.png",
-    description: "Découvrez votre potentiel grâce au bilan de compétences.",
-    infoBull1: "Découvrez votre potentiel grâce au bilan de compétences.",
-    infoBull2: "Un premier échange offert pour faire le point",
-    title: "Bilan de compétences",
-    route: "/bilan", // Route pour cette carte
-  },
-  {
-    bgimage: "load.png",
-    description: "Faites le point sur vos compétences et explorez de nouvelles opportunités.",
-    infoBull1: "Approche pédagogique, centrée sur l'humain et l'apprentissage.",
-    infoBull2: "Construire une formation adaptée.",
-    title: "Nos formations",
-    route: "/formation", // Route pour cette carte
-  },
-]);
+const cards = ref([]);
 
 const navigateTo = (route) => {
   if (!route) {

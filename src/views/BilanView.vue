@@ -1,20 +1,22 @@
 <template>
-    <BannierPagesComp>
-        <template #title>
-            {{ bannierHautTitle }}
-        </template>
-    </BannierPagesComp>
-
-    <BilanBody />
-
-    <BannierComp>
-        <template #title>
-            {{ banTitle }}
-        </template>
-        <template #description>
-            {{ banDescription }}
-        </template>
-    </BannierComp>
+    <div v-if="bannierHautTitle">
+        <BannierPagesComp>
+            <template #title>
+                {{ bannierHautTitle }}
+            </template>
+        </BannierPagesComp>
+    
+        <BilanBody />
+    
+        <BannierComp>
+            <template #title>
+                {{ banTitle }}
+            </template>
+            <template #description>
+                {{ banDescription }}
+            </template>
+        </BannierComp>
+    </div>
 </template>
 
 
@@ -25,13 +27,10 @@ import BannierComp from '@/components/BannierComp.vue';
 import { onBeforeMount, ref } from 'vue';
 
 
-const bannierHautTitle = ref('Découvrez votre potentiel grâce au Bilan de compétences')
-const banTitle = ref('*Le premier échange offert pour faire le point');
+const bannierHautTitle = ref('')
+const banTitle = ref('');
 const banDescription = ref(
-    "Parce que cette démarche mérite toute votre confiance, " +
-    "je vous propose un premier échange gratuit et sans engagement. " +
-    "C'est l'occasion de discuter de vos attentes, de vos interrogations, " +
-    "et de découvrir comment je peux vous accompagner au mieux dans votre projet."
+    ""
 );
 
 

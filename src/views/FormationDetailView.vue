@@ -19,7 +19,6 @@
 
 </template>
 <script setup>
-import CardFormationComp from '@/components/FormationCardComp.vue';
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
 import { onBeforeMount, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
@@ -32,10 +31,10 @@ onBeforeMount(() => {
 });
 
 const url = `${process.env.VUE_APP_URL}/uploads/`;
-const title = ref('Découvrez notre formation')
+const title = ref('')
 const description = ref('')
 const image = ref('')
-const button = ref('S’ incscrire a la formation')
+const button = ref('')
 
 
 const redirectToContact = () => {
