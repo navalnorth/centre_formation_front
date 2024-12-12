@@ -1,36 +1,27 @@
 <template>
-  <div v-if="banTitle">
-    <BannierAccueilComp/>
-    <cardAccueilComp/>
-    <BannierComp >
-      <template #title> {{ banTitle }} </template>
-      <template #description>
-        {{ banDescription }}
-      </template>
-    </BannierComp>
-  </div>
+  <BannierAccueilComp />
+  <cardAccueilComp />
+  <BannierComp>
+    <template #title> {{ banTitle }} </template>
+    <template #description>
+      {{ banDescription }}
+    </template>
+  </BannierComp>
+
 </template>
-
-
 <script setup>
 import { ref } from 'vue';
 import BannierComp from '@/components/BannierComp.vue';
 import BannierAccueilComp from '@/components/BannierAccueilComp.vue';
 import cardAccueilComp from '@/components/AccueilCardComp.vue';
-import router from '@/router';
 import { onBeforeMount } from 'vue';
-
 
 const banTitle = ref('');
 const banDescription = ref('');
 
-
 onBeforeMount(() => {
-
   fetchBannier();
 });
-
-
 
 const fetchBannier = async () => {
   try {
@@ -50,7 +41,6 @@ const fetchBannier = async () => {
 
     const result = await response.json();
     const data = result.data;
-
     banTitle.value = data.titre_bannier;
     banDescription.value = data.description_bannier;
 
@@ -61,17 +51,12 @@ const fetchBannier = async () => {
 </script>
 
 <style scoped>
-
 .fontTitle,
 h1 {
   font-family: var(--font-title);
   font-weight: 700;
-  font-size: 1.875rem
-    /* 30px */
-  ;
-  line-height: 2.25rem
-    /* 36px */
-  ;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .fontSubTitle {
