@@ -9,8 +9,8 @@
             {{ description }}
         </div>
         <div class="w-80 h-64 flex justify-center flex-col ">
-            <img :src="`${url}${image}`" class="w-full hover:cursor-pointer h-full object-cover" alt="Card image">
-            <div class="ColorButon p-3 rounded-xl m-5 text-white" @click="redirectToContact">
+            <img :src="`${url}${image}`" class="w-full h-full object-cover" alt="Card image">
+            <div class="ColorButon p-3 rounded-xl m-5 hover:cursor-pointer text-white" @click="redirectToContact">
                 {{ button }}
             </div>
 
