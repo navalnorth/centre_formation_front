@@ -1,15 +1,14 @@
 <template>
-  <BannierAccueilComp/>
-
-  <cardAccueilComp/>
-
-  <BannierComp >
-    <template #title> {{ banTitle }} </template>
-    <template #description>
-      {{ banDescription }}
-    </template>
-  </BannierComp>
-
+  <div v-if="banTitle">
+    <BannierAccueilComp/>
+    <cardAccueilComp/>
+    <BannierComp >
+      <template #title> {{ banTitle }} </template>
+      <template #description>
+        {{ banDescription }}
+      </template>
+    </BannierComp>
+  </div>
 </template>
 
 

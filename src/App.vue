@@ -5,6 +5,7 @@
     <FooterComp />
   </div>
   <div v-else-if="hasError" class="error-page">
+    
     <h1>Erreur de Chargement</h1>
     <p>Nous avons rencontré un problème lors de la récupération des données.</p>
     <p> {{ messageerreur }}</p>
