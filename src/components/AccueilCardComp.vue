@@ -90,6 +90,7 @@ const fetchCard = async () => {
     cards.value = data.map((card) => {
       return {
         ...card,
+        isFlipped: false,
         route: determineRoute(card), // Détermine la route pour chaque carte
       };
     });

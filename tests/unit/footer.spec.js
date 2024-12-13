@@ -1,8 +1,6 @@
 import { mount } from '@vue/test-utils';
 import FooterComp from '@/components/FooterComp.vue'; // Remplacez par le chemin réel du composant
 
-
-
 module.exports = {
   moduleNameMapper: {
     '^@kalimahapps/vue-icons$': './__mocks__/@kalimahapps/vue-icons.js',
@@ -37,4 +35,25 @@ describe('FooterComp.vue', () => {
       behavior: 'smooth',
     });
   });
+
+  it('renders navigation links correctly', () => {
+    const wrapper = mount(FooterComp, {
+      global: {
+        stubs: {
+          'router-link': true,
+        },
+      },
+    });
+
+    const links = wrapper.findAll('router-link-stub');
+    expect(links).toHaveLength(5); 
+    expect(links[0].attributes('to')).toBe('/');
+    expect(links[1].attributes('to')).toBe('/bilan-de-competences');
+    expect(links[2].attributes('to')).toBe('/formation');
+    expect(links[3].attributes('to')).toBe('/'); 
+    expect(links[4].attributes('to')).toBe('/mentions-legales');
+
+  });
+
+
 });
