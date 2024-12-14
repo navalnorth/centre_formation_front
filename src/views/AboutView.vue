@@ -39,14 +39,12 @@ import { computed, onBeforeMount, ref } from 'vue';
 
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 
-const bannierHautTitle = ref('')
-const titre_description = ref(``)
-const description1 = ref(``)
-const description2 = ref(``)
-const description3 = ref(``)
-const image = ref('')
-
-
+const bannierHautTitle = ref('');
+const titre_description = ref('');
+const description1 = ref('');
+const description2 = ref('');
+const description3 = ref('');
+const image = ref('');
 
 const computedHead = computed(() => ({
   title: bannierHautTitle.value,
@@ -58,44 +56,58 @@ const computedHead = computed(() => ({
 
 useHead(computedHead);
 
-
-
 const fechAbout = async () => {
-    try {
-        const response = await fetch(`${process.env.VUE_APP_URL}/users/`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json, text/plain, */*',
-                'Content-Type': 'application/json',
-            },
-        });
+  try {
+    // Vérifier si les données sont dans localStorage
+    const cachedData = localStorage.getItem('aboutData');
+    if (cachedData) {
+      const data = JSON.parse(cachedData);
+      bannierHautTitle.value = data.title;
+      titre_description.value = data.title_description;
+      description1.value = data.description1;
+      description2.value = data.description2;
+      description3.value = data.description3;
+      image.value = data.image;
 
-        if (!response.ok) {
-            const err = await response.json();
-            console.log('Erreur de réponse :', err.message);
-            return;
-        }
-
-        const result = await response.json();
-
-        const data = result.data[0];
-        bannierHautTitle.value = data.title;
-        titre_description.value = data.title_description;
-        description1.value = data.description1;
-        description2.value = data.description2;
-        description3.value = data.description3;
-        image.value = data.image;
-
-        
-    } catch (error) {
-        console.error('Erreur durant la connexion :', error);
     }
+
+    // Appel API si les données ne sont pas en cache
+    const response = await fetch(`${process.env.VUE_APP_URL}/users/`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const err = await response.json();
+      console.error('Erreur de réponse :', err.message);
+      return;
+    }
+
+    const result = await response.json();
+    const data = result.data[0];
+
+    bannierHautTitle.value = data.title;
+    titre_description.value = data.title_description;
+    description1.value = data.description1;
+    description2.value = data.description2;
+    description3.value = data.description3;
+    image.value = data.image;
+
+    // Stocker les données dans localStorage
+    localStorage.setItem('aboutData', JSON.stringify(data));
+  } catch (error) {
+    console.error('Erreur durant la connexion :', error);
+  }
 };
 
 onBeforeMount(async () => {
-    await fechAbout();
+  await fechAbout();
 });
 </script>
+
 
 
 <style scoped>
