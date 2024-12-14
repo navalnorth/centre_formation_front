@@ -13,40 +13,49 @@
 <script setup>
 import CardFormationComp from '@/components/FormationCardComp.vue';
 import BannierPagesComp from '@/components/BannierPagesComp.vue';
-import { computed, ref } from 'vue';
-import { onBeforeMount } from 'vue';
+import { computed, ref, onBeforeMount } from 'vue';
 import { useHead } from '@vueuse/head';
 
-
-
-
-const title_formation = ref('')
+const title_formation = ref('');
 
 const fetchFormation = async () => {
-    try {
-        const response = await fetch(`${process.env.VUE_APP_URL}/users/`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json, text/plain, */*',
-                'Content-Type': 'application/json',
-            },
-        });
+  try {
+    // Vérification des données en localStorage
+    const cachedData = localStorage.getItem('formationData');
 
-        if (!response.ok) {
-            const err = await response.json();
-            console.log('Erreur de réponse :', err.message);
-            return;
-        }
-
-        const result = await response.json();
-
-        const data = result.data[0];
-        title_formation.value = data.title_page_formation;
-    } catch (error) {
-        console.error('Erreur durant la connexion :', error);
+    if (cachedData) {
+      // Si les données sont en cache, les utiliser directement
+      title_formation.value = JSON.parse(cachedData).title_page_formation;
     }
+
+    // Sinon, effectuer l'appel API
+    const response = await fetch(`${process.env.VUE_APP_URL}/users/`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const err = await response.json();
+      console.log('Erreur de réponse :', err.message);
+      return;
+    }
+
+    const result = await response.json();
+
+    const data = result.data[0];
+    title_formation.value = data.title_page_formation;
+
+    // Stockage des données dans localStorage
+    localStorage.setItem('formationData', JSON.stringify(data));
+  } catch (error) {
+    console.error('Erreur durant la connexion :', error);
+  }
 };
 
+// Metadonnées de la page
 const computedHead = computed(() => ({
   title: title_formation.value,
   meta: [
@@ -57,11 +66,11 @@ const computedHead = computed(() => ({
 
 useHead(computedHead);
 
-
-
+// Chargement des données au montage
 onBeforeMount(() => {
-    fetchFormation();
+  fetchFormation();
 });
 </script>
+
 
 <style scoped></style>

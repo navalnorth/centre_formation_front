@@ -31,42 +31,54 @@
 import router from '@/router';
 import { onBeforeMount, ref } from 'vue';
 
-const detail = (e) => {
-    router.push(`/formation/${e}`)
-}
+const detail = (id) => {
+  router.push(`/formation/${id}`);
+};
 
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 const cards = ref([]);
 
-onBeforeMount(() => {
-    fetchCardFormation();
-});
-
 const fetchCardFormation = async () => {
-    try {
-        const response = await fetch(`${process.env.VUE_APP_URL}/formation/`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json, text/plain, */*',
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (!response.ok) {
-            const errorMessage = (await response.json()).message || 'Erreur inconnue lors de la connexion.';
-            console.error(errorMessage);
-            return;
-        }
-
-        const result = await response.json();
-        const data = result.data;
-        cards.value = data;
-    } catch (error) {
-        console.error('Erreur durant la connexion :', error);
+  try {
+    // Vérifier si les données sont en cache
+    const cachedData = localStorage.getItem('formationCards');
+    if (cachedData) {
+      cards.value = JSON.parse(cachedData);
+      return;
     }
+
+    // Si non en cache, faire l'appel API
+    const response = await fetch(`${process.env.VUE_APP_URL}/formation/`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const errorMessage = (await response.json()).message || 'Erreur inconnue lors de la connexion.';
+      console.error(errorMessage);
+      return;
+    }
+
+    const result = await response.json();
+    const data = result.data;
+
+    cards.value = data;
+
+    // Sauvegarder les données dans localStorage
+    localStorage.setItem('formationCards', JSON.stringify(data));
+  } catch (error) {
+    console.error('Erreur durant la connexion :', error);
+  }
 };
 
+onBeforeMount(() => {
+  fetchCardFormation();
+});
 </script>
+
 
 <style scoped>
 .card-container {
