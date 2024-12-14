@@ -6,7 +6,7 @@
       </div>
   
       <!-- Desktop Navigation -->
-      <div class="hidden lg:flex w-3/4 min-w-96 justify-evenly gap-12 text-white fontTitle">
+      <div class="hidden lg:flex w-3/4 min-w-96 justify-around gap-12 text-white fontTitle">
         <router-link class="cursor-pointer hover:text-slate-400" to="/about">Qui suis-je ?</router-link>
         <router-link class="cursor-pointer hover:text-slate-400" to="/bilan-de-competences">Bilan de compétences</router-link>
         <router-link class="cursor-pointer hover:text-slate-400" to="/formation">Formation</router-link>
