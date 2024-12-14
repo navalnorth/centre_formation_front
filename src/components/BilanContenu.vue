@@ -109,7 +109,7 @@ const rdv = () => {
   router.push({
     path: '/contact',
     query: {
-      reason: 'bilan',
+      reason: 'Bilan de competences',
     },
   });
 };
