@@ -55,90 +55,97 @@ const router = useRouter();
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 const cards = ref([]);
 
-import { nextTick } from 'vue';
-
-const fetchCardFromLocalStorage = () => {
-  fetchCard()
+// Fonction centrale pour charger les données depuis l'API ou le localStorage
+const loadCardsData = async () => {
+  // Vérifiez si des données existent dans le localStorage
   const storedData = localStorage.getItem('cardsData');
+
   if (storedData) {
-    const parsedData = JSON.parse(storedData);
-    cards.value = parsedData.map((card) => {
-      return {
-        ...card,
-        route: determineRoute(card),
-      };
-    });
-    nextTick(() => {
-      
-      console.log('Cartes après mise à jour dans le DOM:', cards.value);
-    });
+    try {
+      const parsedData = JSON.parse(storedData);
+      if (Array.isArray(parsedData)) {
+        // Si les données locales sont valides, les charger
+        updateCards(parsedData);
+        console.log('Données chargées depuis le localStorage:', parsedData);
+        return;
+      }
+    } catch (error) {
+      console.warn('Erreur lors du parsing des données du localStorage:', error);
+    }
   }
+
+  // Sinon, charger les données depuis l'API
+  await fetchCardsFromAPI();
 };
 
-
 // Fonction pour récupérer les cartes depuis l'API
-const fetchCard = async () => {
+const fetchCardsFromAPI = async () => {
   try {
     const response = await fetch(`${process.env.VUE_APP_URL}/card/`, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
       },
     });
 
     if (!response.ok) {
-      (await response.json()).message;
+      console.error('Erreur lors de la récupération des données depuis l\'API');
       return;
     }
 
     const result = await response.json();
     const data = result.data;
 
-    // Sauvegarde les données dans localStorage
+    // Sauvegarder les données dans le localStorage
     localStorage.setItem('cardsData', JSON.stringify(data));
-    console.log('Données récupérées depuis l\'API:', data); // Vérifiez les données
+    console.log('Données récupérées depuis l\'API et sauvegardées:', data);
 
-    // Ajoutez les routes manquantes
-    cards.value = data.map((card) => {
-      return {
-        ...card,
-        route: determineRoute(card), // Détermine la route pour chaque carte
-      };
-    });
+    // Mettre à jour l'état local
+    updateCards(data);
   } catch (error) {
-    console.error("Erreur durant la connexion :", error);
+    console.error('Erreur lors de la connexion à l\'API:', error);
   }
 };
 
+// Fonction pour mettre à jour les cartes et ajouter des routes
+const updateCards = (data) => {
+  cards.value = data.map((card) => ({
+    ...card,
+    route: determineRoute(card),
+    isFlipped: false, // Initialisation de l'état de rotation
+  }));
+};
+
+// Fonction pour déterminer les routes en fonction des titres
+const determineRoute = (card) => {
+  switch (card.title) {
+    case 'Bilan de compétences':
+      return '/bilan-de-competences';
+    case 'Nos formations':
+      return '/formation';
+    default:
+      return '/'; // Route par défaut
+  }
+};
+
+// Fonction pour naviguer vers une route spécifique
 const navigateTo = (route) => {
   if (!route) {
-    console.error("La route est manquante pour cette carte.");
+    console.error('La route est manquante pour cette carte.');
     return;
   }
 
   router.push(route).catch((err) => {
-    if (err.name !== "NavigationDuplicated") {
-      console.error("Erreur de navigation :", err);
+    if (err.name !== 'NavigationDuplicated') {
+      console.error('Erreur de navigation:', err);
     }
   });
 };
 
-// Fonction pour déterminer les routes
-const determineRoute = (card) => {
-  switch (card.title) {
-    case "Bilan de compétences":
-      return "/bilan-de-competences";
-    case "Nos formations":
-      return "/formation";
-    default:
-      return "/"; // Route par défaut si aucune correspondance
-  }
-};
-
-// Appeler la fonction pour charger les données au moment du montage du composant
-onBeforeMount(async() => {
-  fetchCardFromLocalStorage();
+// Charger les données au montage du composant
+onBeforeMount(async () => {
+  await loadCardsData();
 });
 </script>
 

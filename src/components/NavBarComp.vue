@@ -61,6 +61,7 @@ onBeforeMount(() => {
 
 const logo = ref("");
 const url = `${process.env.VUE_APP_URL}/uploads/`;
+
 const fetchLogo = async () => {
     try {
         const response = await fetch(`${process.env.VUE_APP_URL}/users/`, {
@@ -76,12 +77,9 @@ const fetchLogo = async () => {
             console.error(errorMessage);
             return;
         }
-
         const result = await response.json();
         const data = result.data[0];
-
         logo.value = data.logo
-
     } catch (error) {
         console.error('Erreur durant la connexion :', error);
     }
