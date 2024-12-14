@@ -67,7 +67,6 @@ const loadCardsData = async () => {
         // Si les données locales sont valides, les charger
         updateCards(parsedData);
         console.log('Données chargées depuis le localStorage:', parsedData);
-        return;
       }
     } catch (error) {
       console.warn('Erreur lors du parsing des données du localStorage:', error);
