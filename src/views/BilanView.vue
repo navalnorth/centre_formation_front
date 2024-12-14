@@ -5,7 +5,7 @@
             {{ bannierHautTitle }}
         </template>
     </BannierPagesComp>
-    <div v-if="bannierHautTitle">
+
         <BilanBody />
 
         <BannierComp>
@@ -16,7 +16,6 @@
                 {{ banDescription }}
             </template>
         </BannierComp>
-    </div>
 </template>
 
 

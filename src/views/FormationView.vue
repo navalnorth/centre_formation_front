@@ -5,9 +5,9 @@
             {{ title_formation }}
         </template>
     </BannierPagesComp>
-    <div v-if="title_formation">
+
         <CardFormationComp />
-    </div>
+
 </template>
 
 <script setup>
