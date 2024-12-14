@@ -93,65 +93,79 @@ import { Bs1Circle, Bs2Circle, Bs3Circle } from '@kalimahapps/vue-icons';
 import { onBeforeMount, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-const router = useRouter()
+const router = useRouter();
 
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 
-const descriptionBilan = ref("")
-const titre_section = ref('')
-const info_bilan_1 = ref('')
-const info_bilan_2 = ref("")
-const info_bilan_3 = ref("")
-const phrase = ref('')
-const image = ref('')
-
-
+const descriptionBilan = ref('');
+const titre_section = ref('');
+const info_bilan_1 = ref('');
+const info_bilan_2 = ref('');
+const info_bilan_3 = ref('');
+const phrase = ref('');
+const image = ref('');
 
 const rdv = () => {
-    router.push({
-        path: '/contact',
-        query: {
-            reason: 'bilan'
-        },
-    });
+  router.push({
+    path: '/contact',
+    query: {
+      reason: 'bilan',
+    },
+  });
 };
 
-
-
 const fetchBilan = async () => {
-    try {
-        const response = await fetch(`${process.env.VUE_APP_URL}/bilan/`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json, text/plain, */*',
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (!response.ok) {
-            const err = await response.json();
-            console.log('Erreur de réponse :', err.message);
-            return;
-        }
-
-        const result = await response.json();
-
-        const data = result.data[0];
-        descriptionBilan.value = data.description_bilan;
-        titre_section.value = data.title_section_bilan;
-        info_bilan_1.value = data.info_bilan_1;
-        info_bilan_2.value = data.info_bilan_2;
-        info_bilan_3.value = data.info_bilan_3;
-        image.value = data.image_bilan;
-    } catch (error) {
-        console.error('Erreur durant la connexion :', error);
+  try {
+    // Vérification dans le localStorage
+    const cachedBilan = localStorage.getItem('bilanData');
+    if (cachedBilan) {
+      const data = JSON.parse(cachedBilan);
+      descriptionBilan.value = data.description_bilan;
+      titre_section.value = data.title_section_bilan;
+      info_bilan_1.value = data.info_bilan_1;
+      info_bilan_2.value = data.info_bilan_2;
+      info_bilan_3.value = data.info_bilan_3;
+      image.value = data.image_bilan;
+      return;
     }
+
+    // Appel API si pas de données dans le localStorage
+    const response = await fetch(`${process.env.VUE_APP_URL}/bilan/`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const err = await response.json();
+      console.log('Erreur de réponse :', err.message);
+      return;
+    }
+
+    const result = await response.json();
+
+    const data = result.data[0];
+    descriptionBilan.value = data.description_bilan;
+    titre_section.value = data.title_section_bilan;
+    info_bilan_1.value = data.info_bilan_1;
+    info_bilan_2.value = data.info_bilan_2;
+    info_bilan_3.value = data.info_bilan_3;
+    image.value = data.image_bilan;
+
+    // Stockage des données dans le localStorage
+    localStorage.setItem('bilanData', JSON.stringify(data));
+  } catch (error) {
+    console.error('Erreur durant la connexion :', error);
+  }
 };
 
 onBeforeMount(async () => {
-    await fetchBilan();
+  await fetchBilan();
 });
 </script>
+
 
 <style scoped>
 .ColorButon {

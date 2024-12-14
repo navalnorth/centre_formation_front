@@ -1,19 +1,23 @@
 <template>
-  <div class="flex tout flex-wrap gap-20 justify-center items-center content-center  my-10 auto-container">
-    <div v-for="(card, index) in cards" class="flex flex-col items-center justify-center" :key="index" @mouseover="card.isFlipped = true" @mouseleave="card.isFlipped = false">
-      <div class="card-container  flex justify-center relative w-72 h-96">
-        <div class="card-inner relative w-72  h-96 transform transition-transform duration-500 ease-in-out" :class="{ 'is-flipped': card.isFlipped }">
-          
+  <div class="flex tout flex-wrap gap-20 justify-center items-center content-center my-10 auto-container">
+    <div v-for="(card, index) in cards" :key="index" class="flex flex-col items-center justify-center" 
+         @mouseover="card.isFlipped = true" 
+         @mouseleave="card.isFlipped = false">
+      
+      <div class="card-container flex justify-center relative w-72 h-96">
+        <div class="card-inner relative w-72 h-96 transform transition-transform duration-500 ease-in-out" 
+             :class="{ 'is-flipped': card.isFlipped }">
+
           <!-- Face avant -->
-          <div class="card-front absolute w-full h-full  bg-white rounded-lg shadow-lg overflow-hidden">
+          <div class="card-front absolute w-full h-full bg-white rounded-lg shadow-lg overflow-hidden">
             <img :src="`${url}${card.bgimage}`" alt="Card image" class="w-full h-full object-cover" />
-            <div class="absolute inset-0  bg-black bg-opacity-50 flex items-center justify-center">
-              <p class="text-lg font-bold text-white text-center px-4">{{ card.title }}</p>
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+              <p :class="['text-lg', 'font-bold', 'text-white', 'text-center', 'px-4', 'colortext']">{{ card.title }}</p>
             </div>
           </div>
 
           <!-- Face arrière -->
-          <div @click="navigateTo(card.route)" class="card-back absolute flex-col w-full h-full ColorPink colortextcard rounded-lg shadow-lg flex items-center justify-center p-4">
+          <div @click="navigateTo(card.route)" class="card-back absolute flex-col w-full h-full rounded-lg shadow-lg flex items-center justify-center p-4 ColorPink colortextcard">
             <p class="text-center text-2xl line-clamp-6">{{ card.description }}</p>
             <p><br>Cliquez pour plus d'informations</p>
           </div>
@@ -22,21 +26,22 @@
 
       <div class="hidden md:flex items-center justify-center flex-col">
         <img class="h-20 w-10 my-2" src="../assets/image/ArrowB.png" alt="Bilan de competences" />
-        <p class="bgBlue colortext m-5 rounded-3xl p-5">{{ card.infoBull1 }}</p>
+        <p :class="['bgBlue', 'colortext', 'm-5', 'rounded-3xl', 'p-5']">{{ card.infoBull1 }}</p>
         <img class="h-20 w-10 my-2" src="../assets/image/ArrowB.png" alt="Bilan de competences" />
-        <p class="bgBlue colortext m-5 rounded-3xl p-5 mb-5">{{ card.infoBull2 }}</p>
+        <p :class="['bgBlue', 'colortext', 'm-5', 'rounded-3xl', 'p-5', 'mb-5']">{{ card.infoBull2 }}</p>
       </div>
     </div>
   </div>
+  
   <div>
     <p class="flex md:hidden justify-center mt-20 text-xl md:text-3xl fontTitle mb-10"> Plus d'informations</p>
-    <div  v-for="(card, index) in cards" class=" flex md:hidden flex-col items-center justify-center" :key="index">
-      <div class=" items-center justify-center flex flex-col">
-        <p class="bgBlue colortext m-2 mt-5 rounded-3xl p-5">{{ card.title }}</p>
+    <div v-for="(card, index) in cards" :key="index" class="flex md:hidden flex-col items-center justify-center">
+      <div class="items-center justify-center flex flex-col">
+        <p :class="['bgBlue', 'colortext', 'm-2', 'mt-5', 'rounded-3xl', 'p-5']">{{ card.title }}</p>
         <img class="h-20 w-10 my-2 textpi" src="../assets/image/ArrowB.png" alt="Formation" />
-        <p class="bgBlue colortext m-2 rounded-3xl p-5">{{ card.infoBull1 }}</p>
+        <p :class="['bgBlue', 'colortext', 'm-2', 'rounded-3xl', 'p-5']">{{ card.infoBull1 }}</p>
         <img class="h-20 w-10 my-2" src="../assets/image/ArrowB.png" alt="Formation" />
-        <p class="bgBlue colortext m-2 rounded-3xl p-5 mb-16">{{ card.infoBull2 }}</p>
+        <p :class="['bgBlue', 'colortext', 'm-2', 'rounded-3xl', 'p-5', 'mb-16']">{{ card.infoBull2 }}</p>
       </div>
     </div>
   </div>
@@ -50,24 +55,28 @@ const router = useRouter();
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 const cards = ref([]);
 
-const navigateTo = (route) => {
-  if (!route) {
-    console.error("La route est manquante pour cette carte.");
-    return;
-  }
+import { nextTick } from 'vue';
 
-  router.push(route).catch((err) => {
-    if (err.name !== "NavigationDuplicated") {
-      console.error("Erreur de navigation :", err);
-    }
-  });
+const fetchCardFromLocalStorage = () => {
+  fetchCard()
+  const storedData = localStorage.getItem('cardsData');
+  if (storedData) {
+    const parsedData = JSON.parse(storedData);
+    cards.value = parsedData.map((card) => {
+      return {
+        ...card,
+        route: determineRoute(card),
+      };
+    });
+    nextTick(() => {
+      
+      console.log('Cartes après mise à jour dans le DOM:', cards.value);
+    });
+  }
 };
 
 
-onBeforeMount(async() => {
-  await fetchCard();
-});
-
+// Fonction pour récupérer les cartes depuis l'API
 const fetchCard = async () => {
   try {
     const response = await fetch(`${process.env.VUE_APP_URL}/card/`, {
@@ -86,17 +95,33 @@ const fetchCard = async () => {
     const result = await response.json();
     const data = result.data;
 
+    // Sauvegarde les données dans localStorage
+    localStorage.setItem('cardsData', JSON.stringify(data));
+    console.log('Données récupérées depuis l\'API:', data); // Vérifiez les données
+
     // Ajoutez les routes manquantes
     cards.value = data.map((card) => {
       return {
         ...card,
-        isFlipped: false,
         route: determineRoute(card), // Détermine la route pour chaque carte
       };
     });
   } catch (error) {
     console.error("Erreur durant la connexion :", error);
   }
+};
+
+const navigateTo = (route) => {
+  if (!route) {
+    console.error("La route est manquante pour cette carte.");
+    return;
+  }
+
+  router.push(route).catch((err) => {
+    if (err.name !== "NavigationDuplicated") {
+      console.error("Erreur de navigation :", err);
+    }
+  });
 };
 
 // Fonction pour déterminer les routes
@@ -111,6 +136,10 @@ const determineRoute = (card) => {
   }
 };
 
+// Appeler la fonction pour charger les données au moment du montage du composant
+onBeforeMount(async() => {
+  fetchCardFromLocalStorage();
+});
 </script>
 
 <style scoped>
@@ -123,16 +152,15 @@ const determineRoute = (card) => {
 }
 .ColorPink {
   background-color: var(--color-pink);
-  
 }
 
 .colortext {
   color: var(--color-text);
 }
+
 .colortextcard {
   color: var(--color-textcard);
 }
-
 
 .tout {
   background-image: url("../assets/image/LogoTampon.png");
@@ -165,7 +193,7 @@ const determineRoute = (card) => {
 
 .card-front,
 .card-back {
-  backface-visibility: hidden; /* Cache l'autre face lors de la rotation */
+  backface-visibility: hidden; /* Cache l'autre face */
   position: absolute;
   width: 100%;
   height: 100%;
