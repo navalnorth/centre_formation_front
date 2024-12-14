@@ -126,7 +126,7 @@ const fetchBilan = async () => {
       info_bilan_2.value = data.info_bilan_2;
       info_bilan_3.value = data.info_bilan_3;
       image.value = data.image_bilan;
-      return;
+      
     }
 
     // Appel API si pas de données dans le localStorage
