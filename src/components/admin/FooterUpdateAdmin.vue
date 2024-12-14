@@ -53,11 +53,8 @@ import { onBeforeMount, ref } from 'vue';
 const footers = ref([]);
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 
-onBeforeMount(() => {
-    fetchFooter();
-});
 
-// Fetch footer data
+
 const fetchFooter = async () => {
     try {
         const response = await fetch(`${process.env.VUE_APP_URL}/footer/`, {
@@ -89,7 +86,6 @@ const fetchFooter = async () => {
     }
 };
 
-// Update footer information (text)
 const fetchFooterUpdate = async (id_footer, index) => {
     const updatedData = {
         title_footer: footers.value[index].title_footer,
@@ -123,8 +119,6 @@ const fetchFooterUpdate = async (id_footer, index) => {
     }
 };
 
-
-// Supprimer un footer
 const deleteFooter = async (idFooter) => {
     if (!confirm("Êtes-vous sûr de vouloir supprimer cet élément ?")) {
         return;
@@ -153,7 +147,7 @@ const deleteFooter = async (idFooter) => {
 };
 
 
-// Handle image change for a specific footer
+
 const onFileChange = (event, index) => {
     const file = event.target.files[0];
     if (file) {
@@ -165,7 +159,6 @@ const onFileChange = (event, index) => {
     }
 };
 
-// Update image for a specific footer
 const fetchUpdateImage = async (id_footer, index) => {
     const fileInput = document.querySelector(`#file-input-${index}`);
     if (!fileInput || fileInput.files.length === 0) {
@@ -201,6 +194,10 @@ const fetchUpdateImage = async (id_footer, index) => {
         console.error('Erreur durant la mise à jour de l\'image :', error);
     }
 };
+
+onBeforeMount(() => {
+    fetchFooter();
+});
 </script>
 
 <style scoped>

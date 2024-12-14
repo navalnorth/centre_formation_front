@@ -2,20 +2,16 @@
     <nav class="deg p-5 w-full h-24 flex items-center justify-between">
       <!-- Logo -->
       <div class="w-20 h-20 cursor-pointer" @click="accueil">
-        <img v-if="logo" class="w-16 h-16" :src="`${url}${logo}`" alt="Logo" />
+        <img class="w-16 h-16" :src="`${url}${logo}`" alt="bilan de competences" title="Accueil"/>
       </div>
   
       <!-- Desktop Navigation -->
-      <div class="hidden lg:flex w-1/2 min-w-96 justify-between text-white fontTitle">
+      <div class="hidden lg:flex w-3/4 min-w-96 justify-evenly gap-12 text-white fontTitle">
         <router-link class="cursor-pointer hover:text-slate-400" to="/about">Qui suis-je ?</router-link>
         <router-link class="cursor-pointer hover:text-slate-400" to="/bilan-de-competences">Bilan de compétences</router-link>
         <router-link class="cursor-pointer hover:text-slate-400" to="/formation">Formation</router-link>
+        <router-link class="cursor-pointer hover:text-slate-400" to="/contact">Contactez-moi</router-link>
         <router-link v-if="user.username" class="cursor-pointer hover:text-slate-400" to="/admin-menu">Admin</router-link>
-      </div>
-  
-      <!-- Contact Button (Desktop) -->
-      <div class="hidden lg:flex">
-        <router-link class="bg-white p-2 rounded-xl hover:bg-pink-200 fontTitle" to="/contact">Contactez-moi</router-link>
       </div>
   
       <!-- Hamburger Menu (Mobile) -->
@@ -28,8 +24,7 @@
         <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/about">Qui suis-je ?</router-link>
         <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/bilan-de-competences">Bilan de compétences</router-link>
         <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/formation">Formation</router-link>
-        <router-link class="cursor-pointer bg-pink-300 ColorButon text-white p-2 w-80 rounded-xl hover:text-black hover:bg-neutral-100 fontTitle" 
-          @click="toggleBurgerMenu" to="/contact">Contactez-moi</router-link>
+        <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/contact">Contactez-moi</router-link>
         <router-link v-if="user.username" class="cursor-pointer hover:text-slate-400" to="/admin-menu" @click="toggleBurgerMenu">Admin</router-link>
       </div>
     </nav>
@@ -46,17 +41,16 @@
   const logo = ref('');
   const url = `${process.env.VUE_APP_URL}/uploads/`;
   
-  // Fonction pour rediriger vers la page d'accueil
   const accueil = () => {
     router.push('/');
   };
   
-  // Fonction pour basculer l'état du menu burger
   const toggleBurgerMenu = () => {
     isOpen.value = !isOpen.value;
   };
   
-  // Récupération du logo avec cache
+
+
   const fetchLogo = async () => {
     const cachedLogo = localStorage.getItem('logo');
     if (cachedLogo) {
@@ -88,7 +82,6 @@
     }
   };
   
-  // Charger le logo au montage
   onBeforeMount(() => {
     fetchLogo();
   });
@@ -97,10 +90,6 @@
   <style scoped>
   .deg {
     background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-  }
-  
-  .ColorButon {
-    background-color: var(--color-buton);
   }
   
   .menu {

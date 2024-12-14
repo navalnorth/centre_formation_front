@@ -23,7 +23,6 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue';
 
-
 const logo = ref("");
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 
@@ -38,7 +37,6 @@ const fetchLogo = async () => {
                 'Content-Type': 'application/json',
             },
         });
-
         if (!response.ok) {
             (await response.json()).message;
             return;

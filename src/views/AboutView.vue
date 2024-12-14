@@ -22,7 +22,7 @@
 
         <div class="right flex flex-col gap-10 self-start">
             <div>
-                <img :src="`${url}${image}`" alt="Formation" class="rounded-3xl">
+                <img :src="`${url}${image}`" alt="Formation" class="rounded-3xl" loading="lazy">
             </div>
             <div>
                 <img src="../assets/image/Avion.png" alt="Bilan de competences">
@@ -46,6 +46,8 @@ const description2 = ref('');
 const description3 = ref('');
 const image = ref('');
 
+
+
 const computedHead = computed(() => ({
   title: bannierHautTitle.value,
   meta: [
@@ -55,6 +57,8 @@ const computedHead = computed(() => ({
 }));
 
 useHead(computedHead);
+
+
 
 const fechAbout = async () => {
   try {

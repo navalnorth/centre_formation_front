@@ -1,9 +1,7 @@
 <template>
-
   <NavBarComp />
   <router-view />
   <FooterComp />
-
 </template>
 
 <script setup>
@@ -16,7 +14,8 @@ const isDataLoaded = ref(false);
 const hasError = ref(false);
 const messageerreur = ref('');
 
-// Fonction pour récupérer les couleurs depuis l'API
+
+
 const fetchAccueil = async () => {
   try {
     const response = await fetch(`${process.env.VUE_APP_URL}/users/`, {
@@ -30,7 +29,6 @@ const fetchAccueil = async () => {
     if (!response.ok) {
       const err = await response.json();
       messageerreur.value = err.message;
-      console.log(err.message || 'Erreur inconnue lors de la connexion.');
       throw new Error(err.message || 'Erreur inconnue lors de la connexion.');
     }
 
@@ -45,10 +43,8 @@ const fetchAccueil = async () => {
     localStorage.setItem('text', data.colortext);
     localStorage.setItem('textCard', data.textcard);
 
-    // Récupérer et appliquer les couleurs stockées
     applyColors();
 
-    // Marquer les données comme chargées
     isDataLoaded.value = true;
   } catch (error) {
     messageerreur.value = error.message || error;
@@ -65,11 +61,6 @@ const applyColors = () => {
   const text = localStorage.getItem('text');
   const textCard = localStorage.getItem('textCard');
 
-  console.log("Apply Colors from LocalStorage", {
-    colordeg1, colordeg2, pinkCard, allButon, text, textCard
-  });
-
-  // Vérifier si les couleurs sont présentes dans localStorage
   if (colordeg1 && colordeg2 && pinkCard && allButon && text && textCard) {
     document.documentElement.style.setProperty('--primary-color', colordeg1);
     document.documentElement.style.setProperty('--secondary-color', colordeg2);
@@ -87,9 +78,14 @@ onBeforeMount(async () => {
   await fetchAccueil();
   await store.dispatch('checkAuth');
 });
-
 </script>
 
 <style>
-/* Votre CSS inchangé */
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 </style>

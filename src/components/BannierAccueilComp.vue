@@ -39,6 +39,22 @@ const name = ref('');
 const description = ref('');
 const urlImageBannier = ref('image_accueil-1733156237736.jpg');
 
+const about = () => {
+  router.push("/about").catch(err => console.error(err));
+};
+
+const computedHead = computed(() => ({
+  title: title.value,
+  meta: [
+    { name: 'description', content: description.value },
+    { name: 'keywords', content: 'Bilan de competences, Formation, Ikigai, développement personnel' },
+  ],
+}));
+
+useHead(computedHead);
+
+
+
 // Vérification des données dans localStorage
 const checkLocalStorage = () => {
   const storedTitle = localStorage.getItem('title');
@@ -54,21 +70,19 @@ const checkLocalStorage = () => {
     name.value = storedName;
     description.value = storedDescription;
     urlImageBannier.value = storedImage;
-    console.log("Données récupérées depuis localStorage.");
   }
 };
 
-// Enregistrer les données dans localStorage après récupération via fetch
 const saveToLocalStorage = (data) => {
   localStorage.setItem('title', data.title_accueil);
   localStorage.setItem('title_section', data.title_section);
   localStorage.setItem('name', data.name);
   localStorage.setItem('description', data.description);
   localStorage.setItem('image_accueil', data.image_accueil);
-  console.log("Données enregistrées dans localStorage.");
 };
 
-// Fonction de fetch des données
+
+
 const fetchAccueil = async () => {
   try {
     const response = await fetch(`${process.env.VUE_APP_URL}/accueil/`, {
@@ -100,26 +114,15 @@ const fetchAccueil = async () => {
     console.error('Erreur durant la connexion : ', error);
   }
 };
-console.log('URL de l\'image:', `${url}${urlImageBannier.value}`);
 
-// Fonction de redirection
-const about = () => {
-  router.push("/about").catch(err => console.error(err));
-};
 
-// Appeler les fonctions au chargement du composant
 onBeforeMount(() => {
-  // Vérifier d'abord si les données sont dans localStorage
   checkLocalStorage();
-
-
   fetchAccueil();
-
 });
 </script>
 
 <style scoped>
-/* Appliquer les polices via les variables */
 .fontTitle {
   font-family: var(--font-title);
 }

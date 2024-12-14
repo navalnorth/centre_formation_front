@@ -18,6 +18,8 @@ import { useHead } from '@vueuse/head';
 
 const title_formation = ref('');
 
+
+
 const fetchFormation = async () => {
   try {
     // Vérification des données en localStorage
@@ -39,7 +41,6 @@ const fetchFormation = async () => {
 
     if (!response.ok) {
       const err = await response.json();
-      console.log('Erreur de réponse :', err.message);
       return;
     }
 
@@ -55,7 +56,8 @@ const fetchFormation = async () => {
   }
 };
 
-// Metadonnées de la page
+
+
 const computedHead = computed(() => ({
   title: title_formation.value,
   meta: [
@@ -66,7 +68,8 @@ const computedHead = computed(() => ({
 
 useHead(computedHead);
 
-// Chargement des données au montage
+
+
 onBeforeMount(() => {
   fetchFormation();
 });

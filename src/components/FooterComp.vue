@@ -9,15 +9,12 @@
       <MdKeyboardArrowUp class="w-20 h-20 text-white" />
     </div>
 
-    <!-- Logo -->
-    <img v-if="logo" class="w-24 md:w-36 h-24 md:h-36 mb-5" :src="`${url}${logo}`" alt="Logo" />
-
     <!-- Liens principaux -->
     <div class="flex flex-col md:flex-row w-1/2 gap-5 min-w-96 justify-between">
-      <router-link class="cursor-pointer hover:text-slate-400" to="/">Qui suis-je ?</router-link>
+      <router-link class="cursor-pointer hover:text-slate-400" to="/about">Qui suis-je ?</router-link>
       <router-link class="cursor-pointer hover:text-slate-400" to="/bilan-de-competences">Bilan de compétences</router-link>
       <router-link class="cursor-pointer hover:text-slate-400" to="/formation">Formation</router-link>
-      <router-link class="cursor-pointer hover:text-slate-400" to="/">Contactez-moi</router-link>
+      <router-link class="cursor-pointer hover:text-slate-400" to="/contact">Contactez-moi</router-link>
     </div>
 
     <!-- Footer dynamique -->
@@ -44,12 +41,9 @@
 import { MdKeyboardArrowUp } from '@kalimahapps/vue-icons';
 import { onBeforeMount, ref } from 'vue';
 
-// Références pour les données
 const footerList = ref([]);
-const logo = ref("");
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 
-// Fonction : Scroller en haut de la page
 const scrollToTop = () => {
   window.scrollTo({
     top: 0,
@@ -57,31 +51,8 @@ const scrollToTop = () => {
   });
 };
 
-// Fonction : Récupérer le logo
-const fetchLogo = async () => {
-  try {
-    const response = await fetch(`${process.env.VUE_APP_URL}/users/`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
-      },
-    });
 
-    if (!response.ok) {
-      console.error('Erreur lors de la récupération du logo.');
-      return;
-    }
-    const result = await response.json();
-    const data = result.data?.[0]; // Utilisation de l'optional chaining pour éviter les erreurs
 
-    logo.value = data?.logo || ''; // Gestion des valeurs manquantes
-  } catch (error) {
-    console.error('Erreur durant la connexion :', error);
-  }
-};
-
-// Fonction : Récupérer les footers
 const fetchFooters = async () => {
   try {
     const response = await fetch(`${process.env.VUE_APP_URL}/footer/`);
@@ -96,9 +67,7 @@ const fetchFooters = async () => {
   }
 };
 
-// Charger les données avant le rendu
 onBeforeMount(() => {
-  fetchLogo();
   fetchFooters();
 });
 </script>

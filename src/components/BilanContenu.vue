@@ -114,6 +114,8 @@ const rdv = () => {
   });
 };
 
+
+
 const fetchBilan = async () => {
   try {
     // Vérification dans le localStorage

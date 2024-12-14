@@ -31,12 +31,16 @@
 import router from '@/router';
 import { onBeforeMount, ref } from 'vue';
 
+const url = `${process.env.VUE_APP_URL}/uploads/`;
+const cards = ref([]);
+
+
+
 const detail = (id) => {
   router.push(`/formation/${id}`);
 };
 
-const url = `${process.env.VUE_APP_URL}/uploads/`;
-const cards = ref([]);
+
 
 const fetchCardFormation = async () => {
   try {
@@ -44,7 +48,6 @@ const fetchCardFormation = async () => {
     const cachedData = localStorage.getItem('formationCards');
     if (cachedData) {
       cards.value = JSON.parse(cachedData);
-      return;
     }
 
     // Si non en cache, faire l'appel API
@@ -83,7 +86,6 @@ onBeforeMount(() => {
 <style scoped>
 .card-container {
     perspective: 1000px;
-    /* Ajout de perspective pour l'effet de rotation */
 
 }
 
@@ -106,13 +108,11 @@ onBeforeMount(() => {
 
 .card-inner.is-flipped {
     transform: rotateY(180deg);
-    /* Retourne la carte */
 }
 
 .card-front,
 .card-back {
     backface-visibility: hidden;
-    /* Cache l'autre face lors de la rotation */
     position: absolute;
     width: 100%;
     height: 100%;
@@ -122,10 +122,8 @@ onBeforeMount(() => {
 
 .card-back {
     transform: rotateY(180deg);
-    /* Retourne la face arrière */
 }
 
-/* Pour s'assurer que l'image et le contenu sont centrés correctement */
 .card-front img {
     object-fit: cover;
     width: 100%;

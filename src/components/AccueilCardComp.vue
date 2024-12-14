@@ -128,7 +128,8 @@ const routerformation = () => {
   router.push('/formation')
 }
 
-// Fonction pour récupérer les cartes depuis l'API
+
+
 const fetchCardsFromAPI = async () => {
   try {
     const response = await fetch(`${process.env.VUE_APP_URL}/card/`, {
@@ -149,7 +150,6 @@ const fetchCardsFromAPI = async () => {
 
     // Sauvegarder les données dans le localStorage
     localStorage.setItem('cardsData', JSON.stringify(data));
-    console.log('Données récupérées depuis l\'API et sauvegardées:', data);
 
     // Assigner les données aux deux cartes
     firstCard.value = {
@@ -175,7 +175,6 @@ const fetchCardsFromAPI = async () => {
   }
 };
 
-// Charger les données au montage du composant
 onBeforeMount(async () => {
   // D'abord vérifier dans le localStorage
   const storedData = localStorage.getItem('cardsData');
@@ -204,7 +203,6 @@ onBeforeMount(async () => {
           infoBull2: parsedData[1].infoBull2,
           isFlipped: false
         };
-        console.log('Données chargées depuis le localStorage');
       }
     } catch (error) {
       console.warn('Erreur lors du parsing des données du localStorage:', error);

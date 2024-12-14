@@ -19,9 +19,7 @@ import { onBeforeMount } from 'vue';
 const banTitle = ref('');
 const banDescription = ref('');
 
-onBeforeMount(() => {
-  fetchBannier();
-});
+
 
 const fetchBannier = async () => {
   try {
@@ -47,6 +45,10 @@ const fetchBannier = async () => {
     console.error('Erreur durant la connexion : ', error);
   }
 };
+
+onBeforeMount(() => {
+  fetchBannier();
+});
 </script>
 
 <style scoped>

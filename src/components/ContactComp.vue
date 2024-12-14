@@ -200,7 +200,6 @@ const fechSelect = async () => {
     }
 };
 
-
 onBeforeMount(() => {
     fechSelect();
     if (route.query && route.query.formation) {

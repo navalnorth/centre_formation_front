@@ -30,6 +30,8 @@ const bannierHautTitle = ref('');
 const banTitle = ref('');
 const banDescription = ref('');
 
+
+
 const computedHead = computed(() => ({
   title: bannierHautTitle.value,
   meta: [
@@ -39,6 +41,8 @@ const computedHead = computed(() => ({
 }));
 
 useHead(computedHead);
+
+
 
 const fetchBannier = async () => {
   try {
