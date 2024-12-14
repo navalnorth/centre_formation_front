@@ -22,7 +22,7 @@
 
         <div class="right flex flex-col gap-10 self-start">
             <div>
-                <img :src="`${url}${image}`" alt="Formation" class="rounded-3xl" loading="lazy">
+                <img :src="`${url}${image}`" alt="Formation" class="rounded-3xl w-full h-full object-cover" loading="lazy">
             </div>
             <div>
                 <img src="../assets/image/Avion.png" alt="Bilan de competences">

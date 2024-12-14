@@ -16,6 +16,15 @@ const messageerreur = ref('');
 
 
 
+const updateFavicon = (newLogoUrl) => {
+  const favicon = document.getElementById('dynamic-favicon');
+  if (favicon) {
+    favicon.href = newLogoUrl;
+  }
+};
+
+
+
 const fetchAccueil = async () => {
   try {
     const response = await fetch(`${process.env.VUE_APP_URL}/users/`, {
@@ -46,6 +55,10 @@ const fetchAccueil = async () => {
     applyColors();
 
     isDataLoaded.value = true;
+
+
+    const currentLogoUrl = `${process.env.VUE_APP_URL}/uploads/${data.logo}`;
+    updateFavicon(currentLogoUrl);
   } catch (error) {
     messageerreur.value = error.message || error;
     console.error('Erreur durant la connexion : ', error);
