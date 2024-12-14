@@ -1,24 +1,25 @@
 <template>
   <div class="flex tout flex-wrap gap-20 justify-center items-center content-center my-10 auto-container">
-    <div v-for="(card, index) in cards" :key="index" class="flex flex-col items-center justify-center" 
-         @mouseover="card.isFlipped = true" 
-         @mouseleave="card.isFlipped = false">
+    <!-- Première carte -->
+    <div class="flex flex-col items-center justify-center" 
+         @mouseover="firstCard.isFlipped = true" 
+         @mouseleave="firstCard.isFlipped = false">
       
       <div class="card-container flex justify-center relative w-72 h-96">
         <div class="card-inner relative w-72 h-96 transform transition-transform duration-500 ease-in-out" 
-             :class="{ 'is-flipped': card.isFlipped }">
+             :class="{ 'is-flipped': firstCard.isFlipped }">
 
           <!-- Face avant -->
           <div class="card-front absolute w-full h-full bg-white rounded-lg shadow-lg overflow-hidden">
-            <img :src="`${url}${card.bgimage}`" alt="Card image" class="w-full h-full object-cover" />
+            <img :src="`${url}${firstCard.bgimage}`" alt="Card image" class="w-full h-full object-cover" />
             <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-              <p :class="['text-lg', 'font-bold', 'text-white', 'text-center', 'px-4', 'colortext']">{{ card.title }}</p>
+              <p :class="['text-lg', 'font-bold', 'text-white', 'text-center', 'px-4', 'colortext']">{{ firstCard.title }}</p>
             </div>
           </div>
 
           <!-- Face arrière -->
-          <div @click="navigateTo(card.route)" class="card-back absolute flex-col w-full h-full rounded-lg shadow-lg flex items-center justify-center p-4 ColorPink colortextcard">
-            <p class="text-center text-2xl line-clamp-6">{{ card.description }}</p>
+          <div @click="routerbilan" class="card-back absolute flex-col w-full h-full rounded-lg shadow-lg flex items-center justify-center p-4 ColorPink colortextcard">
+            <p class="text-center text-2xl line-clamp-6">{{ firstCard.description }}</p>
             <p><br>Cliquez pour plus d'informations</p>
           </div>
         </div>
@@ -26,22 +27,67 @@
 
       <div class="hidden md:flex items-center justify-center flex-col">
         <img class="h-20 w-10 my-2" src="../assets/image/ArrowB.png" alt="Bilan de competences" />
-        <p :class="['bgBlue', 'colortext', 'm-5', 'rounded-3xl', 'p-5']">{{ card.infoBull1 }}</p>
+        <p :class="['bgBlue', 'colortext', 'm-5', 'rounded-3xl', 'p-5']">{{ firstCard.infoBull1 }}</p>
         <img class="h-20 w-10 my-2" src="../assets/image/ArrowB.png" alt="Bilan de competences" />
-        <p :class="['bgBlue', 'colortext', 'm-5', 'rounded-3xl', 'p-5', 'mb-5']">{{ card.infoBull2 }}</p>
+        <p :class="['bgBlue', 'colortext', 'm-5', 'rounded-3xl', 'p-5', 'mb-5']">{{ firstCard.infoBull2 }}</p>
+      </div>
+    </div>
+
+    <!-- Deuxième carte -->
+    <div class="flex flex-col items-center justify-center" 
+         @mouseover="secondCard.isFlipped = true" 
+         @mouseleave="secondCard.isFlipped = false">
+      
+      <div class="card-container flex justify-center relative w-72 h-96">
+        <div class="card-inner relative w-72 h-96 transform transition-transform duration-500 ease-in-out" 
+             :class="{ 'is-flipped': secondCard.isFlipped }">
+
+          <!-- Face avant -->
+          <div class="card-front absolute w-full h-full bg-white rounded-lg shadow-lg overflow-hidden">
+            <img :src="`${url}${secondCard.bgimage}`" alt="Card image" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+              <p :class="['text-lg', 'font-bold', 'text-white', 'text-center', 'px-4', 'colortext']">{{ secondCard.title }}</p>
+            </div>
+          </div>
+
+          <!-- Face arrière -->
+          <div @click="routerformation" class="card-back absolute flex-col w-full h-full rounded-lg shadow-lg flex items-center justify-center p-4 ColorPink colortextcard">
+            <p class="text-center text-2xl line-clamp-6">{{ secondCard.description }}</p>
+            <p><br>Cliquez pour plus d'informations</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden md:flex items-center justify-center flex-col">
+        <img class="h-20 w-10 my-2" src="../assets/image/ArrowB.png" alt="Bilan de competences" />
+        <p :class="['bgBlue', 'colortext', 'm-5', 'rounded-3xl', 'p-5']">{{ secondCard.infoBull1 }}</p>
+        <img class="h-20 w-10 my-2" src="../assets/image/ArrowB.png" alt="Bilan de competences" />
+        <p :class="['bgBlue', 'colortext', 'm-5', 'rounded-3xl', 'p-5', 'mb-5']">{{ secondCard.infoBull2 }}</p>
       </div>
     </div>
   </div>
   
   <div>
     <p class="flex md:hidden justify-center mt-20 text-xl md:text-3xl fontTitle mb-10"> Plus d'informations</p>
-    <div v-for="(card, index) in cards" :key="index" class="flex md:hidden flex-col items-center justify-center">
+    <!-- Première carte pour mobile -->
+    <div class="flex md:hidden flex-col items-center justify-center">
       <div class="items-center justify-center flex flex-col">
-        <p :class="['bgBlue', 'colortext', 'm-2', 'mt-5', 'rounded-3xl', 'p-5']">{{ card.title }}</p>
+        <p :class="['bgBlue', 'colortext', 'm-2', 'mt-5', 'rounded-3xl', 'p-5']">{{ firstCard.title }}</p>
         <img class="h-20 w-10 my-2 textpi" src="../assets/image/ArrowB.png" alt="Formation" />
-        <p :class="['bgBlue', 'colortext', 'm-2', 'rounded-3xl', 'p-5']">{{ card.infoBull1 }}</p>
+        <p :class="['bgBlue', 'colortext', 'm-2', 'rounded-3xl', 'p-5']">{{ firstCard.infoBull1 }}</p>
         <img class="h-20 w-10 my-2" src="../assets/image/ArrowB.png" alt="Formation" />
-        <p :class="['bgBlue', 'colortext', 'm-2', 'rounded-3xl', 'p-5', 'mb-16']">{{ card.infoBull2 }}</p>
+        <p :class="['bgBlue', 'colortext', 'm-2', 'rounded-3xl', 'p-5', 'mb-16']">{{ firstCard.infoBull2 }}</p>
+      </div>
+    </div>
+    
+    <!-- Deuxième carte pour mobile -->
+    <div class="flex md:hidden flex-col items-center justify-center">
+      <div class="items-center justify-center flex flex-col">
+        <p :class="['bgBlue', 'colortext', 'm-2', 'mt-5', 'rounded-3xl', 'p-5']">{{ secondCard.title }}</p>
+        <img class="h-20 w-10 my-2 textpi" src="../assets/image/ArrowB.png" alt="Formation" />
+        <p :class="['bgBlue', 'colortext', 'm-2', 'rounded-3xl', 'p-5']">{{ secondCard.infoBull1 }}</p>
+        <img class="h-20 w-10 my-2" src="../assets/image/ArrowB.png" alt="Formation" />
+        <p :class="['bgBlue', 'colortext', 'm-2', 'rounded-3xl', 'p-5', 'mb-16']">{{ secondCard.infoBull2 }}</p>
       </div>
     </div>
   </div>
@@ -53,29 +99,34 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const url = `${process.env.VUE_APP_URL}/uploads/`;
-const cards = ref([]);
 
-// Fonction centrale pour charger les données depuis l'API ou le localStorage
-const loadCardsData = async () => {
-  // Vérifiez si des données existent dans le localStorage
-  const storedData = localStorage.getItem('cardsData');
+// Définir les cartes
+const firstCard = ref({
+  title: '',
+  description: '',
+  bgimage: '',
+  route: '',
+  infoBull1: '',
+  infoBull2: '',
+  isFlipped: false
+});
 
-  if (storedData) {
-    try {
-      const parsedData = JSON.parse(storedData);
-      if (Array.isArray(parsedData)) {
-        // Si les données locales sont valides, les charger
-        updateCards(parsedData);
-        console.log('Données chargées depuis le localStorage:', parsedData);
-      }
-    } catch (error) {
-      console.warn('Erreur lors du parsing des données du localStorage:', error);
-    }
-  }
+const secondCard = ref({
+  title: '',
+  description: '',
+  bgimage: '',
+  route: '',
+  infoBull1: '',
+  infoBull2: '',
+  isFlipped: false
+});
 
-  // Sinon, charger les données depuis l'API
-  await fetchCardsFromAPI();
-};
+const routerbilan = () => {
+  router.push('/bilan-de-competences')
+}
+const routerformation = () => {
+  router.push('/formation')
+}
 
 // Fonction pour récupérer les cartes depuis l'API
 const fetchCardsFromAPI = async () => {
@@ -100,53 +151,70 @@ const fetchCardsFromAPI = async () => {
     localStorage.setItem('cardsData', JSON.stringify(data));
     console.log('Données récupérées depuis l\'API et sauvegardées:', data);
 
-    // Mettre à jour l'état local
-    updateCards(data);
+    // Assigner les données aux deux cartes
+    firstCard.value = {
+      title: data[0].title,
+      description: data[0].description,
+      bgimage: data[0].bgimage,
+      infoBull1: data[0].infoBull1,
+      infoBull2: data[0].infoBull2,
+      isFlipped: false
+    };
+
+    secondCard.value = {
+      title: data[1].title,
+      description: data[1].description,
+      bgimage: data[1].bgimage,
+      infoBull1: data[1].infoBull1,
+      infoBull2: data[1].infoBull2,
+      isFlipped: false
+    };
+
   } catch (error) {
     console.error('Erreur lors de la connexion à l\'API:', error);
   }
 };
 
-// Fonction pour mettre à jour les cartes et ajouter des routes
-const updateCards = (data) => {
-  cards.value = data.map((card) => ({
-    ...card,
-    route: determineRoute(card),
-    isFlipped: false, // Initialisation de l'état de rotation
-  }));
-};
-
-// Fonction pour déterminer les routes en fonction des titres
-const determineRoute = (card) => {
-  switch (card.title) {
-    case 'Bilan de compétences':
-      return '/bilan-de-competences';
-    case 'Nos formations':
-      return '/formation';
-    default:
-      return '/'; // Route par défaut
-  }
-};
-
-// Fonction pour naviguer vers une route spécifique
-const navigateTo = (route) => {
-  if (!route) {
-    console.error('La route est manquante pour cette carte.');
-    return;
-  }
-
-  router.push(route).catch((err) => {
-    if (err.name !== 'NavigationDuplicated') {
-      console.error('Erreur de navigation:', err);
-    }
-  });
-};
-
 // Charger les données au montage du composant
 onBeforeMount(async () => {
-  await loadCardsData();
+  // D'abord vérifier dans le localStorage
+  const storedData = localStorage.getItem('cardsData');
+
+  if (storedData) {
+    try {
+      const parsedData = JSON.parse(storedData);
+      if (Array.isArray(parsedData)) {
+        // Si les données existent déjà dans le localStorage, les utiliser
+        firstCard.value = {
+          title: parsedData[0].title,
+          description: parsedData[0].description,
+          bgimage: parsedData[0].bgimage,
+          route: parsedData[0].route,
+          infoBull1: parsedData[0].infoBull1,
+          infoBull2: parsedData[0].infoBull2,
+          isFlipped: false
+        };
+
+        secondCard.value = {
+          title: parsedData[1].title,
+          description: parsedData[1].description,
+          bgimage: parsedData[1].bgimage,
+          route: parsedData[1].route,
+          infoBull1: parsedData[1].infoBull1,
+          infoBull2: parsedData[1].infoBull2,
+          isFlipped: false
+        };
+        console.log('Données chargées depuis le localStorage');
+      }
+    } catch (error) {
+      console.warn('Erreur lors du parsing des données du localStorage:', error);
+    }
+  } 
+    await fetchCardsFromAPI();
+  
 });
 </script>
+
 
 <style scoped>
 .auto-container {

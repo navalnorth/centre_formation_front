@@ -24,7 +24,7 @@
 import { onBeforeMount, ref } from 'vue';
 
 
-const logo = ref("logo.png");
+const logo = ref("");
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 
 
