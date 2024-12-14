@@ -25,13 +25,22 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue';
 
-onBeforeMount(() => {
-    fetchAccueil();
-});
+
 const url = `${process.env.VUE_APP_URL}/uploads/`;
 
 const imageUrl = ref('');
 const urlImageBannier = ref('')
+
+
+
+const updateFavicon = (newLogoUrl) => {
+  const favicon = document.getElementById('dynamic-favicon');
+  if (favicon) {
+    favicon.href = newLogoUrl;
+  }
+};
+
+
 
 const fetchAccueil = async () => {
     try {
@@ -54,14 +63,15 @@ const fetchAccueil = async () => {
 
         urlImageBannier.value = data.logo;
         
-
+        const currentLogoUrl = `${process.env.VUE_APP_URL}/uploads/${data.logo}`;
+        updateFavicon(currentLogoUrl);
     } catch (error) {
         console.error('Erreur durant la connexion : ', error);
     }
 };
 
 
-/*cette partie est pour l'ajout d'image */
+
 const imageName = ref('');
 
 const onFileChange = (event) => {
@@ -79,36 +89,44 @@ const onFileChange = (event) => {
 };
 
 const fetchUpdateImage = async () => {
-    const fileInput = document.getElementById('image');
-    const file = fileInput.files[0]; // Récupère le fichier sélectionné
+  const fileInput = document.getElementById('image');
+  const file = fileInput.files[0];
 
-    if (!file) {
-        console.error("Aucun fichier sélectionné.");
-        return;
+  if (!file) {
+    console.error("Aucun fichier sélectionné.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("logo", file);
+
+  try {
+    const response = await fetch(`${process.env.VUE_APP_URL}/users/modifierProfileLogo`, {
+      method: 'PUT',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const err = await response.json();
+      console.error(err.message || 'Erreur inconnue lors de l\'upload de l\'image.');
+      return;
     }
 
-    const formData = new FormData();
-    formData.append("logo", file); // Match the backend's expected field name
-
-    try {
-        const response = await fetch(`${process.env.VUE_APP_URL}/users/modifierProfileLogo`, {
-            method: 'PUT',
-            body: formData,
-        });
-
-        if (!response.ok) {
-            const err = await response.json();
-            console.error(err.message || 'Erreur inconnue lors de l\'upload de l\'image.');
-            return;
-        }
-
-        const result = await response.json();
-        location.reload();
-    } catch (error) {
-        console.error('Erreur durant la connexion :', error);
-    }
+    const result = await response.json();
+    const newLogoUrl = `${process.env.VUE_APP_URL}/uploads/${result.updatedLogoFilename}`;
+    
+    // Mettre à jour le favicon
+    updateFavicon(newLogoUrl);
+    urlImageBannier.value = result.updatedLogoFilename;
+    location.reload();
+  } catch (error) {
+    console.error('Erreur durant la connexion :', error);
+  }
 };
 
+onBeforeMount(() => {
+    fetchAccueil();
+});
 </script>
 
 <style scoped>
