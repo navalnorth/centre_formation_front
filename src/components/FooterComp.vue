@@ -11,6 +11,7 @@
 
     <!-- Liens principaux -->
     <div class="flex flex-col md:flex-row w-1/2 gap-5 min-w-96 justify-between">
+      <router-link class="cursor-pointer hover:text-slate-400" to="/">Accueil</router-link>
       <router-link class="cursor-pointer hover:text-slate-400" to="/about">Qui suis-je ?</router-link>
       <router-link class="cursor-pointer hover:text-slate-400" to="/bilan-de-competences">Bilan de compétences</router-link>
       <router-link class="cursor-pointer hover:text-slate-400" to="/formation">Formation</router-link>

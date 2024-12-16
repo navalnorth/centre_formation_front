@@ -6,7 +6,8 @@
       </div>
   
       <!-- Desktop Navigation -->
-      <div class="hidden lg:flex w-1/2 min-w-96 justify-around gap-12 text-white fontTitle">
+      <div class="hidden lg:flex w-1/2 mr-20 justify-around gap-12 text-white fontTitle">
+        <router-link class="cursor-pointer hover:text-slate-400" to="/">Accueil</router-link>
         <router-link class="cursor-pointer hover:text-slate-400" to="/about">Qui suis-je ?</router-link>
         <router-link class="cursor-pointer hover:text-slate-400" to="/bilan-de-competences">Bilan de compétences</router-link>
         <router-link class="cursor-pointer hover:text-slate-400" to="/formation">Formation</router-link>
@@ -15,12 +16,13 @@
       </div>
   
       <!-- Hamburger Menu (Mobile) -->
-      <div @click="toggleBurgerMenu" class="flex lg:hidden">
+      <div @click="toggleBurgerMenu" class="flex lg:hidden cursor-pointer">
         <ChMenuHamburger class="w-14 h-14 text-white" />
       </div>
   
       <!-- Mobile Navigation -->
       <div :class="isOpen ? 'menu open' : 'menu closed'" class="z-40 p-10">
+        <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/">Accueil</router-link>
         <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/about">Qui suis-je ?</router-link>
         <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/bilan-de-competences">Bilan de compétences</router-link>
         <router-link class="cursor-pointer hover:text-slate-400" @click="toggleBurgerMenu" to="/formation">Formation</router-link>
