@@ -1,7 +1,7 @@
 <template>
     <div v-if="image" class="tout">
         <div class="flex justify-center items-center flex-col lg:flex-row">
-            <div class="fontText w-2/3 flex flex-col items-center">
+            <div class="fontText w-2/3 lg:w-2/5 flex flex-col items-center">
                 <img src="../assets/image/Arrow.png" alt="bilan de competences">
 
                 <div class="w-full flex justify-center items-center">
