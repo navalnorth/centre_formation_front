@@ -24,8 +24,8 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2.3
         with:
-          publish-dir: ./dist # Remplacez par le dossier de build de votre projet (exemple: dist pour Vue.js, build pour React)
+          publish-dir: ./dist
           production-deploy: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }} # Token d'accès Netlify
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}       # ID de votre site Netlify
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}       # ID Netlify
